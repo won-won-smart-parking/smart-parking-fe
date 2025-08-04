@@ -1,22 +1,27 @@
 {
   "expo": {
-    "name": "smart-parking-fe",
-    "slug": "smart-parking-fe",
+    "name": "smart-parking",
+    "slug": "smart-parking",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "smartparkingfe",
+    "scheme": "smartparking",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.smartparking.app",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "package": "com.smartparking.app"
     },
     "web": {
       "bundler": "metro",
@@ -41,7 +46,7 @@
     "extra": {
       "router": {},
       "eas": {
-        "projectId": "6084d404-9071-486a-9762-ad9cdafa7794"
+        "projectId": "ab33dc3d-4940-45c7-a70c-6678500ca652"
       }
     }
   }
