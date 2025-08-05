@@ -29,11 +29,12 @@
     "expo-symbols": "0.4.6-canary-20250729-d8899ae",
     "expo-system-ui": "5.0.11-canary-20250729-d8899ae",
     "expo-web-browser": "14.1.7-canary-20250729-d8899ae",
+    "nativewind": "^4.1.23",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "react-native": "0.80.1",
     "react-native-gesture-handler": "~2.26.0",
-    "react-native-reanimated": "~4.0.1",
+    "react-native-reanimated": "~3.17.4",
     "react-native-safe-area-context": "5.4.0",
     "react-native-screens": "~4.11.1",
     "react-native-web": "~0.20.0",
@@ -56,7 +57,9 @@
     "eslint-plugin-react-native": "^5.0.0",
     "metro-runtime": "^0.83.1",
     "prettier": "^3.6.2",
+    "prettier-plugin-tailwindcss": "^0.5.11",
     "react-refresh": "^0.17.0",
+    "tailwindcss": "^3.4.17",
     "typescript": "~5.8.3"
   },
   "private": true
