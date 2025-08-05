@@ -3,9 +3,10 @@
   "include": ["**/*.ts", "**/*.tsx", ".expo/types/**/*.ts", "expo-env.d.ts"],
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
+    "baseUrl": "./src",
     "target": "es2020",
-    "module": "esnext",
-    "moduleResolution": "node",
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
     "lib": ["ES2020"],
     "strict": true,
     "outDir": "dist",
@@ -19,7 +20,12 @@
     "forceConsistentCasingInFileNames": true,
     "useDefineForClassFields": true,
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["*"],
+      "@app/*": ["app/*"],
+      "@entities/*": ["entities/*"],
+      "@features/*": ["features/*"],
+      "@shared/*": ["shared/*"],
+      "@widgets/*": ["widgets/*"]
     }
   }
 }
