@@ -2,13 +2,9 @@
 dist/
 build/
 .expo/
-andorid/
+android/
 ios/
 
 # 로그, 환경 파일
 *.log
 .env
-
-# 기타
-package.json
-yarn.lock
