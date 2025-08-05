@@ -1,0 +1,14 @@
+# 빌드 산출물
+dist/
+build/
+.expo/
+andorid/
+ios/
+
+# 로그, 환경 파일
+*.log
+.env
+
+# 기타
+package.json
+yarn.lock
