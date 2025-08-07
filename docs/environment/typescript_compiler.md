@@ -4,8 +4,7 @@
 
 TypeScript는 컴퓨터가 이해할 수 있는 기계어(Machine Code)로 번역하는 것이 아닌 JavaScript 언어로 번역된다. 이 JavaScritp 언어로 번역되기 위한 일련의 과정을 거쳐야 하는데 그것이 바로 컴파일러(Compiler)이다.
 
-> 💡 컴파일러(Compiler)
-> ---
+> **💡 컴파일러(Compiler)** <br />
 > 컴파일러는 고수준 언어(High-level Programming)로 작성된 프로그래밍 언어를 기계어로 번역하기 위해 거치는 일련의 과정을 의미한다. 컴파일러는 명령어 한 줄씩 해석해서 기계어로 번역하는 것이 아닌, 문서 전체의 내용을 한 번에 기계어로 해석한다. 이로 인해, 초기 속도는 느리지만, 이후 속도는 인터프리터(Interpreter) 해석 방식에 비해 매우 빠르다.
 
 <br />
@@ -14,9 +13,10 @@ TypeScript는 컴퓨터가 이해할 수 있는 기계어(Machine Code)로 번�
 
 컴파일러(Compiler) 과정을 거쳐서 JavaScript 언어로 해석이 되야 하는데 TypeSciprt는 다른 컴파일 언어와 다르게 JavaScript로 해석할 수 있는 컴파일러 옵션(Compiler Options)들을 제공한다. 이유는 바로 TypeScript는 기존 JavaScritp의 동적 타입 시스템(Dynamic Type System)을 단점을 보완하기 위해 나온 언어이며 JavaScript의 슈퍼셋(Superset) 언어이기 때문에 점진적 타입 시스템(Gradual Type System)을 제공하기 때문이다.
 
-> 💡 점진적 타입 시스템(Gradual Type System)
-> ---
+> **💡 점진적 타입 시스템(Gradual Type System)** <br />
 > 점진적 타입 시스템은 정적 타입 시스템과 동적 타입 시스템의 특성을 결합한 방식으로, 변수나 표현식의 타입을 개발자가 직접 명시할 수도 있고, 생략(타입 추론, 제네릭 등)할 수도 있다.
+
+<br />
 
 ## I. TypeScript 컴파일러(Compiler) 구성 설명
 ```json
@@ -53,6 +53,8 @@ TypeScript는 컴퓨터가 이해할 수 있는 기계어(Machine Code)로 번�
 }
 ```
 
+<br />
+
 ### 📁 컴파일 옵션 종류
 
 | 옵션 | 우선순위 | 설명 |
@@ -62,6 +64,8 @@ TypeScript는 컴퓨터가 이해할 수 있는 기계어(Machine Code)로 번�
 | **`include`** | 3 | 컴파일 대상에 포함할 파일 또는 디렉토리 경로 목록 (배열 형태로 지정) |
 | **`extends`** | - | 다른 `tsconfig.json` 파일을 상속하여 설정을 확장할 수 있음 |
 | **`comilerOptions`** | - | 타입스크립트 컴파일러 동작을 제어하는 핵심 옵션들을 설정하는 객체 |
+
+<br />
 
 ### 🚥 compilerOptions 설명
 | 옵션 | 설명 |
@@ -83,6 +87,8 @@ TypeScript는 컴퓨터가 이해할 수 있는 기계어(Machine Code)로 번�
 | **`noFallthroughCasesInSwitch`** | switch 문에서 break 없는 fallthrough(break 문 못만나서 default까지 내려가는 현상) 방지 |
 | **`forceConsistentCasingInFileNames`** | 파일명 대소문자 일관성 강제 |
 | **`useDefineForClassFields`** | 클래스 필드 정의 시 define 방식 사용 |
+
+<br />
 
 ## II. 참고자료
 
