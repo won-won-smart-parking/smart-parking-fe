@@ -2,6 +2,8 @@
 
 프로젝트를 진행하는 데 있어 디렉토리 구조는 매우 중요함. 만약, 팀원마다 각자 스타일대로 구조를 구성하거나, 개인 프로젝트에서도 명확한 기준 없이 작업을 진행한다면, 디렉토리의 깊이(Depth)나 불명확한 폴더 명칭으로 인해 "필요한 모듈이 어디있지?", "이 기능은 어떤 파일을 수정해야 하지?" 등과 같은 문제가 발생하게 되기 때문이다.
 
+<br />
+
 ## 🚘 Smart Parking 디렉토리 구조
 ```
 SMART-PARKING-FE
@@ -44,11 +46,15 @@ SMART-PARKING-FE
 
 Smart Parking 프로젝트는 FSD 아키텍처 구조와 Atomic Design System를 결합하여 유지보수성과 재사용성을 모두 고려한 아키텍처로 구성했습니다.
 
+<br />
+
 ### 1. `app/`
 
 Expo Router 파일 기반 라우팅을 담당합니다.
 - React Native에서 페이지 단위를 구성하는 루트 디렉토리
 - 기존 FSD 아키텍처의 app + pages 기능을 담당
+
+<br />
 
 ### 2. `global/`
 
@@ -63,7 +69,9 @@ global/
 - 전역 스타일 및 타입, 프로바이더 등의 앱 초기 구성 요소를 포함
 - 기존 FSD 아키텍처의 app 기능을 담당
 
-### `process/`
+<br />
+
+### 3. `process/`
 
 ```
 process/
@@ -74,7 +82,9 @@ process/
 - 회원가입, 예약 등 순차적 단계 또는 조건 기반 UI 흐름을 정의
 - 단순 기능이 아닌, 복합적인 사용자 여정을 포함
 
-### `widgets/`
+<br />
+
+### 4. `widgets/`
 
 ```
 widgets/
@@ -85,7 +95,9 @@ widgets/
 - 여러 개의 feature, entity를 조합하여 만드는 중간 UI 단위
 - 예: 카드, 리스트, 요약 박스, 배너 등
 
-### `features/`
+<br />
+
+### 5. `features/`
 
 ```
 features/
@@ -101,7 +113,9 @@ features/
 - 특정 기능(예약, 결제 등)에 필요한 상태, 로직, UI를 포함
 - 내부적으로 UI는 Atomic Design System에 따라 계층화
 
-### `entities/`
+<br />
+
+### 6. `entities/`
 
 ```
 entities/
@@ -120,7 +134,9 @@ entities/
 - 사용자, 주차장 등 핵심 도메인 객체의 상태 / 로직 / UI를 정의
 - UI는 내부적으로 Atomic 구조로 나뉘지만, entity 내부에만 사용
 
-### shard/
+<br />
+
+### 7. `shard/`
 
 ```
 shared/
