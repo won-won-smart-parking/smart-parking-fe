@@ -1,5 +1,5 @@
 {
-  "arrowParens": "avoid",
+  "arrowParens": "always",
   "bracketSameLine": true,
   "bracketSpacing": true,
   "endOfLine": "lf",
@@ -10,7 +10,7 @@
   "semi": true,
   "singleQuote": false,
   "tabWidth": 2,
-  "trailingComma": "es5",
+  "trailingComma": "all",
   "importOrder": ["<THIRD_PARTY_MODULES>", "^@(.*)$", "^[.]/", "^[.]{2,}/"],
   "importOrderSortSpecifiers": true,
   "importOrderCaseInsensitive": true
