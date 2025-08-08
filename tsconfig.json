@@ -3,6 +3,7 @@
   "include": ["**/*.ts", "**/*.tsx", ".expo/types/**/*.ts", "expo-env.d.ts", "nativewind-env.d.ts"],
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
+    "typeRoots": ["./node_modules/@types"],
     "baseUrl": "./src",
     "target": "es2020",
     "module": "nodenext",
