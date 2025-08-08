@@ -3,7 +3,7 @@ import Text from "@/shared/tokens/typography/Text";
 import { View } from "react-native";
 
 export default function Index() {
-  let a: number = 123;
+  let a: number = 1231234;
 
   return (
     <View className="flex-1 justify-center items-center" style={elevation.active}>
