@@ -20,4 +20,10 @@ jobs:
       - run: corepack prepare yarn@1.22.22 --activate
       - run: yarn --version
 
+      # 4. Yarn 의존성 설치 및 안정성 검증
+      #  -> --frozen-lockfile: Package.json과 yarn.lock 의존성 설치 정보가 불일치할 경우 PR 실패
+      #  -> --network-timeout: 느린 네트워크 속도로 인한 간헐적 실패 완하 (10분)
+      - name: Install Dependencies
+        run: yarn install --frozen-lockfile --network-timeout 600000
+
       - run: echo "PR CI skeleton running"
