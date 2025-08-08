@@ -26,4 +26,8 @@ jobs:
       - name: Install Dependencies
         run: yarn install --frozen-lockfile --network-timeout 600000
 
+      # 5. TypeScript Compiler 타입 체크
+      - name: TypeScript Typecheck
+        run: yarn run typecheck
+
       - run: echo "PR CI skeleton running"
