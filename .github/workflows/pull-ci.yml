@@ -27,7 +27,11 @@ jobs:
         run: yarn install --frozen-lockfile --network-timeout 600000
 
       # 5. TypeScript Compiler 타입 체크
-      - name: TypeScript Typecheck
+      - name: Typecheck
         run: yarn run typecheck
+
+      # 6. ESLint 규칙 검증
+      - name: ESLint
+        run: yarn run lint:ci
 
       - run: echo "PR CI skeleton running"
