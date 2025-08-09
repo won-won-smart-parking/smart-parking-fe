@@ -18,7 +18,17 @@
     "lint": "expo lint",
     "lint:ci": "expo lint -- --max-warnings=0",
     "typecheck": "tsc -p tsconfig.json --noEmit",
-    "prettier": "prettier --check ."
+    "prettier": "prettier --check .",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "**/*.{ts,tsx}": [
+      "eslint --max-warnings=0",
+      "prettier --write"
+    ],
+    "**/*.json": [
+      "prettier --write"
+    ]
   },
   "dependencies": {
     "@expo/vector-icons": "^14.1.0",
@@ -69,6 +79,7 @@
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-native": "^5.0.0",
     "husky": "^9.1.7",
+    "lint-staged": "^16.1.5",
     "metro-runtime": "^0.83.1",
     "prettier": "^3.6.2",
     "prettier-plugin-tailwindcss": "^0.5.11",
