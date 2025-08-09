@@ -38,6 +38,3 @@ yarn-error.*
 *.tsbuildinfo
 
 app-example
-
-# Nativewind generated types
-nativewind-env.d.ts

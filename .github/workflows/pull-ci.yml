@@ -30,7 +30,11 @@ jobs:
       - name: TypeScript Typecheck
         run: yarn typecheck
 
-      # 6. Prettier 포맷팅 검증 단계
+      # 6. ESLint 규칙 검증
+      - name: ESLint
+        run: yarn lint:ci
+
+      # 7. Prettier 포맷팅 검증 단계
       - name: Prettier Formatting
         run: yarn prettier
 

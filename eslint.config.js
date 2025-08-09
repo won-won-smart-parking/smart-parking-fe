@@ -53,6 +53,7 @@ module.exports = defineConfig([
 
     // 적용할 린트 규칙을 설정
     rules: {
+      "import/no-named-as-default": "off",
       "no-unused-vars": "off",
       "@typescript-eslint/no-unused-vars": "off",
 
