@@ -9,10 +9,14 @@ if ! echo "$BRANCH_NAME" | grep -Eq '^(main|release|dev|hotfix|feat\/[a-z0-9._-]
   exit 1
 fi
 
-# 2. 코드 스타일 규칙 검증
+# 2. 환경 변수 유효성 검증
+echo "Push 전 환경 변수 유효성 검증..."
+yarn env:check || exit 1
+
+# 3. 코드 스타일 규칙 검증
 echo "Push 전 엄격한 Lint 규칙 검증..."
 yarn lint:strict || exit 1
 
-# 3. 타입 안전성 검증
+# 4. 타입 안전성 검증
 echo "Push 전 타입 안전성 검증..."
 yarn typecheck || exit 1
