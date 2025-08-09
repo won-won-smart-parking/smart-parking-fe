@@ -15,8 +15,8 @@
     "android": "expo run:android",
     "ios": "expo run:ios",
     "web": "expo start --web",
-    "lint": "expo lint",
-    "lint:ci": "expo lint -- --max-warnings=0",
+    "lint": "expo lint -- --cache --cache-location .eslintcache",
+    "lint:ci": "expo lint -- --cache --cache-location .eslintcache --max-warnings=0",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "prettier": "prettier --check .",
     "prepare": "husky install"
