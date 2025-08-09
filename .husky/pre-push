@@ -1,7 +1,16 @@
 #!/bin/sh
 
 # Git Push 안전성 검증 파이프라인
-# 1. 브랜치 패턴 검사
+# 1. 시크릿 키 검증
+if command -v gitleaks >/dev/null 2>&1; then
+  echo "▶ push 전 gitleaks로 시크릿 스캔을 실행합니다..."
+  gitleaks detect --no-git --source . --redact --no-banner
+else
+  echo "⚠️ gitleaks가 설치되어 있지 않아 시크릿 스캔을 건너뜁니다."
+  echo "   설치 방법: macOS → brew install gitleaks / Windows → choco install gitleaks"
+fi
+
+# 2. 브랜치 패턴 검사
 BRANCH_NAME=$(git symbolic-ref --short HEAD)
 if ! echo "$BRANCH_NAME" | grep -Eq '^(main|release|dev|hotfix|feat\/[a-z0-9._-]+|fix\/[a-z0-9._-]+|refactor\/[a-z0-9._-]+|test\/[a-z0-9._-]+|docs\/[a-z0-9._-]+|chore\/[a-z0-9._-]+)$'; then
   echo "🚫 브랜치 이름 잘못 작성함!!"
@@ -9,14 +18,14 @@ if ! echo "$BRANCH_NAME" | grep -Eq '^(main|release|dev|hotfix|feat\/[a-z0-9._-]
   exit 1
 fi
 
-# 2. 환경 변수 유효성 검증
+# 3. 환경 변수 유효성 검증
 echo "Push 전 환경 변수 유효성 검증..."
 yarn env:check || exit 1
 
-# 3. 코드 스타일 규칙 검증
+# 4. 코드 스타일 규칙 검증
 echo "Push 전 엄격한 Lint 규칙 검증..."
 yarn lint:strict || exit 1
 
-# 4. 타입 안전성 검증
+# 5. 타입 안전성 검증
 echo "Push 전 타입 안전성 검증..."
 yarn typecheck || exit 1
