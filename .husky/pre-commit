@@ -1,4 +1,12 @@
 #!/bin/sh
 
+# 시크릿 키 검사
+if git diff --cached --name-only | grep -q .; then
+  echo "▶ 스테이징된 파일에 대해 gitleaks로 시크릿 스캔을 실행합니다..."
+  gitleaks protect --staged --redact --no-banner
+else
+  echo "✅ 스테이징된 파일이 없습니다. gitleaks 스킵."
+fi
+
 yarn typecheck # 타입 체크 (tsconfig.json 기반)
 npx lint-staged # 변경된 파일만 린트 & 포맷팅
