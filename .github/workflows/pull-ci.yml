@@ -3,7 +3,7 @@ name: PR CI
 on: pull_request
 
 jobs:
-  skeleton:
+  pr-quality:
     runs-on: ubuntu-latest
     steps:
       # 1. 코드 체크아웃
@@ -30,12 +30,10 @@ jobs:
       - name: TypeScript Typecheck
         run: yarn typecheck
 
-      # 6. ESLint 규칙 검증
+      # 6. ESLint 규칙 검증(경고도 실패 처리)
       - name: ESLint
         run: yarn lint:ci
 
       # 7. Prettier 포맷팅 검증 단계
       - name: Prettier Formatting
         run: yarn prettier
-
-      - run: echo "PR CI skeleton running"
