@@ -29,6 +29,8 @@ jobs:
       # 5. 환경 변수 유효성 검증 단계
       - name: Env Check
         if: ${{ github.event_name == 'pull_request' }}
+        env:
+          NODE_ENV: ${{ secrets.NODE_ENV }}
         run: |
           BASE="${{ github.event.pull_request.base.ref }}"
           if [ "$BASE" = "main" ] || [[ "$BASE" == release* ]]; then
