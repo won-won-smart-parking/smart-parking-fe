@@ -33,7 +33,7 @@ module.exports = {
         "comment", // 주석 변경
       ],
     ],
-    "header-max-length": [2, "always", 50], // description 길이 제한 (50자)
+    "header-max-length": [2, "always", 72], // commit message 길이 제한 (72자)
     "subject-case": [0], // description 대소문자 자유
     "header-match-issue-at-end": [2, "always"], // <type>: <description> (#issue-number) 커밋 메시지 구조 규칙 강제 시키기
   },
