@@ -20,7 +20,8 @@
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "prettier": "prettier --check .",
     "prepare": "husky install",
-    "env:check": "tsx scripts/check-env.ts"
+    "env:check": "tsx scripts/check-env.ts",
+    "audit:ci": "audit-ci --config ./audit-ci.jsonc"
   },
   "lint-staged": {
     "**/*.{ts,tsx}": [
@@ -71,6 +72,7 @@
     "@types/react": "~19.0.10",
     "@typescript-eslint/eslint-plugin": "^8.39.0",
     "@typescript-eslint/parser": "^8.39.0",
+    "audit-ci": "^7.1.0",
     "dotenv": "^17.2.1",
     "eslint": "^9.32.0",
     "eslint-config-expo": "~9.2.0",

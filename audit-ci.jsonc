@@ -1,0 +1,4 @@
+{
+  "lowestSeverity": "high", // 이 심각도 이상이면 실패 처리 (처음엔 high 권장)
+  "report": true // 리포트 출력 (CI 로그에서 보려고 true)
+}

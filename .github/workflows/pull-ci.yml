@@ -43,10 +43,14 @@ jobs:
       - name: TypeScript Typecheck
         run: yarn typecheck
 
-      # 7. ESLint 규칙 검증(경고도 실패 처리)
+      # 7. 의존성 점검 검증 단계
+      - name: Dependency Audit
+        run: yarn audit:ci
+
+      # 8. ESLint 규칙 검증(경고도 실패 처리)
       - name: ESLint
         run: yarn lint:strict
 
-      # 8. Prettier 포맷팅 검증 단계
+      # 9. Prettier 포맷팅 검증 단계
       - name: Prettier Formatting
         run: yarn prettier
