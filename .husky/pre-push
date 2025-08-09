@@ -1,5 +1,4 @@
 #!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
 
 # push 전 브랜치 이름 패턴 검사 후 수행
 BRANCH_NAME=$(git symbolic-ref --short HEAD)

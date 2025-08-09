@@ -1,2 +1,4 @@
+#!/bin/sh
+
 yarn typecheck # 타입 체크 (tsconfig.json 기반)
 npx lint-staged # 변경된 파일만 린트 & 포맷팅
