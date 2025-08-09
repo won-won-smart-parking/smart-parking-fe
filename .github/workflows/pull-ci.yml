@@ -9,25 +9,29 @@ jobs:
       # 1. 코드 체크아웃
       - uses: actions/checkout@v4
 
-      # 2. Node.js 설정 (22.18.0 + yarn 캐시)
+      # 2. Node.js 설정 (22.18.0 + yarn 캐시) 단계
       - uses: actions/setup-node@v4
         with:
           node-version: "22.18.0" # 프로젝트 Node 버전 맞춤
           cache: "yarn"
 
-      # 3. yarn 버전 고정 및 확인 (1.22.22)
+      # 3. yarn 버전 고정 및 확인 (1.22.22) 단계
       - run: corepack enable
       - run: corepack prepare yarn@1.22.22 --activate
       - run: yarn --version
 
-      # 4. Yarn 의존성 설치 및 안정성 검증
-      #  -> --frozen-lockfile: Package.json과 yarn.lock 의존성 설치 정보가 불일치할 경우 PR 실패
+      # 4. Yarn 의존성 설치 및 안정성 검증 단계
+      #  -> --frozen-lockfile: package.json과 yarn.lock 의존성 설치 정보가 불일치할 경우 PR 실패
       #  -> --network-timeout: 느린 네트워크 속도로 인한 간헐적 실패 완하 (10분)
       - name: Install Dependencies
         run: yarn install --frozen-lockfile --network-timeout 600000
 
-      # 5. TypeScript Compiler 타입 체크
+      # 5. TypeScript Compiler 타입 체크 단계
       - name: TypeScript Typecheck
-        run: yarn run typecheck
+        run: yarn typecheck
+
+      # 6. Prettier 포맷팅 검증 단계
+      - name: Prettier Formatting
+        run: yarn prettier
 
       - run: echo "PR CI skeleton running"
