@@ -11,3 +11,6 @@ ios/
 
 # 문서 디렉토리
 docs/**
+
+# github issue template Prettier 비활성화
+.github/ISSUE_TEMPLATE
