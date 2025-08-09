@@ -1,6 +1,6 @@
+import clsx from "clsx";
 import { Text as RNText, TextProps as RNTextProps } from "react-native";
 import { TypographyVariant, TypographyVariants } from "./variants";
-import clsx from "clsx";
 
 interface Props extends RNTextProps {
   variant?: TypographyVariant;
