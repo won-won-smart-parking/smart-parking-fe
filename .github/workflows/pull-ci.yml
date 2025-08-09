@@ -32,7 +32,7 @@ jobs:
 
       # 6. ESLint 규칙 검증(경고도 실패 처리)
       - name: ESLint
-        run: yarn lint:ci
+        run: yarn lint:strict
 
       # 7. Prettier 포맷팅 검증 단계
       - name: Prettier Formatting
