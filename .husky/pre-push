@@ -1,0 +1,11 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+# push 전 브랜치 이름 패턴 검사 후 수행
+BRANCH_NAME=$(git symbolic-ref --short HEAD)
+if ! echo "$BRANCH_NAME" | grep -Eq '^(main|release|dev|hotfix|feat\/[a-z0-9._-]+|fix\/[a-z0-9._-]+|refactor\/[a-z0-9._-]+|test\/[a-z0-9._-]+|docs\/[a-z0-9._-]+|chore\/[a-z0-9._-]+)$'; then
+  echo "🚫 브랜치 이름이 규칙에 맞지 않습니다."
+  echo "허용 패턴: main, release, dev, hotfix, <type>/<desc>"
+  echo "예: feat/login-form, fix/button-error"
+  exit 1
+fi
