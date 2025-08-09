@@ -1,6 +1,7 @@
 #!/bin/sh
 
-# push 전 브랜치 이름 패턴 검사 후 수행
+# Git Push 안전성 검증 파이프라인
+# 1. 브랜치 패턴 검사
 BRANCH_NAME=$(git symbolic-ref --short HEAD)
 if ! echo "$BRANCH_NAME" | grep -Eq '^(main|release|dev|hotfix|feat\/[a-z0-9._-]+|fix\/[a-z0-9._-]+|refactor\/[a-z0-9._-]+|test\/[a-z0-9._-]+|docs\/[a-z0-9._-]+|chore\/[a-z0-9._-]+)$'; then
   echo "🚫 브랜치 이름이 규칙에 맞지 않습니다."
@@ -8,3 +9,7 @@ if ! echo "$BRANCH_NAME" | grep -Eq '^(main|release|dev|hotfix|feat\/[a-z0-9._-]
   echo "예: feat/login-form, fix/button-error"
   exit 1
 fi
+
+# 2. 코드 스타일 규칙 검증
+echo "▶ ESLint(strict) 실행…"
+yarn lint:strict || exit 1
