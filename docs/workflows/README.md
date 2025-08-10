@@ -10,6 +10,7 @@
 
 # 🤖 자동화 검사 & CI/CD 파이프라인
 
+> 👍 자동화 검사는 다음 단계를 따릅니다:
 > - commit-msg: 커밋 메시지가 규칙에 맞는지 검증하는 git-hook
 > - pre-commit: 커밋 생성 직전에 실행되는 git-hook
 > - pre-push: 원격 저장소로 반영(push)하기 직전에 실행되는 git-hook
@@ -18,3 +19,4 @@
 | 종류 | 설명 |
 |--|--|
 | [commit-msg](./commit-msg.md) | Smart Parking에 사용된 커밋 메시지 규칙 검증 git-hook에 대한 설명을 작성한 문서입니다. |
+| [pre-commit](./commit-msg.md) | Smart Parking에 사용된 커밋 메시지 규칙 검증 git-hook에 대한 설명을 작성한 문서입니다. |
