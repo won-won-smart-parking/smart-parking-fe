@@ -27,6 +27,36 @@ const envSchema = MODE === "public" ? publicEnvSchema : publicEnvSchema.and(secr
 
 // 4. 환경 변수 유효성 검증 실행
 const result = envSchema.safeParse(process.env);
+
+// ✅ 리포트 JSON 파일 경로(있으면 기록)
+const REPORT_PATH = process.env.ENV_REPORT_JSON;
+
+// ✅ 검증 대상 키 목록: public + (full 모드면 secret까지)
+const publicKeys = Object.keys(publicEnvSchema.shape);
+const secretKeys = Object.keys(secretEnvSchema.shape ?? {});
+const validatedKeys = MODE === "public" ? publicKeys : Array.from(new Set([...publicKeys, ...secretKeys]));
+
+// 리포트 payload 생성 (민감값 노출 없음)
+const payload = {
+  mode: MODE, // "public" | "full"
+  ok: result.success,
+  validatedKeys,
+  errors: result.success
+    ? []
+    : result.error.issues.map((i) => ({
+        path: i.path.join("."),
+        message: i.message,
+      })),
+};
+
+if (REPORT_PATH) {
+  try {
+    fs.writeFileSync(REPORT_PATH, JSON.stringify(payload, null, 2));
+  } catch {
+    // noop
+  }
+}
+
 if (!result.success) {
   // console.error("❌ 환경 변수 검증 실패:");
   // for (const issue of result.error.issues) {

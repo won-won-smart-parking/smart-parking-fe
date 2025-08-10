@@ -31,6 +31,7 @@ jobs:
         if: ${{ github.event_name == 'pull_request' }}
         env:
           NODE_ENV: ${{ secrets.NODE_ENV }}
+          ENV_REPORT_JSON: env-report.json
         run: |
           BASE="${{ github.event.pull_request.base.ref }}"
           if [ "$BASE" = "main" ] || [[ "$BASE" == release* ]]; then
@@ -43,7 +44,7 @@ jobs:
 
       # 6. TypeScript Compiler 타입 체크 단계
       - name: TypeScript Typecheck
-        run: yarn typecheck
+        run: yarn typecheck 2> ts-error-report.txt
 
       # 7. 엄격한 단위 테스트 검증
       - name: Full Regression Test
@@ -52,11 +53,59 @@ jobs:
       # 8. 의존성 점검 검증 단계
       - name: Dependency Audit
         run: yarn audit:ci
+      
+      ### 의존성 리포트 생성 (검증 단계에서 같이 하면 yarn audit:ci 실패 시 리포트 생성 안됨)
+      - name: Generate dependency audit report
+        run: npm audit --json > dependency-audit-report.json || true
 
       # 9. ESLint 규칙 검증(경고도 실패 처리)
       - name: ESLint
-        run: yarn lint:strict
+        run: yarn lint:strict -f json -o eslint-report.json
 
       # 10. Prettier 포맷팅 검증 단계
       - name: Prettier Formatting
         run: yarn prettier
+      
+      # 11. 리포트 & 커버리지 보고서 업로드 (PR 실패 시에도 항상 업로드)
+      - name: Upload ESLint report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: eslint-report
+          path: eslint-report.json
+          if-no-files-found: ignore
+          retention-days: 3
+      - name: Upload TypeScript errors
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ts-error-report
+          path: ts-error-report.txt
+          if-no-files-found: ignore
+          retention-days: 3
+      - name: Upload env check report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: env-report
+          path: env-report.json
+          if-no-files-found: ignore
+          retention-days: 3
+      - name: Upload dependency audit report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dependency-audit-report
+          path: dependency-audit-report.json
+          if-no-files-found: ignore
+          retention-days: 3
+      - name: Upload Jest coverage
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-lcov
+          path: |
+            coverage/lcov.info
+            coverage/**/*.*
+          if-no-files-found: ignore
+          retention-days: 3

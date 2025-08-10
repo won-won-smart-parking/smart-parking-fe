@@ -16,4 +16,24 @@ module.exports = {
   },
   moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json"],
   roots: ["<rootDir>/src", "<rootDir>"],
+
+  // ✅ 커버리지 설정
+  collectCoverageFrom: [
+    "src/**/*.{ts,tsx}",
+    "!src/**/__tests__/**",
+    "!src/**/*.test.{ts,tsx}",
+    "!src/**/*.spec.{ts,tsx}",
+  ],
+  coverageDirectory: "coverage",
+  coverageReporters: ["json", "lcov", "text", "clover"],
+
+  // ✅ 최소 커버리지 게이트 (처음엔 낮게 시작해서 점진적으로 올리면 좋아요)
+  coverageThreshold: {
+    global: {
+      statements: 40,
+      branches: 30,
+      functions: 40,
+      lines: 40,
+    },
+  },
 };
