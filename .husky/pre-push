@@ -28,7 +28,11 @@ yarn typecheck || exit 1
 
 # 5. 단위 테스트(Jest + RTL)
 echo "Push 전 구현한 기능관 관련된 테스트 코드 수행(없으면 자동 통과)..."
-yarn test:related
+if git rev-parse --abbrev-ref @{upstream} >/dev/null 2>&1; then
+  yarn test:related || exit 1
+else
+  yarn jest --bail --maxWorkers=50% --onlyChanged --passWithNoTests || exit 1
+fi
 
 # 6. 코드 스타일 규칙 검증
 echo "Push 전 엄격한 Lint 규칙 검증..."
