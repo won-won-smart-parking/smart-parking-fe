@@ -21,7 +21,10 @@
     "prettier": "prettier --check .",
     "prepare": "husky install",
     "env:check": "tsx scripts/check-env.ts",
-    "audit:ci": "audit-ci --config ./audit-ci.jsonc"
+    "audit:ci": "audit-ci --config ./audit-ci.jsonc",
+    "test": "jest",
+    "test:ci": "jest --ci --coverage --maxWorkers=2",
+    "test:quick": "jest --bail --maxWorkers=50%"
   },
   "lint-staged": {
     "**/*.{ts,tsx}": [
@@ -68,11 +71,16 @@
     "@babel/core": "^7.25.2",
     "@commitlint/cli": "^19.8.1",
     "@commitlint/config-conventional": "^19.8.1",
+    "@testing-library/jest-native": "^5.4.3",
+    "@testing-library/react-native": "^13.2.2",
     "@trivago/prettier-plugin-sort-imports": "^5.2.2",
+    "@types/jest": "^30.0.0",
+    "@types/mocha": "^10.0.10",
     "@types/react": "~19.0.10",
     "@typescript-eslint/eslint-plugin": "^8.39.0",
     "@typescript-eslint/parser": "^8.39.0",
     "audit-ci": "^7.1.0",
+    "babel-jest": "29.7.0",
     "dotenv": "^17.2.1",
     "eslint": "^9.32.0",
     "eslint-config-expo": "~9.2.0",
@@ -83,6 +91,8 @@
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-native": "^5.0.0",
     "husky": "^9.1.7",
+    "jest": "29.7.0",
+    "jest-expo": "^53.0.9",
     "lint-staged": "^16.1.5",
     "metro-runtime": "^0.83.1",
     "prettier": "^3.6.2",
