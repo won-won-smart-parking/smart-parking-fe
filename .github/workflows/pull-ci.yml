@@ -1,7 +1,7 @@
-name: PR CI
-
+name: pull_request-ci
 on: pull_request
 
+# Pull Request 시 검증해야 하는 작업 목록
 jobs:
   pr-quality:
     runs-on: ubuntu-latest
