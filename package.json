@@ -22,9 +22,9 @@
     "prepare": "husky install",
     "env:check": "tsx scripts/check-env.ts",
     "audit:ci": "audit-ci --config ./audit-ci.jsonc",
-    "test": "jest",
-    "test:quick": "jest --bail --maxWorkers=50%",
-    "test:ci": "jest --ci --coverage --maxWorkers=2"
+    "test": "jest --passWithNoTests",
+    "test:related": "jest --bail --maxWorkers=50% --findRelatedTests --passWithNoTests",
+    "test:ci": "jest --ci --coverage --maxWorkers=2 --passWithNoTests"
   },
   "lint-staged": {
     "**/*.{ts,tsx}": [
