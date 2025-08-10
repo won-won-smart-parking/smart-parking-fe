@@ -25,7 +25,7 @@ module.exports = {
     "!src/**/*.spec.{ts,tsx}",
   ],
   coverageDirectory: "coverage",
-  coverageReporters: ["json", "lcov", "text", "clover"],
+  coverageReporters: ["json", "json-summary", "lcov", "text", "clover"],
 
   // ✅ 최소 커버리지 게이트 (처음엔 낮게 시작해서 점진적으로 올리면 좋아요)
   coverageThreshold: {
