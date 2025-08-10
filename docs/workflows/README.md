@@ -20,4 +20,5 @@
 |--|--|
 | [commit-msg](./commit-msg.md) | Smart Parking에 사용된 커밋 메시지 규칙 검증 git-hook에 대한 설명을 작성한 문서입니다. |
 | [pre-commit](./pre-commit.md) | Smart Parking에 사용된 커밋 생성 직전에 실행되는 git-hook에 대한 설명을 작성한 문서입니다. |
-| [pre-push](./pre-push.md) | Smart Parking에 사용된  원격 저장소로 반영(push)하기 직전에 실행되는 git-hook에 대한 설명을 작성한 문서입니다. |
+| [pre-push](./pre-push.md) | Smart Parking에 사용된 원격 저장소로 반영(push)하기 직전에 실행되는 git-hook에 대한 설명을 작성한 문서입니다. |
+| [pull-ci](./pull-ci.md) | Smart Parking에 사용된 Github Pull Request 생성 또는 업데이트 시 자동으로 실행되는 CI 검증 항목에 대한 설명을 작성한 문서입니다. |
