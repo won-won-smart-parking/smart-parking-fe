@@ -10,9 +10,10 @@
 
 # 🤖 자동화 검사 & CI/CD 파이프라인
 
-> - commit-msg: 커밋 메시지
-> - pre-commit:
-> - pre-push:
+> - commit-msg: 커밋 메시지가 규칙에 맞는지 검증하는 git-hooks
+> - pre-commit: 커밋 생성 직전에 실행되는 git-hooks
+> - pre-push: 원격 저장소로 반영(push)하기 직전에 실행되는 git-hooks
+> - pull-ci: Github Pull Request 생성 또는 업데이트 시 자동으로 실행되는 CI 검증
 
 | 종류 | 설명 |
 |--|--|
