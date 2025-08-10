@@ -142,8 +142,6 @@ feat/
 ### Pull Request 템플릿
 
 ```md
-> 💡 한 번 더 더블 체크 하기 [Git & Github 컨벤션](/docs/convention/git.md)
-
 ## 🔗 연관된 이슈
 <!--
   반드시 [ 키워드 #이슈번호 ] 형식으로 작성
