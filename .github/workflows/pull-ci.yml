@@ -1,5 +1,23 @@
 name: pull_request-ci
-on: pull_request
+on:
+  pull_request:
+    types: [opened, reopened, synchronize, ready_for_review]
+    paths-ignore:
+      - '**/*.md'
+      - 'docs/**'
+      - '.github/ISSUE_TEMPLATE/**'
+      - '.husky/**'
+
+# Github Actions 권한 부여
+permissions:
+  contents: read # 파일 접근 권한 -> 읽기만 가능
+  pull-requests: write # PR 접근 권한 -> 리뷰 작성 가능
+  checks: write # 코드 파일 접근 권한 -> 작성 가능 (코드 파일 옆에 라인으로 댓글을 남김)
+
+# 동일한 PR에 커밋을 연달아 올릴 때, 기존에 돌던 워크플로우를 자동 취소해줌
+concurrency:
+  group: pr-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
 
 # Pull Request 시 검증해야 하는 작업 목록
 jobs:
@@ -109,3 +127,70 @@ jobs:
             coverage/**/*.*
           if-no-files-found: ignore
           retention-days: 3
+  
+  code-review:
+    needs: pr-quality
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download ESLint report
+        uses: actions/download-artifact@v4
+        with:
+          name: eslint-report
+          path: reports
+
+      - name: Download TypeScript errors
+        uses: actions/download-artifact@v4
+        with:
+          name: ts-error-report
+          path: reports
+
+      - name: Download Env check report
+        uses: actions/download-artifact@v4
+        with:
+          name: env-report
+          path: reports
+
+      - name: Download dependency audit report
+        uses: actions/download-artifact@v4
+        with:
+          name: dependency-audit-report
+          path: reports
+
+      - name: Download Jest coverage
+        uses: actions/download-artifact@v4
+        with:
+          name: coverage-lcov
+          path: reports
+
+      - name: Generate coverage summary (Markdown)
+        uses: irongut/CodeCoverageSummary@v1.3.0
+        with:
+          format: markdown
+          output: both
+          filename: reports/coverage/lcov.info
+          thresholds: '60 50'
+
+      - name: Build review comment
+        shell: bash
+        run: |
+          echo "## 🧪 테스트 커버리지 요약 내용" > pr-comment.md
+          if [ -f code-coverage-results.md ]; then
+            cat code-coverage-results.md >> pr-comment.md
+          else
+            echo "_테스트 커버리지 리포트가 없음_" >> pr-comment.md
+          fi
+
+          echo -e "\n## 🔍 점검 사항" >> pr-comment.md
+          [ -f reports/eslint-report.json ] && echo "- ESLint: \`eslint-report.json\` 첨부됨" >> pr-comment.md || echo "- ESLint: (없음)" >> pr-comment.md
+          [ -f reports/ts-error-report.txt ] && echo "- TypeScript: \`ts-error-report.txt\` 첨부됨" >> pr-comment.md || echo "- TypeScript: (없음)" >> pr-comment.md
+          [ -f reports/env-report.json ] && echo "- Env Check: \`env-report.json\` 첨부됨" >> pr-comment.md || echo "- Env Check: (없음)" >> pr-comment.md
+          [ -f reports/dependency-audit-report.json ] && echo "- Dependency Audit: \`dependency-audit-report.json\` 첨부됨" >> pr-comment.md || echo "- Dependency Audit: (없음)" >> pr-comment.md
+
+          echo -e "\n> 상세 리포트는 'Artifacts'에서 다운로드해 확인하세요." >> pr-comment.md
+
+      - name: Post sticky PR comment
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          header: "PR Quality Report"
+          path: pr-comment.md
