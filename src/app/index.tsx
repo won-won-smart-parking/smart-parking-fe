@@ -8,7 +8,7 @@ export default function Index() {
       <Text variant="display-default">Hello, World!</Text>
       <Text variant="heading-lg">Hello13123123 World!</Text>
       <Text variant="caption-lg">Hello123131312, World123!</Text>
-      <Text variant="caption-lg">Hello, World!</Text>
+      <Text variant="caption-lg">Hello, Woasdasdasdrld!</Text>
       <Text variant="caption-lg">Hello,1231312321312 Wor123ld!</Text>
     </View>
   );
