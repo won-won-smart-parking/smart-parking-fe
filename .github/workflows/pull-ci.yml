@@ -128,42 +128,62 @@ jobs:
           if-no-files-found: ignore
           retention-days: 3
   
+  # Code Review 코멘트 자동화 작업
   code-review:
     needs: pr-quality
     if: always()
     runs-on: ubuntu-latest
     steps:
+      # 1) 리포트 내려받기 (없어도 계속 진행)
       - name: Download ESLint report
         uses: actions/download-artifact@v4
         with:
           name: eslint-report
           path: reports
+        continue-on-error: true
 
       - name: Download TypeScript errors
         uses: actions/download-artifact@v4
         with:
           name: ts-error-report
           path: reports
+        continue-on-error: true
 
       - name: Download Env check report
         uses: actions/download-artifact@v4
         with:
           name: env-report
           path: reports
+        continue-on-error: true
 
       - name: Download dependency audit report
         uses: actions/download-artifact@v4
         with:
           name: dependency-audit-report
           path: reports
+        continue-on-error: true
 
       - name: Download Jest coverage
         uses: actions/download-artifact@v4
         with:
           name: coverage-lcov
           path: reports
+        continue-on-error: true
 
+      # 2) 커버리지 파일 존재 여부 체크
+      - name: Check coverage file
+        id: cov
+        shell: bash
+        run: |
+          if [ -f "reports/coverage/lcov.info" ]; then
+            echo "has=true" >> $GITHUB_OUTPUT
+          else
+            echo "has=false" >> $GITHUB_OUTPUT
+          fi
+
+      # 3) 있으면 요약 생성, 없으면 스킵
       - name: Generate coverage summary (Markdown)
+        if: steps.cov.outputs.has == 'true'
         uses: irongut/CodeCoverageSummary@v1.3.0
         with:
           format: markdown
@@ -171,7 +191,14 @@ jobs:
           filename: reports/coverage/lcov.info
           thresholds: '60 50'
 
+      # 4) 없을 때 대체 메시지 파일 만들어두기
+      - name: Create empty coverage summary
+        if: steps.cov.outputs.has != 'true'
+        run: echo "_테스트 커버리지 리포트가 없음_" > code-coverage-results.md
+
+      # 5) PR 코멘트(항상 실행)
       - name: Build review comment
+        if: always()
         shell: bash
         run: |
           echo "## 🧪 테스트 커버리지 요약 내용" > pr-comment.md
@@ -190,6 +217,7 @@ jobs:
           echo -e "\n> 상세 리포트는 'Artifacts'에서 다운로드해 확인하세요." >> pr-comment.md
 
       - name: Post sticky PR comment
+        if: always()
         uses: marocchino/sticky-pull-request-comment@v2
         with:
           header: "PR Quality Report"
