@@ -13,5 +13,5 @@ ios/
 docs/**
 
 # github issue template Prettier 비활성화
-.github/ISSUE_TEMPLATE
+.github/
 audit-ci.jsonc
