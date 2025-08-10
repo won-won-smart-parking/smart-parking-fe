@@ -203,114 +203,86 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "22.x"
+      
       - name: Compose markdown from reports
         shell: bash
         run: |
           node <<'NODE'
           const fs = require('fs');
           const p = (f) => `reports/${f}`;
+          const readJSON = (file) => { try { return JSON.parse(fs.readFileSync(file,'utf8')); } catch { return null; } };
+          const readTXT  = (file) => { try { return fs.readFileSync(file,'utf8'); } catch { return ''; } };
+          const exists   = (file) => fs.existsSync(file);
 
-          // 안전 파서
-          const readJSON = (file) => {
-            try { return JSON.parse(fs.readFileSync(file, 'utf8')); } catch { return null; }
-          };
-          const readTXT = (file) => {
-            try { return fs.readFileSync(file, 'utf8'); } catch { return ''; }
-          };
-          const exists = (file) => fs.existsSync(file);
-
-          // 1) TypeScript
-          const tsTxt = readTXT(p('ts-error-report.txt'));
-          const tsErrors = tsTxt.trim() ? (tsTxt.match(/\n/g)?.length ?? 1) : 0;
-          const tsStatus = tsErrors === 0 ? '✅ Pass' : `❌ Fail (${tsErrors} lines)`;
-
-          // 2) ESLint
-          const eslint = readJSON(p('eslint-report.json')) || [];
-          const eslintIssues = Array.isArray(eslint)
-            ? eslint.reduce((sum, f) => sum + (f.messages?.length || 0), 0)
-            : 0;
-          const eslintStatus = eslintIssues === 0 ? '✅ Pass' : `❌ Fail (${eslintIssues} issues)`;
-
-          // 3) Unit Tests (jest-summary.json)
-          const jestSum = readJSON(p('jest-summary.json')) || {};
-          // jest --json --outputFile 포맷에서 결과는 testResults/num* 필드가 summary에 있음
-          const numTotal = jestSum.numTotalTests ?? 0;
-          const numPassed = jestSum.numPassedTests ?? 0;
-          const numFailed = jestSum.numFailedTests ?? 0;
-          const testStatus = numFailed === 0 ? `✅ Pass (${numPassed}/${numTotal})` : `❌ Fail (${numFailed} failed / ${numTotal})`;
-
-          // 4) Prettier (CI에서 포맷 검증만 했으므로, 실패 시 잡이 이미 실패. 리포트는 없으니 통과로 표기)
-          const prettierStatus = '✅ Pass';
-
-          // 5) Env Check
+          // 1) Env Check
           const envReport = readJSON(p('env-report.json'));
-          const envStatus = envReport?.ok === false
-            ? `❌ Fail (${envReport.errors?.length ?? 0} errors)`
-            : '✅ Pass';
+          const envErrCnt = envReport?.errors?.length ?? 0;
+          const envStatus = envReport?.ok === false ? `❌ Fail (${envErrCnt} errors)` : '✅ Pass';
 
-          // 6) Security (npm audit json)
+          // 2) TypeScript
+          const tsTxt = readTXT(p('ts-error-report.txt'));
+          const tsErrors = tsTxt.trim() ? (tsTxt.split('\n').filter(Boolean).length) : 0;
+          const tsStatus = tsErrors === 0 ? '✅ Pass (0 errors)' : `❌ Fail (${tsErrors} lines)`;
+
+          // 3) ESLint
+          const eslint = readJSON(p('eslint-report.json')) || [];
+          const eslintIssues = Array.isArray(eslint) ? eslint.reduce((sum,f)=> sum + (f.messages?.length||0), 0) : 0;
+          const eslintStatus = eslintIssues === 0 ? '✅ Pass (0 issues)' : `❌ Fail (${eslintIssues} issues)`;
+
+          // 4) Unit Tests
+          const jestSum = readJSON(p('jest-summary.json')) || {};
+          const numTotal  = Number.isFinite(jestSum.numTotalTests)  ? jestSum.numTotalTests  : 0;
+          const numPassed = Number.isFinite(jestSum.numPassedTests) ? jestSum.numPassedTests : 0;
+          const numFailed = Number.isFinite(jestSum.numFailedTests) ? jestSum.numFailedTests : 0;
+          const testStatus = numFailed === 0
+            ? `✅ Pass (${numPassed}/${numTotal})`
+            : `❌ Fail (${numFailed} failed / ${numTotal})`;
+
+          // 5) Dependency (npm audit)
           const audit = readJSON(p('dependency-audit-report.json')) || {};
-          // npm v8+: metadata.vulnerabilities / v9+: vulnerabilities 요약 둘 다 대응
-          const vuln =
-            audit.metadata?.vulnerabilities ||
-            audit.vulnerabilities ||
-            {};
+          const vuln = audit.metadata?.vulnerabilities || audit.vulnerabilities || {};
           const totals = {
-            critical: vuln.critical || 0,
-            high: vuln.high || 0,
-            moderate: vuln.moderate || 0,
-            low: vuln.low || 0,
-            info: vuln.info || 0,
-            total:
-              (vuln.critical || 0) +
-              (vuln.high || 0) +
-              (vuln.moderate || 0) +
-              (vuln.low || 0) +
-              (vuln.info || 0),
+            critical: vuln.critical || 0, high: vuln.high || 0,
+            moderate: vuln.moderate || 0, low: vuln.low || 0, info: vuln.info || 0
           };
-          const secStatus = totals.total === 0
-            ? '✅ Pass'
-            : `⚠️ ${totals.total} vulns (crit:${totals.critical}, high:${totals.high}, mod:${totals.moderate})`;
+          const totalV = totals.critical + totals.high + totals.moderate + totals.low + totals.info;
+          const depStatus = totalV === 0
+            ? '✅ Pass (0)'
+            : `⚠️ ${totalV} vulns (crit:${totals.critical}, high:${totals.high}, mod:${totals.moderate})`;
 
-          // 7) Coverage
+          // 6) Coverage
           let coverageTable = '';
-          let coverageLine = '';
           const covJsonPath = 'reports/coverage/coverage-summary.json';
           if (exists(covJsonPath)) {
-            const cov = readJSON(covJsonPath);
-            const g = cov?.total || {};
-            const pc = (x) => (x?.pct ?? 0);
-            const statements = pc(g.statements), branches = pc(g.branches),
-                  functions = pc(g.functions), lines = pc(g.lines);
+            const cov = readJSON(covJsonPath) || {};
+            const g = cov.total || {};
+            const pc = (x) => (x && Number.isFinite(x.pct) ? x.pct : 0);
             coverageTable =
             `| 항목 | 비율 |
             |------|------|
-            | Statements | ${statements}% |
-            | Branches | ${branches}% |
-            | Functions | ${functions}% |
-            | Lines | ${lines}% |`;
+            | Statements | ${pc(g.statements)}% |
+            | Branches   | ${pc(g.branches)}%   |
+            | Functions  | ${pc(g.functions)}%  |
+            | Lines      | ${pc(g.lines)}%      |`;
           } else if (exists('code-coverage-results.md')) {
             coverageTable = fs.readFileSync('code-coverage-results.md','utf8');
           } else {
             coverageTable = '_테스트 커버리지 리포트가 없음_';
           }
 
-          // 8) Markdown 조립
+          // 7) Markdown
           let md = '';
           md += '## 📊 PR 품질 요약\n\n';
           md += '### 🧾 분석 결과\n';
           md += '| 항목 | 상태 |\n|------|------|\n';
+          md += `| Env Check  | ${envStatus} |\n`;
           md += `| TypeScript | ${tsStatus} |\n`;
-          md += `| ESLint | ${eslintStatus} |\n`;
+          md += `| ESLint     | ${eslintStatus} |\n`;
           md += `| Unit Tests | ${testStatus} |\n`;
-          md += `| Prettier | ${prettierStatus} |\n`;
-          md += `| Env Check | ${envStatus} |\n`;
-          md += `| Security Audit | ${secStatus} |\n\n`;
-
+          md += `| Dependency | ${depStatus} |\n\n`;
           md += '### 📈 Coverage\n';
           md += coverageTable + '\n\n';
-
-          md += '> 상세 리포트는 GitHub Actions **Artifacts**에서 다운로드해 확인하세요.\n';
+          md += '> 상세 리포트는 GitHub Actions **Artifacts**에서 확인하세요.\n';
 
           fs.writeFileSync('pr-comment.md', md);
           NODE
