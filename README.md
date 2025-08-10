@@ -1,6 +1,6 @@
 # 🚘 Smart Parking
 
-Smart Parking 서비스는 사용자가 손쉽게 인근 주차장의 위치를 탐색하고, 실시간 주차 가능 여부 및 요금, 운영 시간 등 정보를 확인할 수 있는 React Native 기반의 크로스 플랫폼 모바일 애플리케이션입니다.
+**Smart Parking** 서비스는 사용자가 손쉽게 인근 **주차장의 위치를 탐색**하고, **실시간 주차 가능 여부 및 요금**, **운영 시간** 등 정보를 확인할 수 있는 **React Native** 기반의 **크로스 플랫폼 모바일 애플리케이션**입니다.
 
 <br />
 
@@ -42,6 +42,8 @@ Smart Parking 서비스는 사용자가 손쉽게 인근 주차장의 위치를 
 - 📍 실시간 주차 가능 여부 확인
 - 💳 결제 내역 및 이용권 관리
 
+<br />
+
 ### 📑 개발자 가이드
 
 > 가이드 문서는 계속해서 작성 중에 있습니다.
@@ -53,6 +55,8 @@ Smart Parking 서비스는 사용자가 손쉽게 인근 주차장의 위치를 
 | [워크플로우 & 자동화 가이드](./docs/workflows/README.md) | Smart Parking 프로젝트의 개발 절차와 로컬/원격 자동화 프로세스를 안내합니다. |
 | [프로젝트 컨벤션](./docs/convention/README.md) | 코드 작성, 커밋 메시지, 포맷팅 등 일관된 스타일과 팀 내 규칙을 정의합니다. |
 | [참고 가이드](./docs/guides/README.md) | 디렉토리 구조, 브랜치 전략 등 프로젝트 운영에 필요한 참고 문서입니다. |
+
+<br />
 
 ### 🔗 첨부 링크
 - [Figma](https://www.figma.com/design/YiRMpmptmkRIyNmpZa87co/Smart-Parking---Design-System?node-id=0-1&t=AJpGerxQWEKF7eey-1)
