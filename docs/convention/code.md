@@ -72,8 +72,8 @@ export default function Example() {
   );
 }
 ```
-- 복잡하지 않은 파생 상태(Derived State)는 일반 변수로 선언
-- 복잡한 파생 상태(Derived State)는 메모이제이션 기법을 통해 선언
+- 단순 파생 상태(Derived State)는 일반 변수로 선언
+- 비용이 크거나, 빈번한 재연산이 발생하는 파생 상태(Derived State)는 메모이제이션 기법을 통해 선언
 
 <br />
 
