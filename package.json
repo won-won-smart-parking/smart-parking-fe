@@ -23,7 +23,7 @@
     "env:check": "tsx scripts/check-env.ts",
     "audit:ci": "audit-ci --config ./audit-ci.jsonc",
     "test": "jest --passWithNoTests",
-    "test:related": "jest --bail --maxWorkers=50% --findRelatedTests --passWithNoTests",
+    "test:related": "jest --bail --maxWorkers=50% --changedSince=@{upstream} --passWithNoTests",
     "test:ci": "jest --ci --coverage --maxWorkers=2 --passWithNoTests"
   },
   "lint-staged": {
