@@ -3,10 +3,14 @@
 commit-msg 훅은 커밋 메시지가 임시로 저장하는 파일의 경로를 매개변수로 받아, 해당 메시지가 규칙에 맞는지 검증하는 Git Hook이다. <br />
 이 훅에서 실행되는 스크립트가 0이 아닌 값을 반환하면 커밋이 중단된다.
 
+<br />
+
 ## ☝️ `commitlint.config.js` 구성
 
 Husky는 Git Hooks를 관리 및 실행 할 수 있게 해주는 도구이지만, 커밋 메시지 규칙을 직접 정의하는 기능은 제공하지 않는다. <br />
 따라서 commit-msg 훅에서 메시지를 검증하기 위해서는 Commitlint 패키지를 사용해 `commitlint.config.js` 파일에 규칙을 정의해야 한다.
+
+<br />
 
 ```javascript
 module.exports = {

@@ -3,7 +3,10 @@
 pre-push 훅은 원격 저장소에 변경된 내용을 반영(push)하기 직전에, 개발자가 지정한 검증 작업을 실행하는 Git Hook이다. <br />
 이 훅에서 검증이 실패하면 반영은 자동으로 취소되며, 모든 검증을 통과해야만 반영이 완료된다.
 
+<br />
+
 ## 📋 원격 저장소 반영(Push) 직전 자동화 종류
+
 ```bash
 # 1. 브랜치 패턴 검사
 BRANCH_NAME=$(git symbolic-ref --short HEAD)
@@ -35,6 +38,8 @@ fi
 
 > **⚠️ gitleaks 설치**
 > gitleaks는 각 로컬 환경에 반드시 brew install gitleaks & choco install gitleaks를 통해서 설치할 것!!
+
+<br />
 
 1. **브랜치 패턴 검사**: 원격 저장소에 반영하기 위해 허용되는 브랜치 이름을 작성 여부 검증
 1. **시크릿 키 검사(gitleaks)**: 전체 파일 기준 시크릿 키 포함 여부 검증

@@ -3,6 +3,8 @@
 Github Actions는 GitHub에서 공식적으로 제공하는 CI/CD 도구이다. <br />
 `.github/workflows` 폴더에 작성한 YAML 파일을 기반으로, 빌드･테스트･배포 등 다양한 작업을 자동화하고 손쉽게 관리할 수 있다.
 
+<br />
+
 ## 📋 pull-ci 자동화 검증 목록
 
 ```bash
@@ -59,6 +61,8 @@ Github Actions는 GitHub에서 공식적으로 제공하는 CI/CD 도구이다. 
 - name: Prettier Formatting
   run: yarn prettier
 ```
+
+<br />
 
 1. **Node.js 버전 고정**: Node.js 버전(22.18.0)을 지정하고, yarn 캐시를 활성화해 설치 속도 최적화
 1. **Yarn 버전 고정**: Yarn 버전을 1.22.22로 고정해 모든 환경에서 동일한 동작 보장
