@@ -24,7 +24,7 @@
     "audit:ci": "audit-ci --config ./audit-ci.jsonc",
     "test": "jest --passWithNoTests",
     "test:related": "jest --bail --maxWorkers=50% --changedSince=@{upstream} --passWithNoTests",
-    "test:ci": "jest --ci --coverage --maxWorkers=2 --passWithNoTests"
+    "test:ci": "jest --ci --coverage --maxWorkers=2 --passWithNoTests --reporters=default --json --outputFile=jest-summary.json"
   },
   "lint-staged": {
     "**/*.{ts,tsx}": [
