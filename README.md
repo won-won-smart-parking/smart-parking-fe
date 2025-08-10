@@ -6,7 +6,7 @@ Smart Parking 서비스는 사용자가 손쉽게 인근 주차장의 위치를 
 
 ### 🧑‍💻👩‍💻 팀원 소개
 
-<table border="1">
+<table>
   <thead>
     <tr>
       <td>사진</td>
