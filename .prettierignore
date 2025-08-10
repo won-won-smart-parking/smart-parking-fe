@@ -25,3 +25,5 @@ eslint-report.json
 env-report.json
 dependency-audit-report.json
 jest-summary.json
+
+README.md
