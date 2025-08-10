@@ -22,10 +22,14 @@ fi
 echo "Push 전 환경 변수 유효성 검증..."
 yarn env:check || exit 1
 
-# 4. 코드 스타일 규칙 검증
-echo "Push 전 엄격한 Lint 규칙 검증..."
-yarn lint:strict || exit 1
-
-# 5. 타입 안전성 검증
+# 4. 타입 안전성 검증
 echo "Push 전 타입 안전성 검증..."
 yarn typecheck || exit 1
+
+# 5. 단위 테스트(Jest + RTL)
+echo "Push 전 단위 테스트(간단) 실행..."
+yarn test:quick
+
+# 6. 코드 스타일 규칙 검증
+echo "Push 전 엄격한 Lint 규칙 검증..."
+yarn lint:strict || exit 1

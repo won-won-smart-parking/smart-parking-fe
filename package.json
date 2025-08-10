@@ -23,8 +23,8 @@
     "env:check": "tsx scripts/check-env.ts",
     "audit:ci": "audit-ci --config ./audit-ci.jsonc",
     "test": "jest",
-    "test:ci": "jest --ci --coverage --maxWorkers=2",
-    "test:quick": "jest --bail --maxWorkers=50%"
+    "test:quick": "jest --bail --maxWorkers=50%",
+    "test:ci": "jest --ci --coverage --maxWorkers=2"
   },
   "lint-staged": {
     "**/*.{ts,tsx}": [
