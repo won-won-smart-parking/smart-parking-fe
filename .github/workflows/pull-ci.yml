@@ -45,14 +45,18 @@ jobs:
       - name: TypeScript Typecheck
         run: yarn typecheck
 
-      # 7. 의존성 점검 검증 단계
+      # 7. 엄격한 단위 테스트 검증
+      - name: (Strict) Unit Test
+        run: yarn test:ci
+
+      # 8. 의존성 점검 검증 단계
       - name: Dependency Audit
         run: yarn audit:ci
 
-      # 8. ESLint 규칙 검증(경고도 실패 처리)
+      # 9. ESLint 규칙 검증(경고도 실패 처리)
       - name: ESLint
         run: yarn lint:strict
 
-      # 9. Prettier 포맷팅 검증 단계
+      # 10. Prettier 포맷팅 검증 단계
       - name: Prettier Formatting
         run: yarn prettier
