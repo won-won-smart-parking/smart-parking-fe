@@ -27,8 +27,31 @@ echo "Push 전 타입 안전성 검증..."
 yarn typecheck || exit 1
 
 # 5. 단위 테스트(Jest + RTL)
-echo "Push 전 단위 테스트(간단) 실행..."
-yarn test:quick
+echo "...테스트 파일 수집 중..."
+
+### 1) 현재 commit 단계의 스테이징 영역 테스트 파일 수집
+STAGED_FILES=$(git diff --cached --name-only --diff-filter=AMR 2>/dev/null || true)
+STAGED_TESTS=$(printf "%s\n" "$STAGED_FILES" | grep -E '(^|/)(__tests__/.*|.*\.(test|spec)\.[tj]sx?)$' || true)
+
+### 2) 현재 commit 단계에 테스트 파일이 없을 경우 이전 테스트 파일 수집 (변경된 테스트 파일에 대한 테스트를 진행하기 위해서)
+if git rev-parse --abbrev-ref @{upstream} >/dev/null 2>&1; then
+  BASE=$(git merge-base HEAD @{upstream})
+else
+  BASE=$(git rev-list --max-parents=0 HEAD)
+fi
+RANGE_FILES=$(git diff --name-only --diff-filter=AMR "$BASE"...HEAD 2>/dev/null || true)
+RANGE_TESTS=$(printf "%s\n" "$RANGE_FILES" | grep -E '(^|/)(__tests__/.*|.*\.(test|spec)\.[tj]sx?)$' || true)
+
+ALL_TESTS=$(printf "%s\n%s\n" "$STAGED_TESTS" "$RANGE_TESTS" | sed '/^$/d' | sort -u)
+
+if [ -n "$ALL_TESTS" ]; then
+  echo "변경 또는 추가된 테스트 파일:"
+  printf "%s\n" "$ALL_TESTS" | sed 's/^/   - /'
+  echo "Push 전 변경 / 추가된 테스트 파일 테스트 단계 수행..."
+  printf "%s\0" $ALL_TESTS | xargs -0 yarn jest --bail --maxWorkers=50% --passWithNoTests || exit 1
+else
+  echo "변경 또는 추가된 테스트 파일이 없어 테스트를 건너뜀!!"
+fi
 
 # 6. 코드 스타일 규칙 검증
 echo "Push 전 엄격한 Lint 규칙 검증..."
