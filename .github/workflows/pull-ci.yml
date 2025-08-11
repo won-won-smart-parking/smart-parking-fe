@@ -83,7 +83,7 @@ jobs:
 
       # 10. Prettier 포맷팅 검증 단계
       - name: Prettier Formatting
-        run: yarn prettier
+        run: yarn format
       
       # 11. 리포트 & 커버리지 보고서 업로드 (PR 실패 시에도 항상 업로드)
       - name: Upload ESLint report

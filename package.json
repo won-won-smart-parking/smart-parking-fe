@@ -18,7 +18,7 @@
     "lint": "expo lint -- --cache --cache-location .eslintcache",
     "lint:strict": "expo lint -- --cache --cache-location .eslintcache --max-warnings=0",
     "typecheck": "tsc -p tsconfig.json --noEmit",
-    "prettier": "prettier --check .",
+    "format": "prettier --check .",
     "prepare": "husky install",
     "env:check": "tsx scripts/check-env.ts",
     "audit:ci": "audit-ci --config ./audit-ci.jsonc",
