@@ -23,6 +23,7 @@
     "paths": {
       "@/*": ["*"],
       "@app/*": ["app/*"],
+      "@global/*": ["global/*"],
       "@entities/*": ["entities/*"],
       "@features/*": ["features/*"],
       "@shared/*": ["shared/*"],
