@@ -55,7 +55,8 @@ import UserRoundedOutline from "@shared/assets/icon/base/user-rounded-outline.sv
 import Version from "@shared/assets/icon/base/version.svg";
 import Weather from "@shared/assets/icon/base/weather-sunny.svg";
 
-// 일반 아이콘 컴포넌트 내보내기
+// 일반 아이콘 컴포넌트 상수 타입 단언을 통해 내보내기
+// 상수 타입 단언 (as const) -> 상수로 타입을 단언하면, 객체는 변경 불가능한 값으로 작동
 export const baseIcons = {
   arrowBottomFill: ArrowBottomFill,
   arrowBottom: ArrowBottom,
