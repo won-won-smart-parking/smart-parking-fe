@@ -1,18 +1,14 @@
 import { View } from "react-native";
-import { elevation } from "@/shared/tokens/effect/elevation";
 import Text from "@/shared/tokens/typography/Text";
-import Dot from "@/shared/ui/atoms/dot";
 
 export default function Index() {
   return (
-    <View className="flex-1 items-center justify-center" style={elevation.active}>
+    <View className="flex-1 items-center justify-center">
       <Text variant="display-default">Hello, World!</Text>
       <Text variant="heading-lg">Hello, World!</Text>
       <Text variant="caption-lg">Hello, World123!</Text>
       <Text variant="caption-lg">Hello, World!</Text>
       <Text variant="caption-lg">Hello, Wor123ld!</Text>
-      <Dot status="busy" />
-      <Dot status="available" />
     </View>
   );
 }
