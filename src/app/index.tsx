@@ -1,6 +1,6 @@
 import { View } from "react-native";
 import { elevation } from "@shared/tokens";
-import Text from "@shared/tokens/typography/Text";
+import Text from "@shared/ui/atoms/text";
 
 export default function Index() {
   return (
