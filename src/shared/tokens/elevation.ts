@@ -15,7 +15,8 @@ import { StyleSheet } from "react-native";
  * - elevation: 전체 그림자 깊이를 나타내는 속성 (숫자가 클수록 그림자가 깊어짐)
  *    - 대략적으로 shadowRadius의 절반 정도 값을 기준으로 설정됨
  */
-export const elevation = StyleSheet.create({
+
+export default StyleSheet.create({
   overlay: {
     shadowColor: "#000000",
     shadowOffset: {
