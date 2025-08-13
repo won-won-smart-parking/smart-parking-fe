@@ -80,12 +80,33 @@ Smart Parking은 기본적으로 Git-Flow 브랜치 전략을 바탕으로 브�
 
 | 브랜치 타입 | 브랜치 이름 예시 | 설명 |
 | --- | --- | --- |
-| feat | feat/login/form | 새로운 기능 추가 |
+| feat | feat/login__form | 새로운 기능 추가 |
 | fix | fix/button/error | 버그 수정 |
 | refactor | refact/form/form-handler | 코드 리팩토링 |
 | test | test/login/unit-login | 테스트 코드 작성 |
-| docs | docs/readme-update | 문서 작성 또는 수정 |
 | chore | chore/setup-eslint | 빌드, 설정, 의존성 등 기타 작업 |
+
+### 브랜치 네이밍 규칙
+
+```bash
+# Feature - 새로운 기능
+feat/atom                       # 1단계
+feat/atom__button               # 2단계
+feat/atom__button-subFeature    # 3단계 - 2단계에 추가적인 기능을 구현하지만 독립적으로 구축하고 싶을 경우
+
+# Fix, Refactor, Test
+fix/button/해결-오류-기능
+refactor/button/수정할-기능
+test/button/테스트-종류
+
+# Chore
+chore/setup-eslint
+```
+
+> 💡 feat/atom이 있는 상태로 feat/atom/button을 하게 되면 디렉토리 파일명으로 판단할 수 있는 오류가 있어 해당 브랜치 네이밍을 사용하지 못하게 되어 있음
+
+- 브랜치 이름은 명사구(Noun Phrase) 원칙을 따른다.
+
 
 # II. Github 관련
 
