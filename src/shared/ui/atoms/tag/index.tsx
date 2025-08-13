@@ -1,5 +1,5 @@
 import { View, ViewProps } from "react-native";
-import Text from "@/shared/tokens/typography/Text";
+import Text from "@shared/ui/atoms/text";
 import { TagStatus, TagVariant } from "./variants";
 
 // Tag 컴포넌트에 대한 Props 타입 정의
