@@ -1,11 +1,9 @@
 import clsx from "clsx";
-import { Text as RNText, TextProps as RNTextProps } from "react-native";
-import { TypographyKey, typographyTokens } from "../typography";
+import { Text as RNText, TextProps } from "react-native";
+import { TypographyKey, typographyTokens } from "@shared/tokens/typography";
 
-interface Props extends RNTextProps {
+interface Props extends TextProps {
   variant?: TypographyKey;
-  className?: string;
-  children: React.ReactNode;
 }
 
 // Design Token - Text 컴포넌트 선언
