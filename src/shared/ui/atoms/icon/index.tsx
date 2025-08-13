@@ -3,10 +3,10 @@ import { IconName, registry } from "./variants";
 
 // Atom / Icon 속성 타입 정의 (SvgProps 이용)
 // Omit<T, K> 유니온 타입 -> T(TYPE)에서 K(KEY) 속성을 생략하고, 나머지를 선택한 새로운 타입 반환
-type Props = Omit<SvgProps, "height" | "style"> & {
+interface Props extends Omit<SvgProps, "height" | "style"> {
   name?: IconName; // 기본값 = example
   size?: number; // 기본값 = 24
-};
+}
 
 /**
  * Atom / Icon
