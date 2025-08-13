@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 
 const colors = require("./src/shared/tokens/color");
+const fontSize = require("./src/shared/tokens/font-size");
 
 module.exports = {
   // NOTE: Update this to include the paths to all files that contain Nativewind classes.
@@ -9,6 +10,7 @@ module.exports = {
   theme: {
     extend: {
       colors,
+      fontSize,
     },
   },
   plugins: [],
