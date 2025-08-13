@@ -1,9 +1,9 @@
 import clsx from "clsx";
 import { Text as RNText, TextProps as RNTextProps } from "react-native";
-import { TypographyVariant, TypographyVariants } from "./variants";
+import { TypographyKey, typographyTokens } from "../typography";
 
 interface Props extends RNTextProps {
-  variant?: TypographyVariant;
+  variant?: TypographyKey;
   className?: string;
   children: React.ReactNode;
 }
@@ -11,7 +11,7 @@ interface Props extends RNTextProps {
 // Design Token - Text 컴포넌트 선언
 function Text({ variant = "caption-tight", className, children, ...rest }: Props) {
   return (
-    <RNText className={clsx(TypographyVariants[variant], className)} {...rest}>
+    <RNText className={clsx(typographyTokens[variant], className)} {...rest}>
       {children}
     </RNText>
   );
