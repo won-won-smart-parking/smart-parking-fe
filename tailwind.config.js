@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
-const { colors } = require("./src/shared/tokens");
+
+const colors = require("./src/shared/tokens/color");
 
 module.exports = {
   // NOTE: Update this to include the paths to all files that contain Nativewind classes.
