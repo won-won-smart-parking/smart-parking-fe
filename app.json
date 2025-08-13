@@ -8,6 +8,7 @@
     "scheme": "smartparking",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
+    "jsEngine": "hermes",
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.smartparking.app",
