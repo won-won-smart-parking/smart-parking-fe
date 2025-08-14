@@ -1,6 +1,6 @@
 // src/global/styles/nativewind-svg.ts
 import { cssInterop } from "nativewind";
-import Icon from "@/shared/ui/atoms/icon";
+import Icon from "@shared/ui/atoms/icon";
 
 // cssInterop() -> className 규칙에 따라 스타일 객체를 특정 Prop으로 매핑
 // target: false -> style props으로는 안 보냄
