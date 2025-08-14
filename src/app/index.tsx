@@ -14,7 +14,7 @@ export default function Index() {
       <Text className="text-blue-400" variant="caption-lg">
         Hello, Wor123ld!
       </Text>
-      <View className="h-12 w-12 border-2 bg-overlay-black-40" style={elevation.active}>
+      <View className="h-12 w-12 border-2 bg-blue-400" style={elevation.bottom}>
         <Text variant="caption-lg" className="text-neutral-100">
           ASD
         </Text>
