@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { Platform, StyleSheet } from "react-native";
 
 /**
  * Box-Shadow 스타일 가이드 (React Native 기준)
@@ -17,74 +17,67 @@ import { StyleSheet } from "react-native";
  */
 
 export default StyleSheet.create({
-  overlay: {
-    shadowColor: "#000000",
-    shadowOffset: {
-      width: 0,
-      height: 4,
+  overlay: Platform.select({
+    ios: {
+      shadowColor: "#000000",
+      shadowOffset: { width: 0, height: 4 },
+      shadowOpacity: 0.2,
+      shadowRadius: 12,
     },
-    shadowOpacity: 0.2,
-    shadowRadius: 12,
-    elevation: 6,
-  },
-  floating: {
-    shadowColor: "#000000",
-    shadowOffset: {
-      width: 0,
-      height: 4,
+    android: { elevation: 6 },
+  })!,
+  floating: Platform.select({
+    ios: {
+      shadowColor: "#000000",
+      shadowOffset: { width: 0, height: 4 },
+      shadowOpacity: 0.08,
+      shadowRadius: 12,
     },
-    shadowOpacity: 0.08,
-    shadowRadius: 12,
-    elevation: 6,
-  },
-  raised: {
-    shadowColor: "#000000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
+    android: { elevation: 6 },
+  })!,
+  raised: Platform.select({
+    ios: {
+      shadowColor: "#000000",
+      shadowOffset: { width: 0, height: 2 },
+      shadowOpacity: 0.12,
+      shadowRadius: 6,
     },
-    shadowOpacity: 0.12,
-    shadowRadius: 6,
-    elevation: 3,
-  },
-  resting: {
-    shadowColor: "#000000",
-    shadowOffset: {
-      width: 0,
-      height: 0,
+    android: { elevation: 3 },
+  })!,
+  resting: Platform.select({
+    ios: {
+      shadowColor: "#000000",
+      shadowOffset: { width: 0, height: 0 },
+      shadowOpacity: 0.1,
+      shadowRadius: 8,
     },
-    shadowOpacity: 0.1,
-    shadowRadius: 8,
-    elevation: 4,
-  },
-  active: {
-    shadowColor: "#000000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
+    android: { elevation: 4 },
+  })!,
+  active: Platform.select({
+    ios: {
+      shadowColor: "#000000",
+      shadowOffset: { width: 0, height: 2 },
+      shadowOpacity: 0.12,
+      shadowRadius: 4,
     },
-    shadowOpacity: 0.12,
-    shadowRadius: 4,
-    elevation: 2,
-  },
-  bottom: {
-    shadowColor: "#000000",
-    shadowOffset: {
-      width: -2,
-      height: 16,
+    android: { elevation: 2 },
+  })!,
+  bottom: Platform.select({
+    ios: {
+      shadowColor: "#000000",
+      shadowOffset: { width: -2, height: 16 },
+      shadowOpacity: 0.12,
+      shadowRadius: 16,
     },
-    shadowOpacity: 0.12,
-    shadowRadius: 16,
-    elevation: 8,
-  },
-  side: {
-    shadowColor: "#000000",
-    shadowOffset: {
-      width: 4,
-      height: 0,
+    android: { elevation: 8 },
+  })!,
+  side: Platform.select({
+    ios: {
+      shadowColor: "#000000",
+      shadowOffset: { width: 4, height: 0 },
+      shadowOpacity: 0.08,
+      shadowRadius: 4,
     },
-    shadowOpacity: 0.08,
-    shadowRadius: 4,
-    elevation: 2,
-  },
+    android: { elevation: 2 },
+  })!,
 });
