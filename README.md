@@ -54,7 +54,8 @@
 | [개발 환경 구성](./docs/environment/README.md) | 프로젝트에서 사용하는 개발 도구 및 설정 방법에 대한 가이드입니다. |
 | [워크플로우 & 자동화 가이드](./docs/workflows/README.md) | Smart Parking 프로젝트의 개발 절차와 로컬/원격 자동화 프로세스를 안내합니다. |
 | [프로젝트 컨벤션](./docs/convention/README.md) | 코드 작성, 커밋 메시지, 포맷팅 등 일관된 스타일과 팀 내 규칙을 정의합니다. |
-| [참고 가이드](./docs/guides/README.md) | 디렉토리 구조, 브랜치 전략 등 프로젝트 운영에 필요한 참고 문서입니다. |
+| [개발 가이드](./docs/dev_guide/README.md) | Smart Parking 프로젝트에서 사용되는 디자인 토큰, 컴포넌트, 커스텀 훅 등 사용법을 정리한 문서입니다. |
+| [참고 링크](./docs/bookmark/README.md) | 공식 문서, 프로젝트에 도움될 만한 블로그 포스트 등의 내용을 정리한 가이드입니다. |
 
 <br />
 

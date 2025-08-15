@@ -4,5 +4,6 @@
 
 | 종류 | 설명 |
 |--|--|
-| [code](./code.md) | 코드(Code) 관련된 컨벤션 내용을 작성한 문서입니다. |
-| [git & github](./git.md) | Git & Github와 관련된 컨벤션 내용을 작성한 문서입니다. |
+| [코드 컨벤션](./code.md) | 코드(Code) 관련된 컨벤션 내용을 작성한 문서입니다. |
+| [Git & GitHub 컨벤션](./git.md) | Git & Github와 관련된 컨벤션 내용을 작성한 문서입니다. |
+| [디렉토리 구조 컨벤션](./directory_structure.md) | Smart Parking 프로젝트에서 사용된 디렉토리 구조에 관한 내용을 작성한 문서입니다. |
