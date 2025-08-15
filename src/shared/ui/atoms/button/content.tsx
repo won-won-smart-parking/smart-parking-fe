@@ -30,7 +30,7 @@ type Props = {
   [K in ButtonVariantKey]: { variant: K; content: ButtonVariant[K] };
 }[ButtonVariantKey];
 
-export default function ButtonConten({ variant, content }: Props) {
+export default function ButtonContent({ variant, content }: Props) {
   // 버튼 내부 콘텐츠의 구조를 정의
   switch (variant) {
     case "label": // 1) Text만 있는 구조
