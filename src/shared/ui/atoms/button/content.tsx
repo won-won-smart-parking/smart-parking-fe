@@ -40,7 +40,7 @@ export default function ButtonContent({ variant, content, styles }: Props) {
   switch (variant) {
     case "label": // 1) Text만 있는 구조
       return (
-        <Text className={styles} accessibilityLabel={content.accessibilityLabel}>
+        <Text variant="label-tight" className={styles} accessibilityLabel={content.accessibilityLabel}>
           {content.text}
         </Text>
       );
@@ -48,9 +48,14 @@ export default function ButtonContent({ variant, content, styles }: Props) {
       return <Icon className={styles} name={content.iconName} accessibilityLabel={content.accessibilityLabel} />;
     case "both": // 3) Icon + Text 조합 구조
       return (
-        <View accessibilityLabel={content.accessibilityLabel}>
+        <View
+          className="flex flex-row items-center justify-center gap-2"
+          accessibilityLabel={content.accessibilityLabel}
+        >
           <Icon className={styles} name={content.iconName} />
-          <Text className={styles}>{content.text}</Text>
+          <Text variant="label-tight" className={styles}>
+            {content.text}
+          </Text>
         </View>
       );
     default:
