@@ -26,22 +26,31 @@ import Text from "../text";
 //   { variant: 'icon';  content: ButtonVariant['icon']  } |
 //   { variant: 'both';  content: ButtonVariant['both']  }
 // }
-export type Props = {
+export type Variant = {
   [K in ButtonVariantKey]: { variant: K; content: ButtonVariant[K] };
 }[ButtonVariantKey];
 
-export default function ButtonContent({ variant, content }: Props) {
+// ButtonContent Props 타입 정의
+type Props = Variant & {
+  styles: string;
+};
+
+export default function ButtonContent({ variant, content, styles }: Props) {
   // 버튼 내부 콘텐츠의 구조를 정의
   switch (variant) {
     case "label": // 1) Text만 있는 구조
-      return <Text accessibilityLabel={content.accessibilityLabel}>{content.text}</Text>;
+      return (
+        <Text className={styles} accessibilityLabel={content.accessibilityLabel}>
+          {content.text}
+        </Text>
+      );
     case "icon": // 2) Icon 있는 구조
-      return <Icon name={content.iconName} accessibilityLabel={content.accessibilityLabel} />;
+      return <Icon className={styles} name={content.iconName} accessibilityLabel={content.accessibilityLabel} />;
     case "both": // 3) Icon + Text 조합 구조
       return (
         <View accessibilityLabel={content.accessibilityLabel}>
-          <Icon name={content.iconName} />
-          <Text>{content.text}</Text>
+          <Icon className={styles} name={content.iconName} />
+          <Text className={styles}>{content.text}</Text>
         </View>
       );
     default:
