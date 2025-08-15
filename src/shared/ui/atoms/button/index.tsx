@@ -9,7 +9,7 @@ interface Props extends Omit<PressableProps, "children"> {
   category?: "default" | "action" | "filter";
   content: Variant;
   fullWidth?: boolean; // 버튼 크기 Full 여부
-  outline?: boolean;
+  border?: boolean; // 구분선 여부
   containerClassName?: string; // 버튼 컨테이너 스타일 오버라이딩
   contentClassName?: string; // 버튼 내부 요소 스타일 오버라이딩
   paletteOverride?: Partial<{
@@ -27,7 +27,7 @@ export default function Button({
   content,
   onPress,
   fullWidth = true,
-  outline = false,
+  border = false,
   containerClassName,
   paletteOverride,
   ...rest
@@ -41,7 +41,7 @@ export default function Button({
       {...rest}
     >
       {({ pressed }) => {
-        const styles = defaultClasses(outline, pressed, paletteOverride);
+        const styles = defaultClasses(border, pressed, paletteOverride);
         return (
           <View className={clsx(styles.container, containerClassName)} style={pressed && elevation.active}>
             <ButtonContent {...content} styles={styles.content} />

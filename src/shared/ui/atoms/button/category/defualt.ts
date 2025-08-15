@@ -29,14 +29,14 @@ function getDefaultPalette(outline: boolean): Palette {
 }
 
 // 버튼 Default 타입일 경우 스타일 구성
-export const defaultClasses = (outline: boolean, pressed: boolean, paletteOverride?: Partial<Palette>) => {
+export const defaultClasses = (border: boolean, pressed: boolean, paletteOverride?: Partial<Palette>) => {
   const base = "rounded-[8px] flex items-center justify-center px-4 py-3";
 
-  // Default / Button 배경색 + 구분선 스타일 구성 (Outline=false인 경우 구분선 없음)
-  const palette: Palette = { ...getDefaultPalette(outline), ...paletteOverride }; // 객체는 동일한 키에 값이 부여되면 뒤에 들어온 값으로 덮어씌워지게 됨
+  // Default / Button 배경색 + 구분선 스타일 구성 (border=false인 경우 구분선 없음)
+  const palette: Palette = { ...getDefaultPalette(border), ...paletteOverride }; // 객체는 동일한 키에 값이 부여되면 뒤에 들어온 값으로 덮어씌워지게 됨
   const container = clsx(
     base,
-    outline && "border border-solid",
+    border && "border border-solid",
     pressed ? clsx(palette.bgPressed, palette.borderPressed) : clsx(palette.bgIdle, palette.borderIdle),
   );
 
