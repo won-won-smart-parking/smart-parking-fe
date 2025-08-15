@@ -33,11 +33,11 @@ type Props = {
 export default function ButtonConten({ variant, content }: Props) {
   // 버튼 내부 콘텐츠의 구조를 정의
   switch (variant) {
-    case "label":
+    case "label": // 1) Text만 있는 구조
       return <Text accessibilityLabel={content.accessibilityLabel}>{content.text}</Text>;
-    case "icon":
+    case "icon": // 2) Icon 있는 구조
       return <Icon name={content.iconName} accessibilityLabel={content.accessibilityLabel} />;
-    case "both":
+    case "both": // 3) Icon + Text 조합 구조
       return (
         <View accessibilityLabel={content.accessibilityLabel}>
           <Icon name={content.iconName} />
