@@ -1,4 +1,4 @@
-import { View } from "react-native-reanimated/lib/typescript/Animated";
+import { View } from "react-native";
 import { Variant as ButtonVariant, VariantKey as ButtonVariantKey } from "./variant";
 import Icon from "../icon";
 import Text from "../text";
@@ -26,7 +26,7 @@ import Text from "../text";
 //   { variant: 'icon';  content: ButtonVariant['icon']  } |
 //   { variant: 'both';  content: ButtonVariant['both']  }
 // }
-type Props = {
+export type Props = {
   [K in ButtonVariantKey]: { variant: K; content: ButtonVariant[K] };
 }[ButtonVariantKey];
 
