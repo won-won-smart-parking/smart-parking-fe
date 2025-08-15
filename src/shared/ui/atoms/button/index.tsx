@@ -1,14 +1,13 @@
 import clsx from "clsx";
 import { Pressable, PressableProps, View } from "react-native";
-import { elevation } from "@/shared/tokens";
-import { Category, getA11yProps } from "./a11y";
-import { defaultClasses } from "./category/defualt";
-import ButtonContent, { Variant } from "./content";
+import { elevation } from "@shared/tokens";
+import ButtonContent from "./content";
+import { ButtonVariant, Category, defaultClasses, getA11yProps } from "./foundation";
 
 // Button 컴포넌트 Props 타입 Omit<T, K>와 추가 속성의 타입을 정의
 interface Props extends Omit<PressableProps, "children"> {
   category?: Category;
-  content: Variant;
+  content: ButtonVariant;
 
   /* 스타일 관련 Props 종류 */
   fullWidth?: boolean; // 버튼 크기 Full 여부
