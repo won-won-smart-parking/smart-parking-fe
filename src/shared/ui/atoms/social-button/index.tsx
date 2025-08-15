@@ -45,6 +45,7 @@ export default function SocialButton({ type, onPress }: Props) {
       a11yLabel={a11yLabel}
       a11yHint={a11yHint}
       onPress={onPress}
+      disablePressedEffect
     />
   );
 }

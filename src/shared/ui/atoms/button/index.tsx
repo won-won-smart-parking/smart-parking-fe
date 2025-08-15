@@ -23,6 +23,7 @@ interface Props extends Omit<PressableProps, "children"> {
     textIdle: string;
     textPressed: string;
   }>;
+  disablePressedEffect?: boolean;
 
   /* 접근성 관련 Props 종류 */
   disabled?: boolean;
@@ -55,6 +56,7 @@ interface Props extends Omit<PressableProps, "children"> {
  * @param props.containerClassName 컨테이너 클래스 오버라이드(Tailwind/NativeWind)
  * @param props.iconSize        아이콘 크기(예: 16, 20 등). icon/both 변형에서만 의미 있음
  * @param props.paletteOverride 배경/보더/텍스트의 idle/pressed 팔레트 부분 오버라이드
+ * @param props.disablePressedEffect Pressed 효과 비활성화 여부
  * @param props.disabled        비활성화(true 시 onPress 가드 및 pressed 효과 비활성)
  * @param props.busy            처리 중 표시(action 전용). true 시 accessibilityState.busy 적용 및 onPress 가드
  * @param props.a11yLabel       스크린리더 라벨( icon-only일 때 필수 권장 )
@@ -103,6 +105,7 @@ export default function Button({
   iconSize,
   paletteOverride,
   disabled,
+  disablePressedEffect = false,
   busy,
   a11yLabel,
   a11yHint,
@@ -129,7 +132,10 @@ export default function Button({
       {({ pressed }) => {
         const styles = defaultClasses(border, pressed, roundFull, paletteOverride);
         return (
-          <View className={clsx(styles.container, containerClassName)} style={pressed && elevation.active}>
+          <View
+            className={clsx(styles.container, containerClassName)}
+            style={!disablePressedEffect && pressed ? elevation.active : null}
+          >
             <ButtonContent {...content} styles={styles.content} iconSize={iconSize} />
           </View>
         );
