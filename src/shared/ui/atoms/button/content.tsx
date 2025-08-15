@@ -42,31 +42,20 @@ export default function ButtonContent({ variant, content, styles, iconSize }: Pr
   switch (variant) {
     case "label": // 1) Text만 있는 구조
       return (
-        <Text variant="label-tight" className={styles} accessibilityLabel={content.accessibilityLabel}>
+        <Text variant="label-tight" className={styles} accessible={false}>
           {content.text}
         </Text>
       );
     case "icon": // 2) Icon 있는 구조
-      return (
-        <Icon
-          className={clsx(styles, iconSize)}
-          name={content.iconName}
-          accessibilityLabel={content.accessibilityLabel}
-        />
-      );
+      return <Icon className={clsx(styles, iconSize)} name={content.iconName} accessible={false} />;
     case "both": // 3) Icon + Text 조합 구조
       return (
-        <View
-          className="flex flex-row items-center justify-center gap-2"
-          accessibilityLabel={content.accessibilityLabel}
-        >
-          <Icon className={clsx(styles, iconSize)} name={content.iconName} />
-          <Text variant="label-tight" className={styles}>
+        <View className="flex flex-row items-center justify-center gap-2" accessible={false}>
+          <Icon name={content.iconName} className={clsx(styles, iconSize)} accessible={false} />
+          <Text variant="label-tight" className={styles} accessible={false}>
             {content.text}
           </Text>
         </View>
       );
-    default:
-      return null;
   }
 }
