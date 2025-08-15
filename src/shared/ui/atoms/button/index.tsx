@@ -1,4 +1,5 @@
-import { Pressable, PressableProps } from "react-native";
+import { Pressable, PressableProps, View } from "react-native";
+import { elevation } from "@/shared/tokens";
 import { defaultClasses } from "./category/defualt";
 import ButtonContent, { Variant } from "./content";
 
@@ -9,11 +10,26 @@ interface Props extends Omit<PressableProps, "children"> {
 }
 
 export default function Button({ category = "default", content, onPress, ...rest }: Props) {
-  const styles = defaultClasses(true);
+  const outline = true;
 
   return (
-    <Pressable {...rest} className={styles.container} onPress={onPress}>
-      <ButtonContent styles={styles.content} {...content} />
+    <Pressable {...rest} accessible accessibilityRole="button" onPress={onPress} className="w-full">
+      {({ pressed }) => {
+        const styles = defaultClasses(outline, pressed);
+
+        return (
+          <View className={styles.container} style={pressed && elevation.active}>
+            <ButtonContent {...content} styles={styles.content} />
+          </View>
+        );
+      }}
     </Pressable>
   );
+}
+
+// <Pressable {...rest} className={styles.container} onPress={onPress}>
+//   <ButtonContent styles={styles.content} {...content} />
+// </Pressable>
+
+{
 }
