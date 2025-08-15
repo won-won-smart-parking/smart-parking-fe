@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import { Pressable, PressableProps, View } from "react-native";
 import { elevation } from "@/shared/tokens";
 import { defaultClasses } from "./category/defualt";
@@ -7,29 +8,46 @@ import ButtonContent, { Variant } from "./content";
 interface Props extends Omit<PressableProps, "children"> {
   category?: "default" | "action" | "filter";
   content: Variant;
+  fullWidth?: boolean; // 버튼 크기 Full 여부
+  outline?: boolean;
+  containerClassName?: string; // 버튼 컨테이너 스타일 오버라이딩
+  contentClassName?: string; // 버튼 내부 요소 스타일 오버라이딩
+  paletteOverride?: Partial<{
+    bgIdle: string;
+    bgPressed: string;
+    borderIdle: string;
+    borderPressed: string;
+    textIdle: string;
+    textPressed: string;
+  }>;
 }
 
-export default function Button({ category = "default", content, onPress, ...rest }: Props) {
-  const outline = true;
-
+export default function Button({
+  category = "default",
+  content,
+  onPress,
+  fullWidth = true,
+  outline = false,
+  containerClassName,
+  paletteOverride,
+  ...rest
+}: Props) {
   return (
-    <Pressable {...rest} accessible accessibilityRole="button" onPress={onPress} className="w-full">
+    <Pressable
+      accessible
+      accessibilityRole="button"
+      onPress={onPress}
+      className={clsx(fullWidth ? "w-full" : "w-auto")}
+      {...rest}
+    >
       {({ pressed }) => {
-        const styles = defaultClasses(outline, pressed);
-
+        const styles = defaultClasses(outline, pressed, paletteOverride);
         return (
-          <View className={styles.container} style={pressed && elevation.active}>
+          <View className={clsx(styles.container, containerClassName)} style={pressed && elevation.active}>
             <ButtonContent {...content} styles={styles.content} />
           </View>
         );
       }}
     </Pressable>
   );
-}
-
-// <Pressable {...rest} className={styles.container} onPress={onPress}>
-//   <ButtonContent styles={styles.content} {...content} />
-// </Pressable>
-
-{
 }
