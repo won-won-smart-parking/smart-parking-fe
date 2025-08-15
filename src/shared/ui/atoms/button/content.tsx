@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import { View } from "react-native";
 import { Variant as ButtonVariant, VariantKey as ButtonVariantKey } from "./variant";
 import Icon from "../icon";
@@ -33,9 +34,10 @@ export type Variant = {
 // ButtonContent Props 타입 정의
 type Props = Variant & {
   styles: string;
+  iconSize?: string;
 };
 
-export default function ButtonContent({ variant, content, styles }: Props) {
+export default function ButtonContent({ variant, content, styles, iconSize }: Props) {
   // 버튼 내부 콘텐츠의 구조를 정의
   switch (variant) {
     case "label": // 1) Text만 있는 구조
@@ -45,14 +47,20 @@ export default function ButtonContent({ variant, content, styles }: Props) {
         </Text>
       );
     case "icon": // 2) Icon 있는 구조
-      return <Icon className={styles} name={content.iconName} accessibilityLabel={content.accessibilityLabel} />;
+      return (
+        <Icon
+          className={clsx(styles, iconSize)}
+          name={content.iconName}
+          accessibilityLabel={content.accessibilityLabel}
+        />
+      );
     case "both": // 3) Icon + Text 조합 구조
       return (
         <View
           className="flex flex-row items-center justify-center gap-2"
           accessibilityLabel={content.accessibilityLabel}
         >
-          <Icon className={styles} name={content.iconName} />
+          <Icon className={clsx(styles, iconSize)} name={content.iconName} />
           <Text variant="label-tight" className={styles}>
             {content.text}
           </Text>
