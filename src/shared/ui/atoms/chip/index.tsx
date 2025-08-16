@@ -9,11 +9,12 @@ interface Props extends PressableProps {
   selected?: boolean;
 }
 
-export default function Chip({ content, border = true, selected = false }: Props) {
+export default function Chip({ content, border = true, selected = false, onPress }: Props) {
   const palettePreset = chipPalettePreset(content.variant, border, selected);
 
   return (
     <Button
+      category="chip"
       content={content}
       fullWidth={false}
       roundFull={true}
@@ -22,6 +23,8 @@ export default function Chip({ content, border = true, selected = false }: Props
       containerClassName="pl-3 pr-3"
       typography="description-md"
       paletteOverride={palettePreset}
+      a11ySelected={selected}
+      onPress={onPress}
       disablePressedEffect
     />
   );
