@@ -6,7 +6,7 @@ interface Props extends PressableProps {
   selected: boolean;
 }
 
-export default function Radio({ selected }: Props) {
+export default function Radio({ selected = false }: Props) {
   return (
     <Pressable className="aspect-square w-7 overflow-hidden rounded-full">
       {({ pressed }) => {
