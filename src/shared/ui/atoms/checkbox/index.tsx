@@ -8,21 +8,21 @@ interface Props extends PressableProps {
 }
 
 /**
- * Atom / Radio
+ * Atom / Checkbox
  *
- * Radio Item 내부에서 사용되는 순수 시각적 컴포넌트입니다.
+ * 동의 여부(Agreement Item) 컴포넌트 내부에서 사용되는 순수 시각적 컴포넌트입니다.
  * 선택 여부에 따라 스타일만 변경되며, 비즈니스 로직이나 접근성 역할은 포함하지 않습니다.
  *
  * @param props.selected  선택 상태를 나타내는 값 (기본값: false)
  *
  * @example
  * // 선택된 상태
- * <Radio selected={true} />
+ * <Checkbox selected={true} />
  *
  * // 선택되지 않은 상태
- * <Radio selected={false} />
+ * <Checkbox selected={false} />
  *
- * @returns ReactElement Radio Component
+ * @returns ReactElement Checkbox Component
  */
 export default function Checkbox({ selected = false }: Props) {
   return (
