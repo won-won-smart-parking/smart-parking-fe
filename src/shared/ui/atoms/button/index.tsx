@@ -35,6 +35,7 @@ interface Props extends Omit<PressableProps, "children"> {
   a11yLabel?: string;
   a11yHint?: string;
   a11yValueText?: string;
+  a11ySelected?: boolean;
 }
 
 /**
@@ -115,6 +116,7 @@ export default function Button({
   a11yLabel,
   a11yHint,
   a11yValueText,
+  a11ySelected,
   ...rest
 }: Props) {
   // 접근성 Props 구성
@@ -124,6 +126,7 @@ export default function Button({
     label: a11yLabel ?? (content.variant === "label" ? content.content.accessibilityLabel : undefined),
     hint: a11yHint,
     valueText: a11yValueText,
+    selected: a11ySelected,
   });
 
   return (

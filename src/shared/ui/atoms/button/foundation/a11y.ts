@@ -1,7 +1,7 @@
 import { PressableProps } from "react-native";
 
 // 버튼 컴포넌트 접근성 관련 util 코드
-export type Category = "default" | "action";
+export type Category = "default" | "action" | "chip";
 
 // 버튼 접근성 객체 구조 타입 정의
 interface Options {
@@ -10,6 +10,7 @@ interface Options {
   label: string;
   hint: string;
   valueText: string;
+  selected: boolean;
 }
 type A11yOptions = Partial<Options>; // 접근성 옵션들은 기본적으로 선택적으로 적용한다.
 
@@ -25,7 +26,7 @@ type A11yReturn = Pick<
 >;
 
 export function getA11yProps(category: Category, options: A11yOptions = {}): A11yReturn {
-  const { disabled, busy, label, hint, valueText } = options;
+  const { disabled, busy, label, hint, valueText, selected } = options;
 
   // 기본적으로 적용되어야 하는 접근성 규칙 적용
   const base: A11yReturn = {
@@ -51,6 +52,14 @@ export function getA11yProps(category: Category, options: A11yOptions = {}): A11
         accessibilityState: {
           ...(disabled !== undefined ? { disabled } : null),
           ...(busy !== undefined ? { busy } : null),
+        },
+      };
+    case "chip":
+      return {
+        ...base,
+        accessibilityState: {
+          ...(disabled !== undefined ? { disabled } : null),
+          ...(selected !== undefined ? { selected } : null),
         },
       };
   }
