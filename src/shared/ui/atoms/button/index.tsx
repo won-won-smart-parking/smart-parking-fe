@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import { Pressable, PressableProps, View } from "react-native";
 import { elevation } from "@shared/tokens";
+import { TypographyKey } from "@shared/tokens/typography";
 import ButtonContent from "./content";
 import { ButtonVariant, Category, defaultClasses, getA11yProps } from "./foundation";
 
@@ -15,6 +16,7 @@ interface Props extends Omit<PressableProps, "children"> {
   border?: boolean; // 구분선 여부
   containerClassName?: string; // 버튼 컨테이너 스타일 오버라이딩
   iconSize?: string; // Content = "icon" + "both"인 경우 아이콘 크기 지정(현재는 기본값으로 설정됨)
+  typography?: TypographyKey; // Text - Typography 스타일
   paletteOverride?: Partial<{
     bgIdle: string;
     bgPressed: string;
@@ -22,6 +24,8 @@ interface Props extends Omit<PressableProps, "children"> {
     borderPressed: string;
     textIdle: string;
     textPressed: string;
+    iconIdle: string;
+    iconPressed: string;
   }>;
   disablePressedEffect?: boolean;
 
@@ -31,6 +35,7 @@ interface Props extends Omit<PressableProps, "children"> {
   a11yLabel?: string;
   a11yHint?: string;
   a11yValueText?: string;
+  a11ySelected?: boolean;
 }
 
 /**
@@ -103,6 +108,7 @@ export default function Button({
   border = false,
   containerClassName,
   iconSize,
+  typography,
   paletteOverride,
   disabled,
   disablePressedEffect = false,
@@ -110,6 +116,7 @@ export default function Button({
   a11yLabel,
   a11yHint,
   a11yValueText,
+  a11ySelected,
   ...rest
 }: Props) {
   // 접근성 Props 구성
@@ -119,6 +126,7 @@ export default function Button({
     label: a11yLabel ?? (content.variant === "label" ? content.content.accessibilityLabel : undefined),
     hint: a11yHint,
     valueText: a11yValueText,
+    selected: a11ySelected,
   });
 
   return (
@@ -136,7 +144,12 @@ export default function Button({
             className={clsx(styles.container, containerClassName)}
             style={!disablePressedEffect && pressed ? elevation.active : null}
           >
-            <ButtonContent {...content} styles={styles.content} iconSize={iconSize} />
+            <ButtonContent
+              {...content}
+              styles={{ textStyle: styles.textStyle, iconStyle: styles.iconStyle }}
+              iconSize={iconSize}
+              typography={typography}
+            />
           </View>
         );
       }}
