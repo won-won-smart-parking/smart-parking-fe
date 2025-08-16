@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import { Pressable, PressableProps, View } from "react-native";
 import { elevation } from "@shared/tokens";
+import Icon from "@shared/ui/atoms/icon";
 
 interface Props extends PressableProps {
   selected?: boolean;
@@ -25,23 +26,21 @@ interface Props extends PressableProps {
  */
 export default function Checkbox({ selected = false }: Props) {
   return (
-    <Pressable className="aspect-square w-7 overflow-hidden rounded-full">
+    <Pressable className="aspect-square w-7 overflow-hidden rounded-[4px]">
       {({ pressed }) => {
         return (
           <View
             className={clsx(
               "flex h-full w-full items-center justify-center",
-              selected
-                ? pressed
-                  ? "bg-neutral-900"
-                  : "bg-neutral-1000"
-                : pressed
-                  ? "bg-neutral-850"
-                  : "bg-neutral-700",
+              selected ? (pressed ? "bg-blue-400" : "bg-blue-300") : pressed ? "bg-neutral-850" : "bg-neutral-700",
             )}
             style={pressed && elevation.active}
           >
-            <View className={clsx("h-3 w-3 rounded-full", pressed ? "bg-neutral-200" : "bg-neutral-100")} />
+            <Icon
+              name="check"
+              className={clsx("w-6 rounded-full", pressed ? "text-neutral-200" : "text-neutral-100")}
+            />
+            {/* <View  /> */}
           </View>
         );
       }}
