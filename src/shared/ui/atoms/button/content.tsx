@@ -7,7 +7,10 @@ import { ButtonVariant } from "./foundation";
 
 // ButtonContent Props 타입 정의
 type Props = ButtonVariant & {
-  styles: string;
+  styles: {
+    textStyle: string;
+    iconStyle: string;
+  };
   iconSize?: string;
   typography?: TypographyKey;
 };
@@ -17,17 +20,17 @@ export default function ButtonContent({ variant, content, styles, iconSize, typo
   switch (variant) {
     case "label": // 1) Text만 있는 구조
       return (
-        <Text variant={typography} className={styles} accessible={false}>
+        <Text variant={typography} className={styles.textStyle} accessible={false}>
           {content.text}
         </Text>
       );
     case "icon": // 2) Icon 있는 구조
-      return <Icon className={clsx(styles, iconSize)} name={content.iconName} accessible={false} />;
+      return <Icon className={clsx(styles.iconStyle, iconSize)} name={content.iconName} accessible={false} />;
     case "both": // 3) Icon + Text 조합 구조
       return (
         <View className="flex flex-row items-center justify-center gap-2" accessible={false}>
-          <Icon name={content.iconName} className={clsx(styles, iconSize)} accessible={false} />
-          <Text variant={typography} className={styles} accessible={false}>
+          <Icon name={content.iconName} className={clsx(styles.iconStyle, iconSize)} accessible={false} />
+          <Text variant={typography} className={styles.textStyle} accessible={false}>
             {content.text}
           </Text>
         </View>

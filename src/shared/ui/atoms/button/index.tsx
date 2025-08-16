@@ -24,6 +24,8 @@ interface Props extends Omit<PressableProps, "children"> {
     borderPressed: string;
     textIdle: string;
     textPressed: string;
+    iconIdle: string;
+    iconPressed: string;
   }>;
   disablePressedEffect?: boolean;
 
@@ -139,7 +141,12 @@ export default function Button({
             className={clsx(styles.container, containerClassName)}
             style={!disablePressedEffect && pressed ? elevation.active : null}
           >
-            <ButtonContent {...content} styles={styles.content} iconSize={iconSize} typography={typography} />
+            <ButtonContent
+              {...content}
+              styles={{ textStyle: styles.textStyle, iconStyle: styles.iconStyle }}
+              iconSize={iconSize}
+              typography={typography}
+            />
           </View>
         );
       }}
