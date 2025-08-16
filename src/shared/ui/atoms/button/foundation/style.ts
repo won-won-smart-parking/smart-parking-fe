@@ -1,14 +1,14 @@
 import clsx from "clsx";
 
-interface Palette {
+export interface Palette {
   bgIdle: string;
   bgPressed: string;
   borderIdle?: string;
   borderPressed?: string;
   textIdle: string;
   textPressed: string;
-  iconIdle?: string;
-  iconPressed?: string;
+  iconIdle: string;
+  iconPressed: string;
 }
 
 // 배경색 + 텍스트 색상 기본 스타일 부여(Pressed 효과까지 포함)
@@ -52,7 +52,7 @@ export const defaultClasses = (
   );
 
   const textStyle = pressed ? palette.textPressed : palette.textIdle; // Default / Button 텍스트 스타일 구성
-  const iconStyle = pressed ? palette.textPressed : palette.textIdle; // Default / Button 텍스트 스타일 구성
+  const iconStyle = pressed ? palette.iconPressed : palette.iconIdle; // Default / Button 텍스트 스타일 구성
 
   // Default / Button 스타일 반환
   return { container, textStyle, iconStyle };
