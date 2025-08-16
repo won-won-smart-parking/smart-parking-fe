@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import { Pressable, PressableProps, View } from "react-native";
-import { elevation } from "@shared/tokens";
+import { elevation, type ElevationType } from "@shared/tokens";
 import { TypographyKey } from "@shared/tokens/typography";
 import ButtonContent from "./content";
 import { ButtonVariant, Category, defaultClasses, getA11yProps } from "./foundation";
@@ -27,6 +27,7 @@ interface Props extends Omit<PressableProps, "children"> {
     iconIdle: string;
     iconPressed: string;
   }>;
+  defaultEffect?: ElevationType;
   disablePressedEffect?: boolean;
 
   /* 접근성 관련 Props 종류 */
@@ -111,6 +112,7 @@ export default function Button({
   typography,
   paletteOverride,
   disabled,
+  defaultEffect,
   disablePressedEffect = false,
   busy,
   a11yLabel,
@@ -142,7 +144,7 @@ export default function Button({
         return (
           <View
             className={clsx(styles.container, containerClassName)}
-            style={!disablePressedEffect && pressed ? elevation.active : null}
+            style={defaultEffect || (!disablePressedEffect && pressed) ? elevation.active : null}
           >
             <ButtonContent
               {...content}
