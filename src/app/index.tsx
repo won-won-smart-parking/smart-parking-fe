@@ -1,4 +1,5 @@
 import { View } from "react-native";
+import Switch from "@/shared/ui/atoms/switch";
 import { elevation } from "@shared/tokens";
 import Text from "@shared/ui/atoms/text";
 
@@ -18,6 +19,9 @@ export default function Index() {
         <Text variant="caption-lg" className="text-neutral-100">
           ASD
         </Text>
+      </View>
+      <View className="bg-red-400">
+        <Switch />
       </View>
     </View>
   );
