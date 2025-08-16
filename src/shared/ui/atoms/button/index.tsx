@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import { Pressable, PressableProps, View } from "react-native";
 import { elevation } from "@shared/tokens";
+import { TypographyKey } from "@shared/tokens/typography";
 import ButtonContent from "./content";
 import { ButtonVariant, Category, defaultClasses, getA11yProps } from "./foundation";
 
@@ -15,6 +16,7 @@ interface Props extends Omit<PressableProps, "children"> {
   border?: boolean; // 구분선 여부
   containerClassName?: string; // 버튼 컨테이너 스타일 오버라이딩
   iconSize?: string; // Content = "icon" + "both"인 경우 아이콘 크기 지정(현재는 기본값으로 설정됨)
+  typography?: TypographyKey; // Text - Typography 스타일
   paletteOverride?: Partial<{
     bgIdle: string;
     bgPressed: string;
@@ -103,6 +105,7 @@ export default function Button({
   border = false,
   containerClassName,
   iconSize,
+  typography,
   paletteOverride,
   disabled,
   disablePressedEffect = false,
@@ -136,7 +139,7 @@ export default function Button({
             className={clsx(styles.container, containerClassName)}
             style={!disablePressedEffect && pressed ? elevation.active : null}
           >
-            <ButtonContent {...content} styles={styles.content} iconSize={iconSize} />
+            <ButtonContent {...content} styles={styles.content} iconSize={iconSize} typography={typography} />
           </View>
         );
       }}
