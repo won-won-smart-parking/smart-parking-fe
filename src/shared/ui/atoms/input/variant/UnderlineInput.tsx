@@ -5,7 +5,7 @@ import { IconName } from "../../icon/variants";
 import { InputRequiredProps, InputStyle } from "../foundation";
 import ClearButton from "../part/ClearButton";
 
-interface Props extends InputRequiredProps, Omit<TextInputProps, keyof InputRequiredProps> {
+export interface Props extends InputRequiredProps, Omit<TextInputProps, keyof InputRequiredProps> {
   state: "default" | "focus" | "error" | "disabled";
   icon?: {
     revealed: boolean;
