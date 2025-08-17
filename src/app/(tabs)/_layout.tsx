@@ -5,10 +5,11 @@ import Text from "@/shared/ui/atoms/text";
 
 export default function TabLayout() {
   return (
-    <Tabs screenOptions={{ headerShown: false }}>
+    <Tabs>
       <Tabs.Screen
         name="index"
         options={{
+          headerShown: false,
           tabBarLabel: ({ focused }: { focused: boolean }) => (
             <Text variant="caption-xxl" className={clsx(!focused ? "text-neutral-900" : "text-neutral-1000")}>
               홈
@@ -25,6 +26,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="parking-pass"
         options={{
+          title: "내 주차권",
           tabBarLabel: ({ focused }: { focused: boolean }) => (
             <Text variant="caption-xxl" className={clsx(!focused ? "text-neutral-900" : "text-neutral-1000")}>
               내 주차권
@@ -41,6 +43,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="favorites"
         options={{
+          title: "즐겨찾기",
           tabBarLabel: ({ focused }: { focused: boolean }) => (
             <Text variant="caption-xxl" className={clsx(!focused ? "text-neutral-900" : "text-neutral-1000")}>
               즐겨찾기
@@ -57,6 +60,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="profile"
         options={{
+          title: "프로필",
           tabBarLabel: ({ focused }: { focused: boolean }) => (
             <Text variant="caption-xxl" className={clsx(!focused ? "text-neutral-900" : "text-neutral-1000")}>
               MY
