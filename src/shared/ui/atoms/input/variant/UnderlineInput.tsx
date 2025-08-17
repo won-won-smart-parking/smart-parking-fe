@@ -25,7 +25,7 @@ interface Props extends InputRequiredProps, Omit<TextInputProps, keyof InputRequ
  * @param props.value         입력 값
  * @param props.placeholder   안내 문구
  * @param props.onChangeText  텍스트 변경 이벤트 핸들러
- * @param props.onClear       Clear 버튼 클릭 이벤트 핸들러
+ * @param props.onPress       Clear 버튼 클릭 이벤트 핸들러
  * @param props.onFocus       포커스 이벤트 핸들러
  * @param props.onEndEditing  입력 종료 이벤트 핸들러
  *
@@ -36,7 +36,7 @@ interface Props extends InputRequiredProps, Omit<TextInputProps, keyof InputRequ
  *   value={value}
  *   placeholder="비밀번호"
  *   onChangeText={setValue}
- *   onClear={() => setValue("")}
+ *   onPress={() => setValue("")}
  * />
  *
  * // 아이콘(비밀번호 보기 토글) 포함
@@ -64,7 +64,7 @@ export default function UnderlineInput({
   onChangeText,
   onEndEditing,
   onFocus,
-  onPress: onClear,
+  onPress,
 }: Props) {
   return (
     <View
@@ -87,7 +87,7 @@ export default function UnderlineInput({
           onFocus={onFocus}
           onEndEditing={onEndEditing}
         />
-        {value.length && <ClearButton onPress={onClear} />}
+        {value.length && <ClearButton onPress={onPress} />}
       </View>
 
       {/* 비밀번호 표시와 같은 Icon 버튼 조건부 렌더링 */}
