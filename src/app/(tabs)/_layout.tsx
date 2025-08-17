@@ -5,7 +5,7 @@ import Text from "@/shared/ui/atoms/text";
 
 export default function TabLayout() {
   return (
-    <Tabs screenOptions={{ headerTitleAlign: "center" }}>
+    <Tabs screenOptions={{ headerTitleAlign: "center", headerStyle: { height: 128 } }}>
       <Tabs.Screen
         name="index"
         options={{
@@ -26,7 +26,12 @@ export default function TabLayout() {
       <Tabs.Screen
         name="parking-pass"
         options={{
-          title: "내 주차권",
+          headerTitle: () => <Text variant="heading-md">내 주차권</Text>,
+          headerRight: () => (
+            <Text variant="label-tight" className="mr-6 text-neutral-900">
+              이용 내역
+            </Text>
+          ),
           tabBarLabel: ({ focused }: { focused: boolean }) => (
             <Text variant="caption-xxl" className={clsx(!focused ? "text-neutral-900" : "text-neutral-1000")}>
               내 주차권
@@ -43,7 +48,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="favorites"
         options={{
-          title: "즐겨찾기",
+          headerTitle: () => <Text variant="heading-md">즐겨찾기</Text>,
           tabBarLabel: ({ focused }: { focused: boolean }) => (
             <Text variant="caption-xxl" className={clsx(!focused ? "text-neutral-900" : "text-neutral-1000")}>
               즐겨찾기
@@ -60,7 +65,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="profile"
         options={{
-          title: "프로필",
+          headerTitle: () => <Text variant="heading-md">프로필</Text>,
           tabBarLabel: ({ focused }: { focused: boolean }) => (
             <Text variant="caption-xxl" className={clsx(!focused ? "text-neutral-900" : "text-neutral-1000")}>
               MY
