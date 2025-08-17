@@ -1,13 +1,29 @@
 import { PressableProps, TextInputProps } from "react-native";
 
-// RN에서 지원하는 TextInputProps 타입은 ViewProps를 상속받음
-// InputBase에서 필요한 속성은 TextInputProps에서 제공을 하기 때문에 Pick 유틸리티 타입을 통해 특정 속성만 추출후,
-// Required 유틸리티 타입을 통해 반드시 받아야 되는 Props로 정의한다. (Pick은 선택적 타입이기 때문)
-type INPUT_BASE_TYPE = Required<
+/**
+ * Atom / Input - Base
+ *
+ * 모든 Input 종류(Variant, Underline Input | Search Input)에서 공통적으로 사용하는 속성(Props) 타입과 스타일을 정의한 파일입니다.
+ * 이를 분리하여 관리함으로써 각 컴포넌트가 명확한 역할을 수행하고, 불필요한 결합도를 낮추기 위함입니다.
+ */
+
+// TextInputProps와 PressableProps를 통해 각 Input 종류마다 반드시 필요로 하는 Props 타입 정의
+// [ TextInputProps ]
+// -> value: TextInput의 기본값
+// -> placeholder: TextInput의 안내 문구
+// -> onChangeText: TextInput의 변경(Change) 감지 이벤트 핸들러
+//
+// [ PressableProps ]
+// -> onPress: Clear Button의 눌림(Press) 감지 이벤트 핸들러
+type InputRequiredProps = Required<
   Pick<TextInputProps, "value" | "placeholder" | "onChangeText"> & Pick<PressableProps, "onPress">
 >;
-const INPUT_CONTAINER_BASE_STYLE = "flex w-full flex-row justify-center items-center gap-2 p-1";
-const INPUT_FILED_BASE_STYLE = "flex-1 flex flex-row justify-center items-center";
-const INPUT_BASE_STYLE = "flex-1 text-neutral-1000 text-base-tall font-normal";
 
-export { INPUT_BASE_TYPE, INPUT_CONTAINER_BASE_STYLE, INPUT_FILED_BASE_STYLE, INPUT_BASE_STYLE };
+// 각 Input 종류마다 기본적으로 적용되는 Base 스타일
+const InputStyle = {
+  container: "flex w-full flex-row justify-center items-center gap-2 p-1",
+  field: "flex-1 flex flex-row justify-center items-center",
+  text: "flex-1 text-neutral-1000 text-base-tall font-normal",
+};
+
+export { InputRequiredProps, InputStyle };
