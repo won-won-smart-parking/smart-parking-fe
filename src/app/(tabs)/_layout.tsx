@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import { Tabs } from "expo-router";
-import Icon from "@/shared/ui/atoms/icon";
-import Text from "@/shared/ui/atoms/text";
+import Icon from "@shared/ui/atoms/icon";
+import Text from "@shared/ui/atoms/text";
 
 export default function TabLayout() {
   return (
