@@ -5,7 +5,7 @@ import Text from "@/shared/ui/atoms/text";
 
 export default function TabLayout() {
   return (
-    <Tabs>
+    <Tabs screenOptions={{ headerTitleAlign: "center" }}>
       <Tabs.Screen
         name="index"
         options={{
