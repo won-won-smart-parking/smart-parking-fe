@@ -51,7 +51,7 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="favorites"
+        name="bookmark"
         options={{
           headerTitle: () => <Text variant="heading-md">즐겨찾기</Text>,
           tabBarLabel: ({ focused }: { focused: boolean }) => (
