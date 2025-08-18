@@ -1,9 +1,12 @@
 import clsx from "clsx";
-import { Tabs } from "expo-router";
+import { Tabs, useRouter } from "expo-router";
+import { Pressable } from "react-native";
 import Icon from "@shared/ui/atoms/icon";
 import Text from "@shared/ui/atoms/text";
 
 export default function TabLayout() {
+  const router = useRouter();
+
   return (
     <Tabs screenOptions={{ headerTitleAlign: "center", headerStyle: { height: 128 } }}>
       <Tabs.Screen
@@ -28,9 +31,11 @@ export default function TabLayout() {
         options={{
           headerTitle: () => <Text variant="heading-md">내 주차권</Text>,
           headerRight: () => (
-            <Text variant="label-tight" className="mr-6 text-neutral-900">
-              이용 내역
-            </Text>
+            <Pressable onPress={() => router.navigate("/ticket/history")}>
+              <Text variant="label-tight" className="mr-6 text-neutral-900">
+                이용 내역
+              </Text>
+            </Pressable>
           ),
           tabBarLabel: ({ focused }: { focused: boolean }) => (
             <Text variant="caption-xxl" className={clsx(!focused ? "text-neutral-900" : "text-neutral-1000")}>
