@@ -8,7 +8,7 @@ export default function TabLayout() {
   const router = useRouter();
 
   return (
-    <Tabs screenOptions={{ headerTitleAlign: "center", headerStyle: { height: 128 } }}>
+    <Tabs screenOptions={{ headerTitleAlign: "center" }}>
       <Tabs.Screen
         name="index"
         options={{

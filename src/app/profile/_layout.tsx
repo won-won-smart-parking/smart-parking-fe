@@ -1,9 +1,9 @@
 import { Stack, useRouter } from "expo-router";
 import { Pressable } from "react-native";
-import Icon from "@/shared/ui/atoms/icon";
-import Text from "@/shared/ui/atoms/text";
+import Icon from "@shared/ui/atoms/icon";
+import Text from "@shared/ui/atoms/text";
 
-export default function TicketLayout() {
+export default function ProfileLayout() {
   const router = useRouter();
 
   return (
@@ -19,15 +19,21 @@ export default function TicketLayout() {
       }}
     >
       <Stack.Screen
-        name="history"
+        name="edit"
         options={{
-          headerTitle: () => <Text variant="heading-md">이용내역</Text>,
+          headerTitle: () => <Text variant="heading-md">프로필 수정</Text>,
         }}
       />
       <Stack.Screen
-        name="[passId]"
+        name="delete"
         options={{
-          headerTitle: () => <Text variant="heading-md">이용권 상세</Text>,
+          headerTitle: () => <Text variant="heading-md">회원탈퇴</Text>,
+        }}
+      />
+      <Stack.Screen
+        name="setting"
+        options={{
+          headerTitle: () => <Text variant="heading-md">설정</Text>,
         }}
       />
     </Stack>
