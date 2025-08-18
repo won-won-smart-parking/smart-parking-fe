@@ -12,7 +12,7 @@ export default function ProfileLayout() {
         headerTitleAlign: "center",
         headerBackTitleVisible: false,
         headerLeft: () => (
-          <Pressable onPress={() => router.dismissAll()}>
+          <Pressable onPress={() => router.back()}>
             <Icon name="arrowLeft" className="w-4 text-neutral-850" />
           </Pressable>
         ),
@@ -34,6 +34,29 @@ export default function ProfileLayout() {
         name="setting"
         options={{
           headerTitle: () => <Text variant="heading-md">설정</Text>,
+        }}
+      />
+      <Stack.Screen
+        name="car/index"
+        options={{
+          headerTitle: () => <Text variant="heading-md">차량 관리</Text>,
+          headerRight: () => (
+            <Pressable onPress={() => router.navigate("/profile/car/create")}>
+              <Icon name="plus" className="w-6 text-neutral-850" />
+            </Pressable>
+          ),
+        }}
+      />
+      <Stack.Screen
+        name="car/[carId]"
+        options={{
+          headerTitle: () => <Text variant="heading-md">차량 등록</Text>,
+        }}
+      />
+      <Stack.Screen
+        name="car/create"
+        options={{
+          headerTitle: () => <Text variant="heading-md">차량 수정</Text>,
         }}
       />
     </Stack>

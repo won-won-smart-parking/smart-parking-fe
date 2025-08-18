@@ -10,6 +10,7 @@ export default function ParkingPass() {
       <Button title="프로필 수정 페이지 이동" onPress={() => router.navigate("/profile/edit")} />
       <Button title="회원탈퇴 페이지 이동" onPress={() => router.navigate("/profile/delete")} />
       <Button title="설정 페이지 이동" onPress={() => router.navigate("/profile/setting")} />
+      <Button title="차량 관리 페이지 이동" onPress={() => router.navigate("/profile/car/")} />
     </View>
   );
 }
