@@ -1,11 +1,15 @@
-import { View } from "react-native";
-import Text from "@/shared/ui/atoms/text";
+import { useRouter } from "expo-router";
+import { Button, View } from "react-native";
 
 // smartparking://profile
 export default function ParkingPass() {
+  const router = useRouter();
+
   return (
     <View className="flex-1 items-center justify-center">
-      <Text variant="display-default">마이 프로필 페이지</Text>
+      <Button title="프로필 수정 페이지 이동" onPress={() => router.navigate("/profile/edit")} />
+      <Button title="회원탈퇴 페이지 이동" onPress={() => router.navigate("/profile/delete")} />
+      <Button title="설정 페이지 이동" onPress={() => router.navigate("/profile/setting")} />
     </View>
   );
 }
