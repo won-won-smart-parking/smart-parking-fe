@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import { withLayoutContext } from "expo-router";
-import Text from "@/shared/ui/atoms/text";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
+import Text from "@shared/ui/atoms/text";
 
 const { Navigator } = createMaterialTopTabNavigator();
 
