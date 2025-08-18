@@ -24,7 +24,7 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="parking-pass"
+        name="ticket"
         options={{
           headerTitle: () => <Text variant="heading-md">내 주차권</Text>,
           headerRight: () => (
