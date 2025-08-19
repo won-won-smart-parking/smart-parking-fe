@@ -1,5 +1,5 @@
-import { useEffect, useRef } from "react";
-import { Animated, Easing, Pressable, View, ViewProps } from "react-native";
+import { useEffect } from "react";
+import { Animated, Easing, Pressable, useAnimatedValue, View, ViewProps } from "react-native";
 import { elevation } from "@shared/tokens";
 import { Thumb, Track } from "./switch-styles";
 
@@ -10,7 +10,7 @@ interface Props extends Omit<ViewProps, "children"> {
 
 export default function Switch({ value, onToggle, ...rest }: Props) {
   // value가 true면 1, false면 0
-  const animatedValue = useRef(new Animated.Value(value ? 1 : 0)).current;
+  const animatedValue = useAnimatedValue(value ? 1 : 0);
 
   // value 상태에 따른 애니메이션
   useEffect(() => {
@@ -22,17 +22,24 @@ export default function Switch({ value, onToggle, ...rest }: Props) {
     }).start();
   }, [value, animatedValue]);
 
-  const translateX = animatedValue.interpolate({
-    inputRange: [0, 1],
-    outputRange: [2, 26],
-  });
-
   return (
     // Press 시 onToggle 호출
     <Pressable onPress={onToggle} {...rest}>
       {({ pressed }) => (
         <View className={Track(value, pressed)} style={pressed && elevation.active}>
-          <Animated.View className={Thumb(value, pressed)} style={{ transform: [{ translateX }] }} />
+          <Animated.View
+            className={Thumb(value, pressed)}
+            style={{
+              transform: [
+                {
+                  translateX: animatedValue.interpolate({
+                    inputRange: [0, 1],
+                    outputRange: [2, 26],
+                  }),
+                },
+              ],
+            }}
+          />
         </View>
       )}
     </Pressable>
