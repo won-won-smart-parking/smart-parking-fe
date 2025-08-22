@@ -5,12 +5,12 @@ import { BaseButton, BaseButtonProps, ButtonContainerPalette } from "../foundati
 
 interface Palette extends ButtonContainerPalette {
   iconColor: string;
-  iconPressed: string;
+  iconPressedColor: string;
 }
 
 export interface Props extends BaseButtonProps {
   iconName: IconName;
-  iconSize: string;
+  iconSize?: string;
   palette?: Partial<Palette>;
 }
 
@@ -40,7 +40,7 @@ export default function IconButton({
         <Icon
           name={iconName}
           className={clsx(
-            !pressed ? palette?.iconColor || "text-neutral-900" : palette?.iconPressed || "text-neutral-870",
+            !pressed ? palette?.iconColor || "text-neutral-900" : palette?.iconPressedColor || "text-neutral-870",
             iconSize,
           )}
         />
