@@ -1,6 +1,6 @@
 export const preset = {
   fullWidth: false,
   roundFull: true,
-  containerClassName: "py-3",
+  overrideButtonContainerStyles: "aspect-square px-3",
   disablePressedEffect: true,
 };
