@@ -5,7 +5,7 @@ import { BaseButton, BaseButtonProps, ButtonContainerPalette } from "../foundati
 
 interface Palette extends ButtonContainerPalette {
   textColor: string;
-  textPressed: string;
+  textPressedColor: string;
 }
 
 export interface Props extends BaseButtonProps {
@@ -40,7 +40,7 @@ export default function LabelButton({
         <Text
           typography={typography}
           className={clsx(
-            !pressed ? palette?.textColor || "text-neutral-900" : palette?.textPressed || "text-neutral-870",
+            !pressed ? palette?.textColor || "text-neutral-900" : palette?.textPressedColor || "text-neutral-870",
           )}
         >
           {label}
