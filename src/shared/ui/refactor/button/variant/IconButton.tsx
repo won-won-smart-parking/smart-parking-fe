@@ -10,6 +10,7 @@ interface Palette extends ButtonContainerPalette {
 
 interface Props extends BaseButtonProps {
   iconName: IconName;
+  iconSize: string;
   palette?: Partial<Palette>;
 }
 
@@ -22,6 +23,7 @@ export default function IconButton({
   disablePressedEffect,
   overrideButtonContainerStyles,
   palette,
+  iconSize = "w-6",
   onPress,
 }: Props) {
   return (
@@ -39,6 +41,7 @@ export default function IconButton({
           name={iconName}
           className={clsx(
             !pressed ? palette?.iconColor || "text-neutral-900" : palette?.iconPressed || "text-neutral-870",
+            iconSize,
           )}
         />
       )}
