@@ -1,4 +1,5 @@
 import clsx from "clsx";
+import { TypographyKey } from "@/shared/tokens/typography";
 import Text from "@shared/ui/atoms/text";
 import { BaseButton, BaseButtonProps, ButtonContainerPalette } from "../foundation";
 
@@ -10,6 +11,7 @@ interface Palette extends ButtonContainerPalette {
 export interface Props extends BaseButtonProps {
   label: string;
   palette?: Partial<Palette>;
+  typography?: TypographyKey;
 }
 
 export default function LabelButton({
@@ -17,6 +19,7 @@ export default function LabelButton({
   border,
   roundedFull,
   disabled,
+  typography = "label-md",
   disablePressedEffect,
   overrideButtonContainerStyles,
   label,
@@ -35,6 +38,7 @@ export default function LabelButton({
       onPress={onPress}
       renderContent={(pressed) => (
         <Text
+          typography={typography}
           className={clsx(
             !pressed ? palette?.textColor || "text-neutral-900" : palette?.textPressed || "text-neutral-870",
           )}

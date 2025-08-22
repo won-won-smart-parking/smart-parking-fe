@@ -1,4 +1,5 @@
 import clsx from "clsx";
+import { TypographyKey } from "@/shared/tokens/typography";
 import { IconName } from "@/shared/ui/atoms/icon/variants";
 import Text from "@/shared/ui/atoms/text";
 import Icon from "@shared/ui/atoms/icon";
@@ -16,6 +17,7 @@ export interface Props extends BaseButtonProps {
   iconName: IconName;
   iconSize?: string;
   palette?: Partial<Palette>;
+  typography?: TypographyKey;
 }
 
 export default function BothButton({
@@ -25,6 +27,7 @@ export default function BothButton({
   border,
   roundedFull,
   disabled,
+  typography = "label-md",
   disablePressedEffect,
   overrideButtonContainerStyles,
   palette,
@@ -51,6 +54,7 @@ export default function BothButton({
             )}
           />
           <Text
+            typography={typography}
             className={clsx(
               !pressed ? palette?.textColor || "text-neutral-900" : palette?.textPressedColor || "text-neutral-870",
             )}
