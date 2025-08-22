@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import Text from "@/shared/ui/atoms/text";
+import Text from "@shared/ui/atoms/text";
 import { BaseButton, BaseButtonProps, ButtonContainerPalette } from "../foundation";
 
 interface Palette extends ButtonContainerPalette {

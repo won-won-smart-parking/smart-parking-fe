@@ -38,10 +38,7 @@ export default function BaseButton({
       onPress={disabled ? null : onPress}
     >
       {({ pressed }) => {
-        const mergedPalette = { ...defaultPalette(border), ...(palette ?? {}) };
-
-        console.log(palette);
-        console.log(mergedPalette);
+        const mergedPalette = { ...defaultPalette(border), ...palette };
 
         return (
           <View
