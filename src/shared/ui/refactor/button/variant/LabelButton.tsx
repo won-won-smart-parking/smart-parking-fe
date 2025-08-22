@@ -36,7 +36,7 @@ export default function LabelButton({
       renderContent={(pressed) => (
         <Text
           className={clsx(
-            pressed ? palette?.textColor || "text-neutral-900" : palette?.textPressed || "text-neutral-870",
+            !pressed ? palette?.textColor || "text-neutral-900" : palette?.textPressed || "text-neutral-870",
           )}
         >
           {label}
