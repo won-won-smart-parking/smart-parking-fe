@@ -3,7 +3,7 @@ import Button from "@shared/ui/atoms/button";
 import { IconName } from "@shared/ui/atoms/icon/variants";
 import { palettePreset, propsPreset } from "../foundation";
 
-interface Props extends PressableProps {
+export interface Props extends PressableProps {
   iconName: IconName;
   border?: boolean;
   selected?: boolean;
