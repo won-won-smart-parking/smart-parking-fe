@@ -44,7 +44,7 @@ export default function BaseButton({
           <View
             className={twMerge(
               clsx(
-                "flex items-center justify-center px-4 py-3",
+                "flex items-center justify-center gap-x-2 px-4 py-3",
                 border && "border",
                 roundedFull ? "rounded-full" : "rounded-[8px]",
                 pressed
