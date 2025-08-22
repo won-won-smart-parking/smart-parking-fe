@@ -6,9 +6,9 @@ import { BaseButton, BaseButtonProps, ButtonContainerPalette } from "../foundati
 
 interface Palette extends ButtonContainerPalette {
   textColor: string;
-  textPressed: string;
+  textPressedColor: string;
   iconColor: string;
-  iconPressed: string;
+  iconPressedColor: string;
 }
 
 export interface Props extends BaseButtonProps {
@@ -46,13 +46,13 @@ export default function BothButton({
           <Icon
             name={iconName}
             className={clsx(
-              !pressed ? palette?.iconColor || "text-neutral-900" : palette?.iconPressed || "text-neutral-870",
+              !pressed ? palette?.iconColor || "text-neutral-900" : palette?.iconPressedColor || "text-neutral-870",
               iconSize,
             )}
           />
           <Text
             className={clsx(
-              !pressed ? palette?.textColor || "text-neutral-900" : palette?.textPressed || "text-neutral-870",
+              !pressed ? palette?.textColor || "text-neutral-900" : palette?.textPressedColor || "text-neutral-870",
             )}
           >
             {label}
