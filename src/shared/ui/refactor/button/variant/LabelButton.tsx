@@ -7,7 +7,7 @@ interface Palette extends ButtonContainerPalette {
   textPressed: string;
 }
 
-interface Props extends BaseButtonProps {
+export interface Props extends BaseButtonProps {
   label: string;
   palette?: Partial<Palette>;
 }

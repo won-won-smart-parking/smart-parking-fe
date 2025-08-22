@@ -8,7 +8,7 @@ interface Palette extends ButtonContainerPalette {
   iconPressed: string;
 }
 
-interface Props extends BaseButtonProps {
+export interface Props extends BaseButtonProps {
   iconName: IconName;
   iconSize: string;
   palette?: Partial<Palette>;

@@ -11,7 +11,7 @@ interface Palette extends ButtonContainerPalette {
   iconPressed: string;
 }
 
-interface Props extends BaseButtonProps {
+export interface Props extends BaseButtonProps {
   label: string;
   iconName: IconName;
   iconSize?: string;
