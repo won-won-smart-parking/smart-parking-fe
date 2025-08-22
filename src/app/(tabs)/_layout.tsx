@@ -14,7 +14,7 @@ export default function TabLayout() {
         options={{
           headerShown: false,
           tabBarLabel: ({ focused }: { focused: boolean }) => (
-            <Text variant="caption-xxl" className={clsx(!focused ? "text-neutral-900" : "text-neutral-1000")}>
+            <Text typography="caption-xxl" className={clsx(!focused ? "text-neutral-900" : "text-neutral-1000")}>
               홈
             </Text>
           ),
@@ -29,16 +29,16 @@ export default function TabLayout() {
       <Tabs.Screen
         name="ticket"
         options={{
-          headerTitle: () => <Text variant="heading-md">내 주차권</Text>,
+          headerTitle: () => <Text typography="heading-md">내 주차권</Text>,
           headerRight: () => (
             <Pressable onPress={() => router.navigate("/ticket/history")}>
-              <Text variant="label-tight" className="mr-6 text-neutral-900">
+              <Text typography="label-tight" className="mr-6 text-neutral-900">
                 이용 내역
               </Text>
             </Pressable>
           ),
           tabBarLabel: ({ focused }: { focused: boolean }) => (
-            <Text variant="caption-xxl" className={clsx(!focused ? "text-neutral-900" : "text-neutral-1000")}>
+            <Text typography="caption-xxl" className={clsx(!focused ? "text-neutral-900" : "text-neutral-1000")}>
               내 주차권
             </Text>
           ),
@@ -53,9 +53,9 @@ export default function TabLayout() {
       <Tabs.Screen
         name="bookmark"
         options={{
-          headerTitle: () => <Text variant="heading-md">즐겨찾기</Text>,
+          headerTitle: () => <Text typography="heading-md">즐겨찾기</Text>,
           tabBarLabel: ({ focused }: { focused: boolean }) => (
-            <Text variant="caption-xxl" className={clsx(!focused ? "text-neutral-900" : "text-neutral-1000")}>
+            <Text typography="caption-xxl" className={clsx(!focused ? "text-neutral-900" : "text-neutral-1000")}>
               즐겨찾기
             </Text>
           ),
@@ -70,9 +70,9 @@ export default function TabLayout() {
       <Tabs.Screen
         name="profile"
         options={{
-          headerTitle: () => <Text variant="heading-md">프로필</Text>,
+          headerTitle: () => <Text typography="heading-md">프로필</Text>,
           tabBarLabel: ({ focused }: { focused: boolean }) => (
-            <Text variant="caption-xxl" className={clsx(!focused ? "text-neutral-900" : "text-neutral-1000")}>
+            <Text typography="caption-xxl" className={clsx(!focused ? "text-neutral-900" : "text-neutral-1000")}>
               MY
             </Text>
           ),
