@@ -14,28 +14,9 @@ export interface Props extends BaseButtonProps {
   palette?: Partial<Palette>;
 }
 
-export default function IconButton({
-  iconName,
-  fullWidth,
-  border,
-  roundedFull,
-  disabled,
-  disablePressedEffect,
-  overrideButtonContainerStyles,
-  palette,
-  iconSize = "w-6",
-  onPress,
-}: Props) {
+export default function IconButton({ iconName, palette, iconSize = "w-6", ...rest }: Props) {
   return (
     <BaseButton
-      fullWidth={fullWidth}
-      border={border}
-      roundedFull={roundedFull}
-      disabled={disabled}
-      disablePressedEffect={disablePressedEffect}
-      overrideButtonContainerStyles={overrideButtonContainerStyles}
-      palette={palette}
-      onPress={onPress}
       renderContent={(pressed) => (
         <Icon
           name={iconName}
@@ -45,6 +26,7 @@ export default function IconButton({
           )}
         />
       )}
+      {...rest}
     />
   );
 }
