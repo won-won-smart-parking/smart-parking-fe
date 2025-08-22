@@ -27,7 +27,7 @@ interface Props extends PressableProps {
  * // 4) 애플 소셜 로그인 버튼
  * <SocialButton type="apple" />
  *
- * @returns ReactElement 버튼 요소
+ * @returns ReactElement 선택된 variant에 해당하는 Social-Button 컴포넌트
  */
 export default function SocialButton({ type, onPress }: Props) {
   const { iconSize, paletteOverride } = socialButtonVariants[type]; // Type 속성에 맞는 기본 variant 속성값 추출
