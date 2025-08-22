@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import { ReactNode } from "react";
 import { Pressable, PressableProps, View } from "react-native";
+import { twMerge } from "tailwind-merge";
 import { elevation } from "@/shared/tokens";
 import { ButtonContainerPalette, defaultPalette } from "./styles";
 
@@ -13,13 +14,14 @@ export interface Props extends PressableProps {
   disablePressedEffect?: boolean;
   overrideButtonContainerStyles?: string;
   palette?: Partial<ButtonContainerPalette>;
-  children: ReactNode;
+  children?: ReactNode;
+  renderContent?: (pressed: boolean) => ReactNode;
 }
 
 // 전역적으로 재사용하는 버튼 컴포넌트
 export default function BaseButton({
   disabled = false,
-  fullWidth = true,
+  fullWidth = false,
   border = false,
   roundedFull = false,
   disablePressedEffect = false,
@@ -27,6 +29,7 @@ export default function BaseButton({
   palette,
   onPress,
   children,
+  renderContent,
 }: Props) {
   return (
     <Pressable
@@ -35,22 +38,27 @@ export default function BaseButton({
       onPress={disabled ? null : onPress}
     >
       {({ pressed }) => {
-        const mergedPalette = { ...defaultPalette(border), ...palette };
+        const mergedPalette = { ...defaultPalette(border), ...(palette ?? {}) };
+
+        console.log(palette);
+        console.log(mergedPalette);
 
         return (
           <View
-            className={clsx(
-              "flex items-center justify-center px-4 py-3",
-              border && "border",
-              roundedFull ? "rounded-full" : "rounded-[8px]",
-              pressed
-                ? clsx(mergedPalette.bgPressedColor, mergedPalette.borderPressedColor)
-                : clsx(mergedPalette.bgColor, mergedPalette.borderColor),
-              overrideButtonContainerStyles,
+            className={twMerge(
+              clsx(
+                "flex items-center justify-center px-4 py-3",
+                border && "border",
+                roundedFull ? "rounded-full" : "rounded-[8px]",
+                pressed
+                  ? clsx(mergedPalette.bgPressedColor, mergedPalette.borderPressedColor)
+                  : clsx(mergedPalette.bgColor, mergedPalette.borderColor),
+                overrideButtonContainerStyles,
+              ),
             )}
             style={!disablePressedEffect && pressed ? elevation.active : null}
           >
-            {children}
+            {renderContent ? renderContent(pressed) : children}
           </View>
         );
       }}
