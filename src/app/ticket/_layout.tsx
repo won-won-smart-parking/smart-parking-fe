@@ -21,13 +21,13 @@ export default function TicketLayout() {
       <Stack.Screen
         name="history"
         options={{
-          headerTitle: () => <Text variant="heading-md">이용내역</Text>,
+          headerTitle: () => <Text typography="heading-md">이용내역</Text>,
         }}
       />
       <Stack.Screen
         name="[passId]"
         options={{
-          headerTitle: () => <Text variant="heading-md">이용권 상세</Text>,
+          headerTitle: () => <Text typography="heading-md">이용권 상세</Text>,
         }}
       />
     </Stack>

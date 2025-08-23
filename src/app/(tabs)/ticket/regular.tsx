@@ -5,7 +5,7 @@ import Text from "@shared/ui/atoms/text";
 export default function TicketRegularScreen() {
   return (
     <View className="flex-1 items-center justify-center">
-      <Text variant="display-default">정기권</Text>
+      <Text typography="display-default">정기권</Text>
     </View>
   );
 }
