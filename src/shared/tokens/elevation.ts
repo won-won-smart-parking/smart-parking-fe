@@ -1,5 +1,41 @@
 import { Platform, StyleSheet } from "react-native";
 
+// {
+//         shadowColor: string;
+//         shadowOffset: {
+//             width: number;
+//             height: number;
+//         };
+//         shadowOpacity: number;
+//         shadowRadius: number;
+//         elevation?: undefined;
+//     } | {
+//         elevation: number;
+//         shadowColor?: undefined;
+//         shadowOffset?: undefined;
+//         shadowOpacity?: undefined;
+//         shadowRadius?: undefined;
+//     }
+
+interface iOSElevationType {
+  shadowColor: string;
+  shadowOffset: {
+    width: number;
+    height: number;
+  };
+  shadowOpacity: number;
+  shadowRadius: number;
+  elevation?: undefined;
+}
+interface AndroidElevationType {
+  elevation: number;
+  shadowColor?: undefined;
+  shadowOffset?: undefined;
+  shadowOpacity?: undefined;
+  shadowRadius?: undefined;
+}
+export type ElevationType = iOSElevationType | AndroidElevationType; // ElevationType 선언
+
 /**
  * Box-Shadow 스타일 가이드 (React Native 기준)
  *
@@ -15,7 +51,6 @@ import { Platform, StyleSheet } from "react-native";
  * - elevation: 전체 그림자 깊이를 나타내는 속성 (숫자가 클수록 그림자가 깊어짐)
  *    - 대략적으로 shadowRadius의 절반 정도 값을 기준으로 설정됨
  */
-
 export default StyleSheet.create({
   overlay: Platform.select({
     ios: {
