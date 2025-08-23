@@ -2,12 +2,12 @@ import { Image, View } from "react-native";
 import Icon from "@/shared/ui/atoms/icon";
 import { avatarBorder, avatarSize } from "./avatar-styles";
 
-interface AvatarProps {
-  size?: "sm" | "md" | "lg"; // 아바타 크기 (기본값: md)
+interface Props {
+  size?: "sm" | "md" | "lg"; // 아바타 크기
   image?: string; // 외부에서 받아오는 이미지 URL
 }
 
-export default function Avatar({ size = "md", image }: AvatarProps) {
+export default function Avatar({ size = "md", image }: Props) {
   const sizeStyle = avatarSize[size]; // 크기 (32 / 72 / 100)
   const borderStyle = avatarBorder[size]; // border 두께 (1 / 2 / 4, neutral-300)
 
