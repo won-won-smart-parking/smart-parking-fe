@@ -9,10 +9,11 @@ const currentMode: MODE = getMode((process.env.ENV_CHECK_MODE as MODE) ?? null);
 const schema = currentMode === "light" ? PublicSchema : PublicSchema.and(PrivateSchema);
 
 // 환경 변수 유효성 검사 + 로그 출력
+/* eslint-disable no-console */
 const result = schema.safeParse(process.env);
-if (result.success) console.log(`env check passed (${currentMode})`);
+if (result.success) console.log(`✅ env check passed (${currentMode})`);
 else {
-  console.error(`env check failed (${currentMode})`);
+  console.error(`❌ env check failed (${currentMode})`);
   for (const issue of result.error.issues) {
     console.error(`- ${issue.path.join(".")}: ${issue.message} -`);
   }
