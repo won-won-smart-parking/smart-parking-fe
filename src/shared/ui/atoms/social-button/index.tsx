@@ -5,7 +5,6 @@ import { socialButtonVariants, SocialType } from "./variant";
 interface Props extends PressableProps {
   type: SocialType;
 }
-
 /**
  * Atom / Social Button
  *
@@ -28,22 +27,19 @@ interface Props extends PressableProps {
  * // 4) 애플 소셜 로그인 버튼
  * <SocialButton type="apple" />
  *
- * @returns ReactElement 버튼 요소
+ * @returns ReactElement 선택된 variant에 해당하는 Social-Button 컴포넌트
  */
 export default function SocialButton({ type, onPress }: Props) {
-  const { iconSize, paletteOverride, a11yLabel, a11yHint } = socialButtonVariants[type];
+  const { iconSize, paletteOverride } = socialButtonVariants[type]; // Type 속성에 맞는 기본 variant 속성값 추출
 
   return (
     <Button
-      category="default"
-      content={{ variant: "icon", content: { iconName: type, accessibilityLabel: "" } }}
-      fullWidth={false}
-      roundFull={true}
+      variant="icon"
+      roundedFull
       iconSize={iconSize}
-      containerClassName="aspect-square w-13.5 h-13.5"
-      paletteOverride={paletteOverride}
-      a11yLabel={a11yLabel}
-      a11yHint={a11yHint}
+      iconName={type}
+      overrideButtonContainerStyles="aspect-square w-13.5 h-13.5"
+      palette={paletteOverride}
       onPress={onPress}
       disablePressedEffect
     />
