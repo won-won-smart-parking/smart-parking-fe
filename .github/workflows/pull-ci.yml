@@ -11,7 +11,7 @@ on:
 
 # Github Actions 권한 부여
 permissions:
-  contents: read        # 파일 접근 권한 -> 읽기만 가능
+  contents: write        # 파일 접근 권한 -> 읽기만 가능
   pull-requests: write  # PR 접근 권한 -> 리뷰 작성 가능
   checks: write         # 코드 파일 접근 권한 -> 작성 가능 (코드 파일 옆에 라인으로 댓글을 남김)
 
