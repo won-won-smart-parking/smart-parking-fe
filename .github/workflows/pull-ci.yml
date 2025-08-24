@@ -41,6 +41,15 @@ jobs:
       - run: corepack prepare yarn@1.22.22 --activate
       - run: yarn --version
 
+      - name: Git debug
+        run: |
+          set -euxo pipefail
+          git --version
+          git rev-parse --is-inside-work-tree
+          git remote -v
+          git branch -a || true
+          echo "HEAD:"; git log -1 --oneline || true
+
       # 4. Yarn 의존성 설치 및 안정성 검증 단계
       #  -> --frozen-lockfile: package.json과 yarn.lock 의존성 설치 정보가 불일치할 경우 PR 실패
       #  -> --network-timeout: 느린 네트워크 속도로 인한 간헐적 실패 완하 (10분)
