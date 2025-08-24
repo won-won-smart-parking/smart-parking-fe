@@ -27,6 +27,12 @@ jobs:
     steps:
       # 1. 코드 체크아웃
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          fetch-tags: true
+      
+      - name: Git safe.directory
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
 
       # 2. Node.js 설정 (22.18.0 + yarn 캐시) 단계
       - uses: actions/setup-node@v4
