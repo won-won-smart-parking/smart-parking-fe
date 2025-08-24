@@ -13,7 +13,7 @@ type Report = {
   }[];
 };
 
-type BuildeReportParams = {
+type BuildReportParams = {
   mode: MODE;
   success: boolean;
   issues: $ZodIssue[];
@@ -21,7 +21,7 @@ type BuildeReportParams = {
 };
 
 // 환경 변수 유효성 검사 리포트 생성 후 반환
-function buildReport(opts: BuildeReportParams): Report {
+function buildReport(opts: BuildReportParams): Report {
   return {
     mode: opts.mode,
     ok: opts.success,
@@ -31,7 +31,7 @@ function buildReport(opts: BuildeReportParams): Report {
 }
 
 // JSON 파일로 저장 (경로 없으면 스킵)
-export function writeReport(reportPath: string | undefined, report: BuildeReportParams): void {
+export function writeReport(reportPath: string | undefined, report: BuildReportParams): void {
   try {
     if (!reportPath) {
       return;
