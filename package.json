@@ -22,7 +22,7 @@
     "prepare": "husky install",
     "env:check": "tsx ./scripts/env-check/index.ts",
     "env:check:light": "ENV_CHECK_MODE=light tsx ./scripts/env-check/index.ts",
-    "env:check:full": "ENV_CHECK_MODE=full ENV_REPORT_JSON=env-report.json tsx ./scripts/env-check/index.ts",
+    "env:check:full": "ENV_CHECK_MODE=full tsx ./scripts/env-check/index.ts",
     "audit:ci": "audit-ci --config ./audit-ci.jsonc",
     "test": "jest --passWithNoTests",
     "test:related": "jest --bail --maxWorkers=50% --changedSince=@{upstream} --passWithNoTests",
