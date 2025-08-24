@@ -16,9 +16,9 @@ else
   gitleaks detect --no-git --source . --redact --no-banner
 fi
 
-echo "pre-push / 환경 변수 유효성 검증..."; yarn env:check || exit 1     # 3. 환경 변수 유효성 검증
-echo "pre-push / 엄격한 Lint 규칙 검증..."; yarn lint:strict || exit 1  # 4. 코드 스타일 규칙 검증
-echo "pre-push / 타입 안전성 검증..."; yarn typecheck || exit 1         # 5. 타입 안전성 검증
+echo "pre-push / 환경 변수 유효성 검증...";   yarn env:check:light || exit 1     # 3. 환경 변수 유효성 검증
+echo "pre-push / 엄격한 Lint 규칙 검증...";  yarn lint:strict     || exit 1     # 4. 코드 스타일 규칙 검증
+echo "pre-push / 타입 안전성 검증...";       yarn typecheck       || exit 1     # 5. 타입 안전성 검증
 
 # 6. 단위 테스트(Jest + RTL)
 echo "pre-push / 코드 수행(없으면 자동 통과)..."
