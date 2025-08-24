@@ -1,16 +1,24 @@
 import dotenv from "dotenv";
-import { getMode, type MODE } from "./mode";
+import { currentMode } from "./mode";
+import { writeReport } from "./report";
 import { PrivateSchema, PublicSchema } from "./schemas";
 
 dotenv.config(); // .env 파일 내에 구성된 환경 변수 불러오기
 
-// 현재 환경에 맞는 검증 모드 결정 및 환경 변수 스키마 조합
-const currentMode: MODE = getMode((process.env.ENV_CHECK_MODE as MODE) ?? null); // 환경 변수 검증 모드 결정
-const schema = currentMode === "light" ? PublicSchema : PublicSchema.and(PrivateSchema);
+const schema = currentMode === "light" ? PublicSchema : PublicSchema.and(PrivateSchema); // 환경 변수 스키마 조합
+const result = schema.safeParse(process.env); // 환경 변수 유효성 검사
 
-// 환경 변수 유효성 검사 + 로그 출력
+// GitHub Actions에 CI 로그 환경에서 출력할 리포트 생성
+const [publicKeys, privateKeys] = [Object.keys(PublicSchema.shape ?? {}), Object.keys(PrivateSchema.shape ?? {})]; // 공개키 + 시크릿키 종합
+const validatedKeys = currentMode === "light" ? publicKeys : [...new Set(...publicKeys, ...privateKeys)]; // 검증키 목록 구성
+writeReport(process.env.ENV_REPORT_JSON, {
+  mode: currentMode,
+  success: result.success,
+  validatedKeys,
+  issues: result.success ? [] : result.error.issues,
+});
+
 /* eslint-disable no-console */
-const result = schema.safeParse(process.env);
 if (result.success) console.log(`✅ env check passed (${currentMode})`);
 else {
   console.error(`❌ env check failed (${currentMode})`);
