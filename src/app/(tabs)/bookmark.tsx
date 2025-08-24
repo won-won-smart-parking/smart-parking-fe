@@ -5,7 +5,7 @@ import Text from "@/shared/ui/atoms/text";
 export default function ParkingPass() {
   return (
     <View className="flex-1 items-center justify-center">
-      <Text variant="display-default">즐겨찾기 페이지</Text>
+      <Text typography="display-default">즐겨찾기 페이지</Text>
     </View>
   );
 }

@@ -14,7 +14,7 @@ export default function TicketTabsLayout() {
         name="daily"
         options={{
           tabBarLabel: ({ focused }: { focused: boolean }) => (
-            <Text variant="label-sm" className={clsx(!focused ? "text-neutral-850" : "text-blue-300")}>
+            <Text typography="label-sm" className={clsx(!focused ? "text-neutral-850" : "text-blue-300")}>
               일일권
             </Text>
           ),
@@ -24,7 +24,7 @@ export default function TicketTabsLayout() {
         name="regular"
         options={{
           tabBarLabel: ({ focused }: { focused: boolean }) => (
-            <Text variant="label-sm" className={clsx(!focused ? "text-neutral-850" : "text-blue-300")}>
+            <Text typography="label-sm" className={clsx(!focused ? "text-neutral-850" : "text-blue-300")}>
               정기권
             </Text>
           ),

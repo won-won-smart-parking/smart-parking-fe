@@ -21,25 +21,25 @@ export default function ProfileLayout() {
       <Stack.Screen
         name="edit"
         options={{
-          headerTitle: () => <Text variant="heading-md">프로필 수정</Text>,
+          headerTitle: () => <Text typography="heading-md">프로필 수정</Text>,
         }}
       />
       <Stack.Screen
         name="delete"
         options={{
-          headerTitle: () => <Text variant="heading-md">회원탈퇴</Text>,
+          headerTitle: () => <Text typography="heading-md">회원탈퇴</Text>,
         }}
       />
       <Stack.Screen
         name="setting"
         options={{
-          headerTitle: () => <Text variant="heading-md">설정</Text>,
+          headerTitle: () => <Text typography="heading-md">설정</Text>,
         }}
       />
       <Stack.Screen
         name="car/index"
         options={{
-          headerTitle: () => <Text variant="heading-md">차량 관리</Text>,
+          headerTitle: () => <Text typography="heading-md">차량 관리</Text>,
           headerRight: () => (
             <Pressable onPress={() => router.navigate("/profile/car/create")}>
               <Icon name="plus" className="w-6 text-neutral-850" />
@@ -50,13 +50,13 @@ export default function ProfileLayout() {
       <Stack.Screen
         name="car/[carId]"
         options={{
-          headerTitle: () => <Text variant="heading-md">차량 등록</Text>,
+          headerTitle: () => <Text typography="heading-md">차량 등록</Text>,
         }}
       />
       <Stack.Screen
         name="car/create"
         options={{
-          headerTitle: () => <Text variant="heading-md">차량 수정</Text>,
+          headerTitle: () => <Text typography="heading-md">차량 수정</Text>,
         }}
       />
     </Stack>

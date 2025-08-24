@@ -5,7 +5,7 @@ import Text from "@shared/ui/atoms/text";
 export default function ResetPasswordScreen() {
   return (
     <View className="flex-1 items-center justify-center">
-      <Text variant="display-default">비밀번호 수정 페이지</Text>
+      <Text typography="display-default">비밀번호 수정 페이지</Text>
     </View>
   );
 }

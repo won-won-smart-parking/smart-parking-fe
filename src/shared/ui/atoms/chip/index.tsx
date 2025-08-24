@@ -1,13 +1,13 @@
-import { PressableProps } from "react-native";
-import Button from "@shared/ui/atoms/button";
-import { ButtonVariant } from "@shared/ui/atoms/button/foundation";
-import { chipPalettePreset } from "./palette-preset";
+// import { PressableProps } from "react-native";
+// import Button from "@shared/ui/atoms/button";
+// import { ButtonVariant } from "@shared/ui/atoms/button/foundation";
+// import { chipPalettePreset } from "./palette-preset";
+import { BothChip, BothChipProps, IconChip, IconChipProps, LabelChip, LabelChipProps } from "./variant";
 
-interface Props extends PressableProps {
-  content: ButtonVariant;
-  border?: boolean;
-  selected?: boolean;
-}
+type Props =
+  | ({ variant: "label" } & LabelChipProps)
+  | ({ variant: "icon" } & IconChipProps)
+  | ({ variant: "both" } & BothChipProps);
 
 /**
  * Atom / Chip
@@ -15,46 +15,28 @@ interface Props extends PressableProps {
  * 필터링에 사용되는 버튼의 공통 UI 스타일과 접근성 속성을 정의한 Atom / Chip 컴포넌트입니다.
  * 비즈니스 로직은 포함하지 않으며 Atom / Button 컴포넌트를 기반으로 구현되었습니다.
  *
- * @param props.content   버튼 콘텐츠 변형 / 페이로드( label | icon | both 의 짝을 강제)
- * @param props.border    테두리 표시 여부(기본: false)
- * @param props.selected  버튼 선택 여부(기본: false)
- * @param props.onPress   Chip 버튼의 동작을 처리하는 콜백 함수
+ * @param props.variant  렌더링할 Chip의 종류 ("label" | "icon" | "both")
+ * @param props.rest     각 variant에 따라 요구되는 Chip Props
  *
  * @example
- * // 1) variant = text-only
- * <Chip content={{ variant: "label", content: { text: "label", accessibilityLabel: "" } }} />
+ * // 1) variant = label
+ * <Chip variant="label" label={label} onPress={onPress} />
  *
- * // 2) variant = icon-only
- * <Chip content={{ variant: "icon", content: { iconName: "example", accessibilityLabel: "" } }} />
+ * // 2) variant = icon
+ * <Chip variant="icon" iconName="example" onPress={onPress} />
  *
  * // 3) variant = both
- * <Chip content={{ variant: "both", content: { text: "label", iconName: "example", accessibilityLabel: "" } }} />
+ * <Chip variant="both" label={label} iconName="example" onPress={onPress} />
  *
- * // 4) border=false / variant = both
- * <Chip
- *  content={{ variant: "both", content: { text: "label", iconName: "example", accessibilityLabel: "" } }}
- *  border={false}
- * />
- *
- * @returns ReactElement 버튼 요소
+ * @returns ReactElement 선택된 variant에 해당하는 Chip 컴포넌트
  */
-export default function Chip({ content, border = true, selected = false, onPress }: Props) {
-  const palettePreset = chipPalettePreset(content.variant, border, selected);
-
-  return (
-    <Button
-      category="chip"
-      content={content}
-      fullWidth={false}
-      roundFull={true}
-      border={border}
-      iconSize="w-5"
-      containerClassName="pl-3 pr-3"
-      typography="description-md"
-      paletteOverride={palettePreset}
-      a11ySelected={selected}
-      onPress={onPress}
-      disablePressedEffect
-    />
-  );
+export default function Chip({ variant, ...rest }: Props) {
+  switch (variant) {
+    case "label":
+      return <LabelChip {...(rest as LabelChipProps)} />;
+    case "icon":
+      return <IconChip {...(rest as IconChipProps)} />;
+    case "both":
+      return <BothChip {...(rest as BothChipProps)} />;
+  }
 }

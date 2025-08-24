@@ -15,7 +15,7 @@ export default function Tag({ status = "available", ...rest }: Props) {
 
   return (
     <View className={`items-center justify-center rounded-full px-3 py-1 ${background}`} {...rest}>
-      <Text className={text} variant="caption-xl">
+      <Text className={text} typography="caption-xl">
         {label}
       </Text>
     </View>
