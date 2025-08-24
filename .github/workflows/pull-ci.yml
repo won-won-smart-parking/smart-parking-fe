@@ -75,7 +75,7 @@ jobs:
       
       ### 의존성 리포트 생성 (검증 단계에서 같이 하면 yarn audit:ci 실패 시 리포트 생성 안됨)
       - name: Generate dependency audit report
-        run: npm audit --json > dependency-audit-report.json || true
+        run: yarn audit --json | jq -s '.' > dependency-audit-report.json || true
 
       # 9. ESLint 규칙 검증(경고도 실패 처리)
       - name: ESLint
