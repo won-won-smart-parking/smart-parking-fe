@@ -2,7 +2,7 @@ import clsx from "clsx";
 import { ReactNode } from "react";
 import { Pressable, PressableProps, View } from "react-native";
 import { twMerge } from "tailwind-merge";
-import { elevation } from "@/shared/tokens";
+import { elevation, ElevationType } from "@shared/tokens";
 import { ButtonContainerPalette, defaultPalette } from "./styles";
 
 // 공통 버튼 컴포넌트 Props 구성
@@ -10,6 +10,7 @@ export interface Props extends PressableProps {
   fullWidth?: boolean;
   border?: boolean;
   roundedFull?: boolean;
+  defaultEffect?: ElevationType;
   disabled?: boolean;
   disablePressedEffect?: boolean;
   overrideButtonContainerStyles?: string;
@@ -26,6 +27,7 @@ export default function BaseButton({
   roundedFull = false,
   disablePressedEffect = false,
   overrideButtonContainerStyles = "",
+  defaultEffect,
   palette,
   onPress,
   children,
@@ -53,7 +55,7 @@ export default function BaseButton({
                 overrideButtonContainerStyles,
               ),
             )}
-            style={!disablePressedEffect && pressed ? elevation.active : null}
+            style={defaultEffect || (!disablePressedEffect && pressed) ? elevation.active : null}
           >
             {renderContent ? renderContent(pressed) : children}
           </View>

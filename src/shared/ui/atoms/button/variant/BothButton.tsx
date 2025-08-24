@@ -21,29 +21,16 @@ export interface Props extends BaseButtonProps {
 }
 
 export default function BothButton({
+  label,
   iconName,
   iconSize = "w-6",
-  fullWidth,
-  border,
-  roundedFull,
-  disabled,
   typography = "label-md",
-  disablePressedEffect,
-  overrideButtonContainerStyles,
   palette,
-  label,
-  onPress,
+  ...rest
 }: Props) {
   return (
     <BaseButton
-      fullWidth={fullWidth}
-      border={border}
-      roundedFull={roundedFull}
-      disabled={disabled}
-      disablePressedEffect={disablePressedEffect}
-      overrideButtonContainerStyles={overrideButtonContainerStyles}
       palette={palette}
-      onPress={onPress}
       renderContent={(pressed) => (
         <>
           <Icon
@@ -63,6 +50,7 @@ export default function BothButton({
           </Text>
         </>
       )}
+      {...rest}
     />
   );
 }

@@ -14,28 +14,10 @@ export interface Props extends BaseButtonProps {
   typography?: TypographyKey;
 }
 
-export default function LabelButton({
-  fullWidth,
-  border,
-  roundedFull,
-  disabled,
-  typography = "label-md",
-  disablePressedEffect,
-  overrideButtonContainerStyles,
-  label,
-  palette,
-  onPress,
-}: Props) {
+export default function LabelButton({ label, palette, typography = "label-md", ...rest }: Props) {
   return (
     <BaseButton
-      fullWidth={fullWidth}
-      border={border}
-      roundedFull={roundedFull}
-      disabled={disabled}
-      disablePressedEffect={disablePressedEffect}
-      overrideButtonContainerStyles={overrideButtonContainerStyles}
       palette={palette}
-      onPress={onPress}
       renderContent={(pressed) => (
         <Text
           typography={typography}
@@ -46,6 +28,7 @@ export default function LabelButton({
           {label}
         </Text>
       )}
+      {...rest}
     />
   );
 }
