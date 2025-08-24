@@ -1,14 +1,13 @@
-import { Pressable, View } from "react-native";
-import Icon from "@/shared/ui/atoms/icon";
+import { Pressable, PressableProps, View } from "react-native";
+import Icon from "@shared/ui/atoms/icon";
 import Text from "@shared/ui/atoms/text";
 
-interface Props {
-  label: string;
+interface Props extends Required<Pick<PressableProps, "onPress">> {
+  placeholder: string;
   value?: string;
-  onPress?: () => void;
 }
 
-export default function Select({ label, value, onPress }: Props) {
+export default function Select({ placeholder, value, onPress }: Props) {
   // value가 존재하면 selected인 상태
   const selected = !!value;
 
@@ -28,9 +27,9 @@ export default function Select({ label, value, onPress }: Props) {
 
         return (
           // w-auto -> 내용에 맞는 너비
-          <View className={`w-auto flex-row items-center justify-center ${bgColor}`}>
+          <View className={`w-auto flex-row items-center justify-center gap-1 ${bgColor}`}>
             <Text typography={selected ? "caption-xxl" : "caption-tight"} className={textColor}>
-              {value || label}
+              {value || placeholder}
             </Text>
             <Icon name="arrowBottomFill" className="text-neutral-950" />
           </View>
