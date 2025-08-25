@@ -2,7 +2,7 @@ import { useRouter } from "expo-router";
 import { Button, View } from "react-native";
 
 // smartparking://profile
-export default function ParkingPass() {
+export default function ProfileScreen() {
   const router = useRouter();
 
   return (

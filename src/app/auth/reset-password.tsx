@@ -1,5 +1,5 @@
 import { View } from "react-native";
-import Text from "@shared/ui/atoms/text";
+import { Text } from "@shared/ui/atoms";
 
 // smartparking://profile/edit
 export default function ResetPasswordScreen() {

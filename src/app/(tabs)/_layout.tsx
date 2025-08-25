@@ -1,8 +1,7 @@
 import clsx from "clsx";
 import { Tabs, useRouter } from "expo-router";
 import { Pressable } from "react-native";
-import Icon from "@shared/ui/atoms/icon";
-import Text from "@shared/ui/atoms/text";
+import { Icon, Text } from "@shared/ui/atoms";
 
 export default function TabLayout() {
   const router = useRouter();
