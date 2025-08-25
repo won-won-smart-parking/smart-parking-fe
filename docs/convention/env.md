@@ -21,17 +21,33 @@ EXPO_PUBLIC_API_KEY=api-key
 #### ■ 환경 변수 관리 방법 순서
 
 1. 사용할 환경 변수 값을 .env 파일과 GitHub Secrets에 추가한다.
-1. (필수) `./scripts/env-check/schemas/public.ts` 파일에 Zod 스키마 값을 추가한다.
+2. `./scripts/env-check/schemas/public.ts` 파일에 Zod 스키마 값을 추가한다.
 
-### 2. 환경 변수 사용법
+```yml
+# 5. 환경 변수 유효성 검증 단계
+- name: Env Check
+  if: ${{ github.event_name == 'pull_request' }}
+  env:
+    NODE_ENV: ${{ secrets.NODE_ENV }}
+    ENV_REPORT_JSON: env-report.json
+    # ... <- 여기에 환경 변수 추가
+    # GitHub Secrets에 추가한 경우 -> EXPO_PUBLIC_API_KEY: ${{ secrets.EXPO_PUBLIC_API_KEY }}
+    # GitHub Variable에 추가한 경우 -> EXPO_PUBLIC_API_KEY: ${{ vars.EXPO_PUBLIC_API_KEY }}
+  run: yarn env:check
+```
+3. `./.github/.workflows/pull-ci.yml` 5단계 env 하위에 환경 변수 값 매핑
+4. Expo Dashboard > Organization > Environment variables에도 환경 변수 추가
+
+### 2. 환경 변수 사용 방법
 
 ```tsx
-import { EXPO_PUBLIC_API_KEY } from "@env";
-
-console.log(EXPO_PUBLIC_API_KEY);
+console.log(process.env.EXPO_PUBLIC_API_KEY);
 ```
 
-- react-native-dotenv를 통해 .env에 정의된 Public 환경 변수를 RN 앱 코드에서 위와 같이 불러올 수 있다.
+- Expo는 React Native 템플릿에서 환경 변수를 사용할 수 있도록 기본 지원한다.
+- 환경 변수를 앱 코드에서 접근하려면 반드시 접두사 `EXPO_PUBLIC_`을 붙여야 하며, 이 접두사가 없는 변수는 번들에 포함되지 않는다.
+- 따라서 `EXPO_PUBLIC_` 접두사가 없는 환경 변수는 앱 실행 시 참조할 수 없으며, 오류가 발생한다.
+
 
 ## II. 환경 변수 검증 단계
 
@@ -49,6 +65,13 @@ echo "pre-push / 환경 변수 유효성 검증...";   yarn env:check:light || e
 ### 2. pull-ci
 
 ```yaml
+# 5. 환경 변수 유효성 검증 단계
+- name: Env Check
+  if: ${{ github.event_name == 'pull_request' }}
+  env:
+    NODE_ENV: ${{ secrets.NODE_ENV }}
+    ENV_REPORT_JSON: env-report.json
+  run: yarn env:check
 ```
 
 - CI 파이프라인에서도 한 번 더 검증을 환경 변수 유효성 검증을 수행하게 됩니다.

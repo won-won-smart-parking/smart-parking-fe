@@ -7,7 +7,7 @@ Github Actions는 GitHub에서 공식적으로 제공하는 CI/CD 도구이다. 
 
 ## 📋 pull-ci 자동화 검증 목록
 
-```bash
+```yml
 # 2. Node.js 설정 (22.18.0 + yarn 캐시) 단계
 - uses: actions/setup-node@v4
   with:
@@ -31,15 +31,7 @@ Github Actions는 GitHub에서 공식적으로 제공하는 CI/CD 도구이다. 
   env:
     NODE_ENV: ${{ secrets.NODE_ENV }}
     ENV_REPORT_JSON: env-report.json
-  run: |
-    BASE="${{ github.event.pull_request.base.ref }}"
-    if [ "$BASE" = "main" ] || [[ "$BASE" == release* ]]; then
-      echo "Full env check for $BASE"
-      yarn env:check
-    else
-      echo "Public-only env check for $BASE"
-      ENV_CHECK_MODE=public yarn env:check
-    fi
+  run: yarn env:check
 
 # 6. TypeScript Compiler 타입 체크 단계
 - name: TypeScript Typecheck

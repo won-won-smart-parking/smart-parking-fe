@@ -6,8 +6,9 @@ Prettier는 팀원 간의 일관된 코드 스타일 유지를 위해 코드를 
 
 ```json
 {
+  "plugins": ["@trivago/prettier-plugin-sort-imports", "prettier-plugin-tailwindcss"],
   "arrowParens": "always",
-  "bracketSameLine": true,
+  "bracketSameLine": false,
   "bracketSpacing": true,
   "endOfLine": "lf",
   "jsxSingleQuote": false,
@@ -26,6 +27,7 @@ Prettier는 팀원 간의 일관된 코드 스타일 유지를 위해 코드를 
 
 | 옵션 | 설명 |
 |--|--|
+| plugins | Prettier 기능 확장을 위한 외부 플러그인 지정 옵션 (기본값: []) |
 | arrowParens | 화살표 함수 사용 시 매개변수 개수가 하나일 경우에도 자동으로 괄호 표시 여부 (기본값: always) |
 | bracketSpacing | 객체 리터럴 표현식에서 공백 삽입 여부 (기본값: true) |
 | bracketSameLine | JSX 문법에서 속성이 길어질 경우 ">" 기호를 다음 줄에 배치할지 여부 제어 (기본값: false) |
