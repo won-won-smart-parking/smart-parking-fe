@@ -22,9 +22,10 @@ TypeScript는 컴퓨터가 이해할 수 있는 기계어(Machine Code)로 번�
 ```json
 {
   "exclude": ["node_modules"],
-  "include": ["**/*.ts", "**/*.tsx", ".expo/types/**/*.ts", "expo-env.d.ts", "nativewind-env.d.ts"],
+  "include": ["**/*.ts", "**/*.tsx", ".expo/types/**/*.ts", "expo-env.d.ts", "nativewind-env.d.ts", "src/global/types"],
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
+    "typeRoots": ["./node_modules/@types"],
     "baseUrl": "./src",
     "target": "es2020",
     "module": "nodenext",
@@ -44,6 +45,7 @@ TypeScript는 컴퓨터가 이해할 수 있는 기계어(Machine Code)로 번�
     "paths": {
       "@/*": ["*"],
       "@app/*": ["app/*"],
+      "@global/*": ["global/*"],
       "@entities/*": ["entities/*"],
       "@features/*": ["features/*"],
       "@shared/*": ["shared/*"],
@@ -70,6 +72,7 @@ TypeScript는 컴퓨터가 이해할 수 있는 기계어(Machine Code)로 번�
 ### 🚥 compilerOptions 설명
 | 옵션 | 설명 |
 | --- | --- |
+| **`typeRoots`** | 타입 정의 파일이 위치한 디렉토리 경로 지정 옵션 |
 | **`baseUrl`** | 모듈을 불러올 때 기준이 되는 기본 경로 지정 |
 | **`paths`** | 경로 별칭 설정 |
 | **`target`** | 컴파일 결과물의 JavaScritp 버전 지정(es2020 -> ECMAScript 2020 버전으로 해석) |
