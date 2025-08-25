@@ -3,7 +3,7 @@
 // N = 192 = O(N) -> 1초에 약 1억번 연산
 // 성능상 부담 없음
 const spacing: Record<string, string> = {};
-for (let i = 1; i <= 96; i = Number(i + 0.5)) {
+for (let i = 0; i <= 96; i = Number(i + 0.5)) {
   spacing[String(i)] = `${Math.floor(i * 4)}px`;
 }
 

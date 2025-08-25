@@ -1,0 +1,11 @@
+import { View } from "react-native";
+import Text from "@shared/ui/atoms/text";
+
+// smartparking://profile/edit
+export default function CarEditScreen() {
+  return (
+    <View className="flex-1 items-center justify-center">
+      <Text typography="display-default">차량 수정 페이지</Text>
+    </View>
+  );
+}

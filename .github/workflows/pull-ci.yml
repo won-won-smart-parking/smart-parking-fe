@@ -27,6 +27,12 @@ jobs:
     steps:
       # 1. 코드 체크아웃
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          fetch-tags: true
+      
+      - name: Git safe.directory
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
 
       # 2. Node.js 설정 (22.18.0 + yarn 캐시) 단계
       - uses: actions/setup-node@v4
@@ -43,7 +49,7 @@ jobs:
       #  -> --frozen-lockfile: package.json과 yarn.lock 의존성 설치 정보가 불일치할 경우 PR 실패
       #  -> --network-timeout: 느린 네트워크 속도로 인한 간헐적 실패 완하 (10분)
       - name: Install Dependencies
-        run: yarn install --frozen-lockfile --network-timeout 600000
+        run: HUSKY=0 yarn install --frozen-lockfile --network-timeout 600000
 
       # 5. 환경 변수 유효성 검증 단계
       - name: Env Check
@@ -55,10 +61,10 @@ jobs:
           BASE="${{ github.event.pull_request.base.ref }}"
           if [ "$BASE" = "main" ] || [[ "$BASE" == release* ]]; then
             echo "Full env check for $BASE"
-            yarn env:check
+            yarn env:check:full
           else
-            echo "Public-only env check for $BASE"
-            ENV_CHECK_MODE=public yarn env:check
+            echo "Light env check for $BASE"
+            yarn env:check:light
           fi
 
       # 6. TypeScript Compiler 타입 체크 단계
@@ -75,7 +81,7 @@ jobs:
       
       ### 의존성 리포트 생성 (검증 단계에서 같이 하면 yarn audit:ci 실패 시 리포트 생성 안됨)
       - name: Generate dependency audit report
-        run: npm audit --json > dependency-audit-report.json || true
+        run: yarn audit --json | jq -s '.' > dependency-audit-report.json || true
 
       # 9. ESLint 규칙 검증(경고도 실패 처리)
       - name: ESLint
