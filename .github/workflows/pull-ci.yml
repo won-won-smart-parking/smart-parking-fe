@@ -57,15 +57,7 @@ jobs:
         env:
           NODE_ENV: ${{ secrets.NODE_ENV }}
           ENV_REPORT_JSON: env-report.json
-        run: |
-          BASE="${{ github.event.pull_request.base.ref }}"
-          if [ "$BASE" = "main" ] || [[ "$BASE" == release* ]]; then
-            echo "Full env check for $BASE"
-            yarn env:check:full
-          else
-            echo "Light env check for $BASE"
-            yarn env:check:light
-          fi
+        run: yarn env:check
 
       # 6. TypeScript Compiler 타입 체크 단계
       - name: TypeScript Typecheck
