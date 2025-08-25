@@ -34,6 +34,7 @@ rules: {
   'no-unreachable': 'error',
   'use-isnan': 'error',
   'valid-typeof': 'error',
+  "@typescript-eslint/no-explicit-any": "error",
 }
 ```
 
