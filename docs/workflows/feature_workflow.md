@@ -53,32 +53,6 @@ feat/
 
 <br />
 
-### 4. 환경 변수 관리 - ‼️ 환경 변수 사용할 때 반드시 참고 할 것
-
-**A) 새로운 공개 환경 변수 추가**
-
-> Light / Pull 검사 진행
-
-- `scripts/check-env.ts` -> `publicEnvSchema`에 환경 변수 키 추가 _(value가 아닌 환경 변수명을 의미!!)_
-- `.env` 파일에 환경 변수 키=값 형식 명시
-- Github Actions Secrets에 동일한 키=값 형식 등록 _(settings > Secrets and variables > Actions)_
-- 커밋 작성 후 푸시
-- PR 생성 후 병합(Merge)
-
-<br />
-
-**B) 새로운 시크릿 환경 변수 추가**
-
-> Pull 검사 진행
-
-- `scripts/check-env.ts` -> `secretEnvSchema`에 환경 변수 키 추가 _(value가 아닌 환경 변수명을 의미!!)_
-- `.env` 파일에 환경 변수 키=값 형식 명시
-- Github Actions Secrets에 동일한 키=값 형식 등록 _(settings > Secrets and variables > Actions)_
-- 커밋 작성 후 푸시
-- PR 생성 후 병합(Merge)
-
-<br />
-
 ## III. 원격 저장소 반영 및 PR 요청
 
 - 이슈에 작성한 기능들이 모두 개발이 완료된 경우 `git push origin <branch-name>` 명령어를 통해 로컬 환경의 반영 사항을 원격 저장소에 업로드
