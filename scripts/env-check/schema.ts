@@ -12,5 +12,3 @@ export const PublicSchema = z.object({
       }),
     ),
 });
-
-export type PublicEnv = z.infer<typeof PublicSchema>; // PublicSchema 내부 구조 타입 반환
