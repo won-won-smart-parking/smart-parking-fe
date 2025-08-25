@@ -1,10 +1,8 @@
 import fs from "fs";
 import { $ZodIssue } from "zod/v4/core";
-import type { MODE } from "./mode";
 
 // Report 타입 구성
 type Report = {
-  mode: MODE;
   ok: boolean; // 환경 변수 유효성 검사 통과 여부
   validatedKeys: string[]; // 검증 대상 키 목록
   errors: {
@@ -14,7 +12,6 @@ type Report = {
 };
 
 type BuildReportParams = {
-  mode: MODE;
   success: boolean;
   issues: $ZodIssue[];
   validatedKeys: string[];
@@ -23,7 +20,6 @@ type BuildReportParams = {
 // 환경 변수 유효성 검사 리포트 생성 후 반환
 function buildReport(opts: BuildReportParams): Report {
   return {
-    mode: opts.mode,
     ok: opts.success,
     validatedKeys: opts.validatedKeys,
     errors: opts.success ? [] : opts.issues.map((issue) => ({ path: issue.path.join("."), message: issue.message })),
