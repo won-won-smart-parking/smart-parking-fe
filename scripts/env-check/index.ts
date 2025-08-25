@@ -1,6 +1,6 @@
 import dotenv from "dotenv";
 import { writeReport } from "./report";
-import { PublicSchema } from "./schemas";
+import { PublicSchema } from "./schema";
 
 dotenv.config(); // .env 파일 내에 구성된 환경 변수 불러오기
 
