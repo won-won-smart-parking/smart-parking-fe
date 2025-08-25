@@ -1,3 +1,15 @@
+# I. 브랜치 전략
+
+![git-flow](/assets/images/docs/git-flow.webp)
+
+Git Flow 브랜치 전략 방법이란, 수많은 가지들이 뻗어나가는 Git 브랜치 구조를 main, release, dev, feature, hotfix 브랜치로 관리하는 방법을 의미한다.
+
+- main 브랜치: Product 환경에서 배포되는 최종 안정 코드가 모이는 브랜치
+- release 브랜치: 배포 직전 단게에서 최종 테스트 및 안전성 검증을 위한 코드가 모이는 브랜치
+- dev 브랜치: Feature 브랜치들이 병합되는 통합 개발 브랜치
+- feature 브랜치: 개발자가 개별 기능을 구현하기 위해 생성하는 작업용 브랜치
+- hotfix 브랜치: main 브랜치에서 발생한 긴급 문제를 빠르게 수정하기 위한 브랜치
+
 # I. Git 관련
 
 ## 1. 커밋 작성 규칙
@@ -80,12 +92,33 @@ Smart Parking은 기본적으로 Git-Flow 브랜치 전략을 바탕으로 브�
 
 | 브랜치 타입 | 브랜치 이름 예시 | 설명 |
 | --- | --- | --- |
-| feat | feat/login/form | 새로운 기능 추가 |
+| feat | feat/login__form | 새로운 기능 추가 |
 | fix | fix/button/error | 버그 수정 |
 | refactor | refact/form/form-handler | 코드 리팩토링 |
 | test | test/login/unit-login | 테스트 코드 작성 |
-| docs | docs/readme-update | 문서 작성 또는 수정 |
 | chore | chore/setup-eslint | 빌드, 설정, 의존성 등 기타 작업 |
+
+### 브랜치 네이밍 규칙
+
+```bash
+# Feature - 새로운 기능
+feat/atom                       # 1단계
+feat/atom__button               # 2단계
+feat/atom__button-subFeature    # 3단계 - 2단계에 추가적인 기능을 구현하지만 독립적으로 구축하고 싶을 경우
+
+# Fix, Refactor, Test
+fix/button/해결-오류-기능
+refactor/button/수정할-기능
+test/button/테스트-종류
+
+# Chore
+chore/setup-eslint
+```
+
+> 💡 feat/atom이 있는 상태로 feat/atom/button을 하게 되면 디렉토리 파일명으로 판단할 수 있는 오류가 있어 해당 브랜치 네이밍을 사용하지 못하게 되어 있음
+
+- 브랜치 이름은 명사구(Noun Phrase) 원칙을 따른다.
+
 
 # II. Github 관련
 
