@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Animated, Easing, Pressable, useAnimatedValue, View, ViewProps } from "react-native";
+import { Animated, Easing, Pressable, useAnimatedValue, View, type ViewProps } from "react-native";
 import { elevation } from "@shared/tokens";
 import { Thumb, Track } from "./switch-styles";
 

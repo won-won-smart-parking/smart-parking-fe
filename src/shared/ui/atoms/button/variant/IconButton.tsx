@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import { Icon } from "@shared/ui/atoms";
 import type { IconName } from "@shared/ui/atoms/icon/variants";
-import { BaseButton, BaseButtonProps, ButtonContainerPalette } from "../foundation";
+import { BaseButton, type BaseButtonProps, type ButtonContainerPalette } from "../foundation";
 
 interface Palette extends ButtonContainerPalette {
   iconColor: string;

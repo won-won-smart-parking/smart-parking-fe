@@ -1,5 +1,5 @@
-import { View, ViewProps } from "react-native";
-import { ParkingStatus } from "@shared/types/parking-status";
+import { View, type ViewProps } from "react-native";
+import type { ParkingStatus } from "@shared/types/parking-status";
 import { Text } from "@shared/ui/atoms";
 import { TagVariant } from "./variants";
 

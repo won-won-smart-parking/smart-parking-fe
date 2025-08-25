@@ -1,6 +1,6 @@
 import clsx from "clsx";
-import { View, ViewProps } from "react-native";
-import { ParkingStatus } from "@shared/types/parking-status";
+import { View, type ViewProps } from "react-native";
+import type { ParkingStatus } from "@shared/types/parking-status";
 
 // Props 정의 : 주차장 상태(status)를 선택적으로 받음
 interface Props extends ViewProps {

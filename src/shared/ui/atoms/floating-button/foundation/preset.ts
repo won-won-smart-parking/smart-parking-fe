@@ -1,4 +1,4 @@
-import { elevation } from "@/shared/tokens";
+import { elevation } from "@shared/tokens";
 
 export const preset = {
   fullWidth: false,

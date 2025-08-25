@@ -1,4 +1,4 @@
-import { PressableProps, TextInputProps } from "react-native";
+import type { PressableProps, TextInputProps } from "react-native";
 
 /**
  * Atom / Input - Base

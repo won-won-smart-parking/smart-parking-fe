@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { Pressable, PressableProps, View } from "react-native";
+import { Pressable, type PressableProps, View } from "react-native";
 import { Icon } from "@shared/ui/atoms";
 
 type Props = Required<Pick<PressableProps, "onPress">>; // ClearButton의 속성은 onPress만 필요하다.

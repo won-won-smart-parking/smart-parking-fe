@@ -1,5 +1,5 @@
-import { SvgProps } from "react-native-svg";
-import { IconName, registry } from "./variants";
+import type { SvgProps } from "react-native-svg";
+import { type IconName, registry } from "./variants";
 
 // Atom / Icon 속성 타입 정의 (SvgProps 이용)
 // Omit<T, K> 유니온 타입 -> T(TYPE)에서 K(KEY) 속성을 생략하고, 나머지를 선택한 새로운 타입 반환

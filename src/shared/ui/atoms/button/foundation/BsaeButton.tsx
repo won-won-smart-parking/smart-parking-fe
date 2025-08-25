@@ -1,9 +1,9 @@
 import clsx from "clsx";
 import { ReactNode } from "react";
-import { Pressable, PressableProps, View } from "react-native";
+import { Pressable, type PressableProps, View } from "react-native";
 import { twMerge } from "tailwind-merge";
-import { elevation, ElevationType } from "@shared/tokens";
-import { ButtonContainerPalette, defaultPalette } from "./styles";
+import { elevation, type ElevationType } from "@shared/tokens";
+import { type ButtonContainerPalette, defaultPalette } from "./styles";
 
 // 공통 버튼 컴포넌트 Props 구성
 export interface Props extends PressableProps {

@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { Pressable, PressableProps, View } from "react-native";
+import { Pressable, type PressableProps, View } from "react-native";
 import { elevation } from "@shared/tokens";
 
 interface Props extends PressableProps {
