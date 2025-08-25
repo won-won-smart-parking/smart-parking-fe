@@ -1,6 +1,6 @@
 import { PressableProps } from "react-native";
 import { Button } from "@shared/ui/atoms";
-import type { IconName } from "@shared/ui/atoms/icon/variants";
+import type { IconName } from "@shared/ui/atoms/icon/variant";
 import { palettePreset, propsPreset } from "../foundation";
 
 export interface Props extends PressableProps {

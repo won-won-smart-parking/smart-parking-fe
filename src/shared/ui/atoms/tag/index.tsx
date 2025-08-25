@@ -1,7 +1,7 @@
 import { View, type ViewProps } from "react-native";
 import type { ParkingStatus } from "@shared/types/parking-status";
 import { Text } from "@shared/ui/atoms";
-import { TagVariant } from "./variants";
+import { TagVariant } from "./variant";
 
 // Tag 컴포넌트에 대한 Props 타입 정의
 // status: Tag의 상태(여유, 혼잡, 만차)
