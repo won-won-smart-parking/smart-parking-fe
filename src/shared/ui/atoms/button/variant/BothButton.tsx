@@ -1,8 +1,7 @@
 import clsx from "clsx";
-import { TypographyKey } from "@/shared/tokens/typography";
-import { IconName } from "@/shared/ui/atoms/icon/variants";
-import Text from "@/shared/ui/atoms/text";
-import Icon from "@shared/ui/atoms/icon";
+import { TypographyKey } from "@shared/tokens/typography";
+import { Icon, Text } from "@shared/ui/atoms";
+import type { IconName } from "@shared/ui/atoms/icon/variants";
 import { BaseButton, BaseButtonProps, ButtonContainerPalette } from "../foundation";
 
 interface Palette extends ButtonContainerPalette {

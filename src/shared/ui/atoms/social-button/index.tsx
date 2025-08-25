@@ -1,5 +1,5 @@
 import { PressableProps } from "react-native";
-import Button from "@shared/ui/atoms/button";
+import { Button } from "@shared/ui/atoms";
 import { socialButtonVariants, SocialType } from "./variant";
 
 interface Props extends PressableProps {

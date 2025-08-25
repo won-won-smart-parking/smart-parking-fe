@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import { Pressable, TextInput, TextInputProps, View } from "react-native";
-import Icon from "../../icon";
-import { IconName } from "../../icon/variants";
+import { Icon } from "@shared/ui/atoms";
+import type { IconName } from "@shared/ui/atoms/icon/variants";
 import { InputRequiredProps, InputStyle } from "../foundation";
 import ClearButton from "../part/ClearButton";
 
