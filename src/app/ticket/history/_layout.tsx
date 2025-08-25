@@ -7,7 +7,7 @@ const { Navigator } = createMaterialTopTabNavigator();
 
 export const TopTabs = withLayoutContext(Navigator);
 
-export default function TicketTabsLayout() {
+export default function TicketHistoryLayout() {
   return (
     <TopTabs screenOptions={{ tabBarIndicatorStyle: { backgroundColor: "#5BABF8" } }}>
       <TopTabs.Screen

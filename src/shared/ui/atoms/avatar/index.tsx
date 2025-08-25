@@ -1,6 +1,6 @@
 import { Image, View } from "react-native";
-import Icon from "@/shared/ui/atoms/icon";
-import { type AvatarSize, avatarSizeStyle } from "./avatar-styles";
+import { Icon } from "@shared/ui/atoms";
+import { type AvatarSize, avatarSizeStyle } from "./foundation/styles";
 
 interface Props {
   size?: AvatarSize; // 아바타 크기

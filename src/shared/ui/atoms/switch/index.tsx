@@ -1,7 +1,7 @@
 import { useEffect } from "react";
-import { Animated, Easing, Pressable, useAnimatedValue, View, ViewProps } from "react-native";
+import { Animated, Easing, Pressable, useAnimatedValue, View, type ViewProps } from "react-native";
 import { elevation } from "@shared/tokens";
-import { Thumb, Track } from "./switch-styles";
+import { Thumb, Track } from "./foundation";
 
 interface Props extends Omit<ViewProps, "children"> {
   value: boolean; // 외부에서 전달되는 On/Off 상태

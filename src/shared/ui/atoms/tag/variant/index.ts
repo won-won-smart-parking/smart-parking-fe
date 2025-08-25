@@ -1,4 +1,4 @@
-import { ParkingStatus } from "@/shared/types/parking-status";
+import { ParkingStatus } from "@shared/types/parking-status";
 
 export const TagVariant: Record<ParkingStatus, { label: string; background: string; text: string }> = {
   available: { label: "여유", background: "bg-green-100", text: "text-green-200" },

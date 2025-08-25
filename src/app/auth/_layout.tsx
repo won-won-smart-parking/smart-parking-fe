@@ -1,7 +1,7 @@
 import { Stack } from "expo-router";
-import Text from "@shared/ui/atoms/text";
+import { Text } from "@shared/ui/atoms";
 
-export default function ProfileLayout() {
+export default function AuthLayout() {
   return (
     <Stack>
       <Stack.Screen

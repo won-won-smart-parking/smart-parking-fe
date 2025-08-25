@@ -2,7 +2,7 @@
 // import Button from "@shared/ui/atoms/button";
 // import { ButtonVariant } from "@shared/ui/atoms/button/foundation";
 // import { chipPalettePreset } from "./palette-preset";
-import { BothChip, BothChipProps, IconChip, IconChipProps, LabelChip, LabelChipProps } from "./variant";
+import { BothChip, type BothChipProps, IconChip, type IconChipProps, LabelChip, type LabelChipProps } from "./variant";
 
 type Props =
   | ({ variant: "label" } & LabelChipProps)

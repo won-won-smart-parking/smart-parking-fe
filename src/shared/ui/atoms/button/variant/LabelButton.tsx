@@ -1,7 +1,7 @@
 import clsx from "clsx";
-import { TypographyKey } from "@/shared/tokens/typography";
-import Text from "@shared/ui/atoms/text";
-import { BaseButton, BaseButtonProps, ButtonContainerPalette } from "../foundation";
+import type { TypographyKey } from "@shared/tokens/typography";
+import { Text } from "@shared/ui/atoms";
+import { BaseButton, type BaseButtonProps, type ButtonContainerPalette } from "../foundation";
 
 interface Palette extends ButtonContainerPalette {
   textColor: string;
