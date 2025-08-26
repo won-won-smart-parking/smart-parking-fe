@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { Icon } from "@shared/ui/atoms";
+import Icon from "@shared/ui/atoms/icon";
 import type { IconName } from "@shared/ui/atoms/icon/variant";
 import { BaseButton, type BaseButtonProps, type ButtonContainerPalette } from "../foundation";
 

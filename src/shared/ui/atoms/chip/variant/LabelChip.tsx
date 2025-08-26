@@ -1,5 +1,5 @@
 import { PressableProps } from "react-native";
-import { Button } from "@shared/ui/atoms";
+import Button from "@shared/ui/atoms/button";
 import { palettePreset, propsPreset } from "../foundation";
 
 export interface Props extends PressableProps {

@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import { Pressable, type PressableProps, View } from "react-native";
 import { elevation } from "@shared/tokens";
-import { Icon } from "@shared/ui/atoms";
+import Icon from "@shared/ui/atoms/icon";
 
 interface Props extends PressableProps {
   selected?: boolean;
