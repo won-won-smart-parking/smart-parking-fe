@@ -1,5 +1,6 @@
 import { Pressable, type PressableProps, View } from "react-native";
-import { Icon, Text } from "@shared/ui/atoms";
+import Icon from "@shared/ui/atoms/icon";
+import Text from "@shared/ui/atoms/text";
 
 interface Props extends Required<Pick<PressableProps, "onPress">> {
   placeholder: string;

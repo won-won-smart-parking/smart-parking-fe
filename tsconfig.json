@@ -1,13 +1,6 @@
 {
   "exclude": ["node_modules"],
-  "include": [
-    "**/*.ts",
-    "**/*.tsx",
-    ".expo/types/**/*.ts",
-    "expo-env.d.ts",
-    "nativewind-env.d.ts",
-    "src/globals/types"
-  ],
+  "include": ["**/*.ts", "**/*.tsx", ".expo/types/**/*.ts", "expo-env.d.ts", "nativewind-env.d.ts", "src/global/types"],
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
     "typeRoots": ["./node_modules/@types"],
@@ -29,7 +22,7 @@
     "useDefineForClassFields": true,
     "paths": {
       "@app/*": ["app/*"],
-      "@globals/*": ["globals/*"],
+      "@global/*": ["global/*"],
       "@entities/*": ["entities/*"],
       "@features/*": ["features/*"],
       "@shared/*": ["shared/*"],
