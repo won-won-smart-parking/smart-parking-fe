@@ -133,3 +133,18 @@ yarn inro @types/package-name
 
 - 외부 모듈(패키지) 사용 시, 해당 모듈의 `@types` 패키지가 패키지 매니저에 등록되어 있는지 먼저 확인
 - `@types` 패키지가 존재하지 않을 경우에만 `*.d.ts` 파일을 생성하여 해당 모듈의 타입을 직접 정의 (global 폴더에 생성할 것)
+
+<br />
+
+### 3. Props 타입 관리
+
+```tsx
+// 예시
+interface Props extends TextProps {}
+interface Props extends Omit<TextProps, "className"> {}
+```
+
+- 컴포넌트 간 전달되는 속성의 타입 이름은 반드시 Props로 지정한다.
+- React Native Core Component에서 기본 제공하는 Props 타입을 확장하여 관리한다.
+- 기본 제공 Props 타입 중 불필요한 속성이 있을 경우 Omit<T, K>를 사용해 해당 속성을 제외한 새로운 타입을 정의한다.
+- 새로운 속성을 추가할 필요가 없으면 기본 제공 Props 타입을 그대로 사용한다.

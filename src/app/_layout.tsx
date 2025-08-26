@@ -1,6 +1,11 @@
 import { Stack } from "expo-router";
-import "@/global.css";
+import "@globals/styles/global.css";
+import "@globals/styles/nativewind-interop";
 
 export default function RootLayout() {
-  return <Stack />;
+  return (
+    <Stack screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="(tabs)" />
+    </Stack>
+  );
 }

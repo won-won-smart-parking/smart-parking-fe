@@ -3,7 +3,7 @@
 # Git Push 안전성 검증 파이프라인
 # 1. 브랜치 패턴 검사
 BRANCH_NAME=$(git symbolic-ref --short HEAD)
-echo "$BRANCH_NAME" | grep -Eq '^(main|release|dev|hotfix|feat\/[a-z0-9._-]+|fix\/[a-z0-9._-]+|refactor\/[a-z0-9._-]+|test\/[a-z0-9._-]+|docs\/[a-z0-9._-]+|chore\/[a-z0-9._-]+)$' \
+echo "$BRANCH_NAME" | grep -Eq '^(main|release|dev|hotfix|docs|feat/[a-z0-9._/-]+|fix/[a-z0-9._/-]+|refactor/[a-z0-9._/-]+|test/[a-z0-9._/-]+|chore/[a-z0-9._/-]+)$' \
   || { echo "🚫 브랜치 이름 잘못 작성함!!"; exit 1; }
 
 # 2. 시크릿 키 검증
@@ -16,9 +16,9 @@ else
   gitleaks detect --no-git --source . --redact --no-banner
 fi
 
-echo "pre-push / 환경 변수 유효성 검증..."; yarn env:check || exit 1     # 3. 환경 변수 유효성 검증
-echo "pre-push / 엄격한 Lint 규칙 검증..."; yarn lint:strict || exit 1  # 4. 코드 스타일 규칙 검증
-echo "pre-push / 타입 안전성 검증..."; yarn typecheck || exit 1         # 5. 타입 안전성 검증
+echo "pre-push / 환경 변수 유효성 검증...";   yarn env:check    || exit 1     # 3. 환경 변수 유효성 검증
+echo "pre-push / 엄격한 Lint 규칙 검증...";  yarn lint:strict  || exit 1     # 4. 코드 스타일 규칙 검증
+echo "pre-push / 타입 안전성 검증...";       yarn typecheck    || exit 1     # 5. 타입 안전성 검증
 
 # 6. 단위 테스트(Jest + RTL)
 echo "pre-push / 코드 수행(없으면 자동 통과)..."
