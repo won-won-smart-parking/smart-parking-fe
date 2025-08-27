@@ -10,6 +10,7 @@ interface Props {
   parkingStatus: ParkingStatus; // 주차장 혼잡도 상태
   parkingType?: "public" | "private"; // 주차장 구분
   parkingImageUrl: string;
+  parkingMetaItems: string[];
   onPressDirection: () => void;
   onPressCall: () => void;
   onPressShare: () => void;
@@ -21,6 +22,7 @@ export default function ParkingCard({
   parkingStatus,
   parkingType,
   parkingImageUrl,
+  parkingMetaItems,
   onPressDirection,
   onPressCall,
   onPressShare,
@@ -48,7 +50,7 @@ export default function ParkingCard({
 
           <View className="gap-0.5">
             <ParkingCardDescription>{parkingType === "public" ? "공용주차장" : "민영주차장"}</ParkingCardDescription>
-            <ParkingCardDescription>Status ･ Distance ･ Capacity (Available / Totla)</ParkingCardDescription>
+            <ParkingCardDescription>{parkingMetaItems.join(" ･ ")}</ParkingCardDescription>
           </View>
         </View>
 
