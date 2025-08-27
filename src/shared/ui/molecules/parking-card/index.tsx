@@ -1,13 +1,14 @@
 import { Image, View } from "react-native";
-import { Button, Tag, Text } from "@shared/ui/atoms";
+import { Tag, Text } from "@shared/ui/atoms";
+import ParkingCardActionButton from "./part/ParkingCardActionButton";
 import ButtonGroup from "../button-group";
 
 export default function ParkingCard() {
   return (
     <View className="gap-4 pb-6 pt-4">
-      {/* 주자창  정보 레이아웃 */}
-      <View>
-        <View>
+      {/* 주자창 정보 레이아웃 */}
+      <View className="gap-2">
+        <View className="gap-1.5">
           <View className="flex-row justify-between">
             <View>
               <Text typography="title-md">Parking Title</Text>
@@ -22,15 +23,16 @@ export default function ParkingCard() {
           </View>
         </View>
 
+        {/* 주차장 이미지 */}
         <Image />
       </View>
 
       {/* 주차장 버튼 그룹 */}
       <ButtonGroup>
-        <Button variant="both" iconName="direction" label="경로" />
-        <Button variant="both" iconName="call" label="전화" />
-        <Button variant="both" iconName="share" label="공유" />
-        <Button variant="both" iconName="bookmarkOutline" label="저장" />
+        <ParkingCardActionButton iconName="direction" label="경로" />
+        <ParkingCardActionButton iconName="call" label="전화" />
+        <ParkingCardActionButton iconName="share" label="공유" />
+        <ParkingCardActionButton iconName="bookmarkOutline" label="저장" />
       </ButtonGroup>
     </View>
   );
