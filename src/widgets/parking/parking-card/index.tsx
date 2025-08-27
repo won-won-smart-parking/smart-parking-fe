@@ -1,9 +1,9 @@
 import { Image, View } from "react-native";
 import { ParkingStatus } from "@shared/types/parking-status";
 import { Tag, Text } from "@shared/ui/atoms";
+import ButtonGroup from "@shared/ui/molecules/button-group";
 import ParkingCardActionButton from "./part/ParkingCardActionButton";
 import ParkingCardDescription from "./part/ParkingCardDescription";
-import ButtonGroup from "../../../../shared/ui/molecules/button-group";
 
 interface Props {
   parkingTitle: string; // 주차장 이름
