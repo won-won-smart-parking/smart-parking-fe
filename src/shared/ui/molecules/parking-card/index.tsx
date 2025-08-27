@@ -10,9 +10,22 @@ interface Props {
   parkingStatus: ParkingStatus; // 주차장 혼잡도 상태
   parkingType?: "public" | "private"; // 주차장 구분
   parkingImageUrl: string;
+  onPressDirection: () => void;
+  onPressCall: () => void;
+  onPressShare: () => void;
+  onPressBookmark: () => void;
 }
 
-export default function ParkingCard({ parkingTitle, parkingStatus, parkingType, parkingImageUrl }: Props) {
+export default function ParkingCard({
+  parkingTitle,
+  parkingStatus,
+  parkingType,
+  parkingImageUrl,
+  onPressDirection,
+  onPressCall,
+  onPressShare,
+  onPressBookmark,
+}: Props) {
   return (
     <View className="gap-4 pb-6 pt-4">
       {/* 주자창 정보 레이아웃 */}
@@ -41,10 +54,10 @@ export default function ParkingCard({ parkingTitle, parkingStatus, parkingType, 
 
       {/* 주차장 버튼 그룹 */}
       <ButtonGroup>
-        <ParkingCardActionButton iconName="direction" label="경로" />
-        <ParkingCardActionButton iconName="call" label="전화" />
-        <ParkingCardActionButton iconName="share" label="공유" />
-        <ParkingCardActionButton iconName="bookmarkOutline" label="저장" />
+        <ParkingCardActionButton iconName="direction" label="경로" onPress={onPressDirection} />
+        <ParkingCardActionButton iconName="call" label="전화" onPress={onPressCall} />
+        <ParkingCardActionButton iconName="share" label="공유" onPress={onPressShare} />
+        <ParkingCardActionButton iconName="bookmarkOutline" label="저장" onPress={onPressBookmark} />
       </ButtonGroup>
     </View>
   );
