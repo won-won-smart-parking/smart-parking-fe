@@ -34,7 +34,9 @@ export default function ParkingCard({ parkingTitle, parkingStatus, parkingType, 
         </View>
 
         {/* 주차장 이미지 */}
-        <Image source={{ uri: parkingImageUrl }} alt={parkingTitle} className="h-full w-full" />
+        <View className="max-h-[120px] items-center justify-center overflow-hidden rounded-[12px]">
+          {parkingImageUrl && <Image source={{ uri: parkingImageUrl }} alt={parkingTitle} className="h-full w-full" />}
+        </View>
       </View>
 
       {/* 주차장 버튼 그룹 */}
