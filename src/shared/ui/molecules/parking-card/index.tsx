@@ -34,7 +34,13 @@ export default function ParkingCard({
           <View className="flex-row justify-between">
             <View>
               <Text typography="title-md">{parkingTitle}</Text>
-              {/* 전기차 충전, CCTV 유무 등 옵션 */}
+
+              {/*
+                NOTE:
+                Figma 설계 상 이 위치에는 주차장 제공 서비스 리스트(CCTV, 전기차 충전소 등)가 표시되어야 함
+                하지만 사용 예정인 '전국주차장정보표준데이터' API Response 항목을 다시 확인해보니 해당 데이터가 없어 구현 불가능 상태
+                이로 인해, 추후 백엔드 개발 시 서비스 데이터 제공 방식 논의 후, 레이아웃 구조 및 관련 비즈니스 로직을 설계 / 구현 예정
+              */}
             </View>
 
             <Tag status={parkingStatus} />
