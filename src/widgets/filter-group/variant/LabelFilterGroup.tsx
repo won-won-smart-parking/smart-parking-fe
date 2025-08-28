@@ -6,6 +6,7 @@ interface Props {
   children: React.ReactElement<typeof Chip> | React.ReactElement<typeof Chip>[];
 }
 
+// 라벨(Label)을 함께 표시하는 Filter Group 컴포넌트
 export default function LabelFilterGroup({ title, children }: Props) {
   return (
     <View className="gap-1">
