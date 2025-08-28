@@ -9,14 +9,12 @@ interface Props extends Required<Pick<PressableProps, "onPress">> {
 export default function AgreementItem({ label, selected, onPress }: Props) {
   return (
     <Pressable className="flex-row items-center gap-3" onPress={onPress}>
-      {() => (
+      {({ pressed }) => (
         <>
-          <Checkbox selected={selected} />
+          <Checkbox selected={selected} pressed={pressed} />
           <Text typography="description-md">{label}</Text>
         </>
       )}
     </Pressable>
   );
 }
-
-// { pressed }
