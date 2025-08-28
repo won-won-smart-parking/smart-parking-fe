@@ -10,7 +10,9 @@ export default function LabelFilterGroup({ title, children }: Props) {
   return (
     <View className="gap-1">
       <Text typography="description-md">{title}</Text>
-      {children}
+
+      {/* Filter 버튼 구성 레이아웃 */}
+      <View className="flex-row flex-wrap gap-3 py-2">{children}</View>
     </View>
   );
 }
