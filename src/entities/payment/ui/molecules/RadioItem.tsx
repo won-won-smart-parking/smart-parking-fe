@@ -10,9 +10,9 @@ interface Props extends Required<Pick<PressableProps, "onPress">> {
 export default function RadioItem({ label, iconName, onPress }: Props) {
   return (
     <Pressable className="flex-row gap-3" onPress={onPress}>
-      {() => (
+      {({ pressed }) => (
         <>
-          <Radio />
+          <Radio pressed={pressed} />
           <View className="flex-row items-center gap-2">
             <Icon name={iconName} />
             <Text typography="description-md">{label}</Text>
