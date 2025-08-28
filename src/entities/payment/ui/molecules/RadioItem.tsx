@@ -1,15 +1,21 @@
-import { Pressable, View } from "react-native";
+import { Pressable, PressableProps, View } from "react-native";
 import { Icon, Radio, Text } from "@shared/ui/atoms";
+import { IconName } from "@shared/ui/atoms/icon/variant";
 
-export default function RadioItem() {
+interface Props extends Required<Pick<PressableProps, "onPress">> {
+  label: string;
+  iconName: IconName;
+}
+
+export default function RadioItem({ label, iconName, onPress }: Props) {
   return (
-    <Pressable>
+    <Pressable className="flex-row gap-3" onPress={onPress}>
       {() => (
         <>
           <Radio />
-          <View>
-            <Icon />
-            <Text></Text>
+          <View className="flex-row items-center gap-2">
+            <Icon name={iconName} />
+            <Text typography="description-md">{label}</Text>
           </View>
         </>
       )}
