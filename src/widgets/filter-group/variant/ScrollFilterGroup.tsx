@@ -1,7 +1,7 @@
 import { ScrollView } from "react-native";
 import { Chip } from "@shared/ui/atoms";
 
-interface Props {
+export interface Props {
   children: React.ReactElement<typeof Chip> | React.ReactElement<typeof Chip>[];
 }
 

@@ -1,7 +1,7 @@
 import { View } from "react-native";
 import { Chip, Text } from "@shared/ui/atoms";
 
-interface Props {
+export interface Props {
   title: string;
   children: React.ReactElement<typeof Chip> | React.ReactElement<typeof Chip>[];
 }
