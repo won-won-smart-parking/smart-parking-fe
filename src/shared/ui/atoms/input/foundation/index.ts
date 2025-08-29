@@ -23,7 +23,7 @@ type InputState = "default" | "focus" | "error" | "disabled";
 
 // 각 Input 종류마다 기본적으로 적용되는 Base 스타일
 const InputStyle = {
-  container: "flex w-full flex-row justify-center items-center gap-2 p-1",
+  container: "flex flex-1 flex-row justify-center items-center gap-2",
   field: "flex-1 flex flex-row justify-center items-center",
   text: "flex-1 text-neutral-1000 text-base-tall font-normal",
 };
