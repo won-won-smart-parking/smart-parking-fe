@@ -22,7 +22,7 @@ export default function Ticket({ ticketLabel, ticketInfo, ticketPrice, active = 
 
   return (
     <View
-      className={clsx("item-center w-[360px] gap-2 rounded pb-3 pl-6 pr-4 pt-3", activeStyle.container)}
+      className={clsx("item-center gap-2 rounded pb-3 pl-6 pr-4 pt-3", activeStyle.container)}
       style={elevation.resting}
     >
       <View className="flex-row items-center gap-2">
