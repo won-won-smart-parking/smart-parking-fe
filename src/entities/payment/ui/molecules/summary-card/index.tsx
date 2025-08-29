@@ -16,3 +16,9 @@ export default function PaymentSummaryCard() {
     </View>
   );
 }
+
+/**
+ * [NOTE]
+ * - 비즈니스 로직 설계 후 Props 수정
+ * - 라우트 구성 모두 설계 후 useRouter 또는 Link 컴포넌트 수정 후 라우트 이동 설계
+ */
