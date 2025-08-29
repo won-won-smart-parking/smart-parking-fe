@@ -1,15 +1,17 @@
 import { Button, View } from "react-native";
 import { Text } from "@shared/ui/atoms";
 import { UnderlineInputProps } from "@shared/ui/atoms/input/variant";
-import HelperText from "./part/HelperText";
-import TextInput from "./part/TextInput";
+import { HelperText, TextInput } from "./part";
+
+// import TextInput from "./part/TextInput";
 
 interface Props {
   label: string;
   input: UnderlineInputProps;
+  message?: string;
 }
 
-export default function InputField({ label, input }: Props) {
+export default function InputField({ label, input, message = "" }: Props) {
   return (
     <View className="gap-2">
       {/* Input Fiedl 제목(Title) */}
@@ -23,7 +25,8 @@ export default function InputField({ label, input }: Props) {
           <TextInput {...input} />
           <Button title="Label" />
         </View>
-        <HelperText />
+
+        {message ? <HelperText state={input.state} message={message} /> : null}
       </View>
     </View>
   );
