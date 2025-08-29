@@ -3,8 +3,6 @@ import { Button, Text } from "@shared/ui/atoms";
 import { UnderlineInputProps } from "@shared/ui/atoms/input/variant";
 import { HelperText, TextInput } from "./part";
 
-// import TextInput from "./part/TextInput";
-
 interface Props {
   label: string;
   input: UnderlineInputProps;
@@ -51,3 +49,9 @@ export default function InputField({ label, input, message = "", button }: Props
     </View>
   );
 }
+
+/**
+ * [NOTE]
+ * - Input Field 우측 액션 버튼 리팩토링 시 별도 컴포넌트로 분리
+ * - Input Field 내 Input과 Button의 disabled 상태 동작 검증
+ */
