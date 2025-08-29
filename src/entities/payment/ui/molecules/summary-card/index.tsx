@@ -1,6 +1,12 @@
 import { View } from "react-native";
 import PaymentSummaryItem from "./part/PaymentSummaryItem";
 
+/**
+ * Molecular / Summary Card
+ *
+ * 마이프로필 도메인에서 사용자가 이용한 일일권 / 정기권 이용 내역 총 개수를 요약해서 보여주는 시각적인 UI 컴포넌트입니다.
+ * - (2025.08.29 기준) 현재는 스켈레톤 구조만 구성하였으며, 향후 비즈니스 로직에 맞게 컴포넌트 속성 재구성 및 일부 스타일 수정이 있을 수도 있습니다.
+ */
 export default function PaymentSummaryCard() {
   return (
     <View className="rounded-[8px] bg-blue-300 px-4 py-5">
