@@ -1,15 +1,26 @@
-import { View } from "react-native";
+import { Button, View } from "react-native";
 import { Text } from "@shared/ui/atoms";
 import HelperText from "./part/HelperText";
 import TextInput from "./part/TextInput";
 
-export default function InputField() {
-  return (
-    <View>
-      <Text></Text>
+interface Props {
+  label: string;
+}
 
-      <View>
-        <TextInput />
+export default function InputField({ label }: Props) {
+  return (
+    <View className="gap-2">
+      {/* Input Fiedl 제목(Title) */}
+      <Text typography="label-tight" className="text-neutral-900">
+        {label}
+      </Text>
+
+      {/* Input Field 인풋 + 헬퍼 텍스트 구성 레이아웃 */}
+      <View className="gap-1">
+        <View className="flex-row gap-4">
+          <TextInput />
+          <Button title="Label" />
+        </View>
         <HelperText />
       </View>
     </View>
