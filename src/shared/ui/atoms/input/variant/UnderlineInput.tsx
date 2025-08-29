@@ -74,7 +74,7 @@ export default function UnderlineInput({
         state === "default" && "border-neutral-700",
         state === "focus" && "border-blue-300",
         state === "error" && "border-red-300",
-        state === "disabled" && "border-blue-300 bg-neutral-200",
+        state === "disabled" && "border-neutral-700 bg-neutral-200",
       )}
     >
       <View className={InputStyle.field}>
@@ -82,6 +82,7 @@ export default function UnderlineInput({
           className={InputStyle.text}
           value={value}
           placeholder={placeholder}
+          readOnly={state === "disabled"}
           placeholderClassName="text-coolgray-400"
           onChangeText={onChangeText}
           onFocus={onFocus}
