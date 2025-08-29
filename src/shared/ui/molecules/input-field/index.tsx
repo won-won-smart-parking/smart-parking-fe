@@ -14,6 +14,12 @@ interface Props {
   };
 }
 
+/**
+ * Molecular / Input Field
+ *
+ * Atom 단위의 Text, Input, Button 컴포넌트를 조합하여 입력 영역의 UI를 구성하는 컴포넌트입니다.
+ * 로그인, 회원가입, 차량 등록/수정 등 다양한 화면에서 재사용되며, 비즈니스 로직은 포함되지 않았습니다.
+ */
 export default function InputField({ label, input, message = "", button }: Props) {
   return (
     <View className="gap-2">
@@ -54,4 +60,5 @@ export default function InputField({ label, input, message = "", button }: Props
  * [NOTE]
  * - Input Field 우측 액션 버튼 리팩토링 시 별도 컴포넌트로 분리
  * - Input Field 내 Input과 Button의 disabled 상태 동작 검증
+ * - Input Field JSDoc 주석 @param + @returns 내용 추가
  */
