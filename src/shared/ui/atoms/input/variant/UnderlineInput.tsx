@@ -87,7 +87,7 @@ export default function UnderlineInput({
           onFocus={onFocus}
           onEndEditing={onEndEditing}
         />
-        {value.length && <ClearButton onPress={onPress} />}
+        {value.length ? <ClearButton onPress={onPress} /> : null}
       </View>
 
       {/* 비밀번호 표시와 같은 Icon 버튼 조건부 렌더링 */}

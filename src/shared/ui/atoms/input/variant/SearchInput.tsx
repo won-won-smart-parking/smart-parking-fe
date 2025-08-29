@@ -36,7 +36,7 @@ export default function SearchInput({ value = "", placeholder = "placeholder", o
           placeholderClassName="text-coolgray-400"
           onChangeText={onChangeText}
         />
-        {value.length && <ClearButton onPress={onPress} />}
+        {value.length ? <ClearButton onPress={onPress} /> : null}
       </View>
     </View>
   );
