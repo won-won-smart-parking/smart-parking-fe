@@ -2,11 +2,11 @@ import clsx from "clsx";
 import { Pressable, TextInput, type TextInputProps, View } from "react-native";
 import Icon from "@shared/ui/atoms/icon";
 import type { IconName } from "@shared/ui/atoms/icon/variant";
-import { type InputRequiredProps, InputStyle } from "../foundation";
+import { type InputRequiredProps, type InputState, InputStyle } from "../foundation";
 import ClearButton from "../part/ClearButton";
 
 export interface Props extends InputRequiredProps, Omit<TextInputProps, keyof InputRequiredProps> {
-  state: "default" | "focus" | "error" | "disabled";
+  state: InputState;
   icon?: {
     revealed: boolean;
     hidden: IconName;

@@ -19,6 +19,8 @@ type InputRequiredProps = Required<
   Pick<TextInputProps, "value" | "placeholder" | "onChangeText"> & Pick<PressableProps, "onPress">
 >;
 
+type InputState = "default" | "focus" | "error" | "disabled";
+
 // 각 Input 종류마다 기본적으로 적용되는 Base 스타일
 const InputStyle = {
   container: "flex w-full flex-row justify-center items-center gap-2 p-1",
@@ -26,4 +28,4 @@ const InputStyle = {
   text: "flex-1 text-neutral-1000 text-base-tall font-normal",
 };
 
-export { InputRequiredProps, InputStyle };
+export { type InputState, type InputRequiredProps, InputStyle };
