@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Pressable, PressableProps, View } from "react-native";
 import { Icon, Radio, Text } from "@shared/ui/atoms";
 import { IconName } from "@shared/ui/atoms/icon/variant";
@@ -27,17 +28,24 @@ interface Props extends Required<Pick<PressableProps, "onPress">> {
  * @returns ReactElement Molecular / Radio Item
  */
 export default function RadioItem({ label, iconName, selected, onPress }: Props) {
+  const [pressed, setPressed] = useState(false);
+
   return (
-    <Pressable className="flex-row gap-3" onPress={onPress}>
-      {({ pressed }) => (
-        <>
-          <Radio selected={selected} pressed={pressed} />
-          <View className="flex-row items-center gap-2">
-            <Icon name={iconName} />
-            <Text typography="description-md">{label}</Text>
-          </View>
-        </>
-      )}
+    <Pressable
+      className="flex-row gap-3"
+      onLongPress={() => setPressed(true)}
+      onPressOut={(event) => {
+        onPress?.(event);
+        setPressed(false);
+      }}
+    >
+      <>
+        <Radio selected={selected} pressed={pressed} />
+        <View className="flex-row items-center gap-2">
+          <Icon name={iconName} />
+          <Text typography="description-md">{label}</Text>
+        </View>
+      </>
     </Pressable>
   );
 }
