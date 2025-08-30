@@ -8,7 +8,7 @@ export interface Props {
   switchProps: SwitchProps;
 }
 
-// 계정 관리 등에서 사용되는 네비게이션 리스트 아이템 컴포넌트입니다.
+// 환경 설정에서 알림 설정 등에 사용되는 스위치 리스트 아이템 컴포넌트입니다.
 export default function SwitchListItem({ title, description, switchProps }: Props) {
   return (
     <View className={"flex-row items-center justify-between"}>
