@@ -4,9 +4,10 @@ import Icon from "@shared/ui/atoms/icon";
 
 interface Props {
   profileUrl?: string;
+  onPress?: () => void;
 }
 
-export default function ProfileUploader({ profileUrl }: Props) {
+export default function ProfileUploader({ profileUrl, onPress }: Props) {
   return (
     <View className="relative">
       <Pressable>
@@ -15,8 +16,8 @@ export default function ProfileUploader({ profileUrl }: Props) {
 
       {/* 업로드 버튼 */}
       <Pressable
-        className="h-8 w-8 items-center justify-center rounded-full bg-blue-300"
-        style={{ position: "absolute", right: 3, bottom: 0 }}
+        onPress={onPress}
+        className="absolute bottom-0 right-0 h-8 w-8 items-center justify-center rounded-full bg-blue-300"
       >
         <Icon name="plus" className="text-neutral-100" />
       </Pressable>
