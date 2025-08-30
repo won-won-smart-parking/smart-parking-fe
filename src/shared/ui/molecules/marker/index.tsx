@@ -13,7 +13,7 @@ interface Props {
 
 export default function Marker({ ticketPrice, selected, state }: Props) {
   return (
-    <View className="items-center gap-1">
+    <View className="items-center">
       {/* 마커 정보 표시 부분 */}
       <View
         className={clsx(
@@ -33,7 +33,15 @@ export default function Marker({ ticketPrice, selected, state }: Props) {
           {ticketPrice}
         </Text>
       </View>
-      <View className="h-2 w-3 scale-x-[2] rounded-full bg-overlay-black-08" />
+      {/* 마커 그림자 부분 */}
+      <View
+        className="h-[32px] w-[32px] rounded-full bg-overlay-black-08"
+        style={[
+          {
+            transform: [{ rotateX: "70deg" }],
+          },
+        ]}
+      />
     </View>
   );
 }
