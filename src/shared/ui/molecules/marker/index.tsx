@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
 
 export default function Marker({ ticketPrice, active, state }: Props) {
   return (
-    <View className="flex items-center gap-1">
+    <View className="items-center gap-1">
       {/* 마커 정보 표시 부분 */}
       <View
         className={clsx(
@@ -35,8 +35,9 @@ export default function Marker({ ticketPrice, active, state }: Props) {
         )}
       >
         {/* 주차 상태 Dot */}
-        <Dot status={state} />
-
+        <View style={{ position: "absolute", left: 68, top: -30, bottom: 0, justifyContent: "center" }}>
+          <Dot status={state} />
+        </View>
         {/* 아이콘 */}
         <Icon name="parking" className={clsx("h-4 w-4", active ? "text-neutral-100" : "text-blue-300")} />
 
