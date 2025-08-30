@@ -14,7 +14,7 @@ export interface Props {
 export default function NavigationListItem({ leadingIcon, title, trailingIcon, emphasis = false }: Props) {
   return (
     <View className={clsx("flex-row justify-between")}>
-      <View className="items: center flex-1 flex-row gap-3">
+      <View className="flex-1 flex-row items-center gap-3">
         <Icon name={leadingIcon} className={clsx(emphasis ? "text-red-300" : "text-neutral-1000")} />
         <Text typography="body-lg" className={clsx(emphasis ? "text-red-300" : "text-neutral-1000")}>
           {title}
