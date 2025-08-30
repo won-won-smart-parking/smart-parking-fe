@@ -1,4 +1,4 @@
-import Text from "@shared/ui/atoms/text";
+import { Text } from "@shared/ui/atoms";
 
 interface TicketTextProps {
   typography: "label-lg" | "caption-tight" | "caption-xxl";

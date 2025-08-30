@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import { View } from "react-native";
 import { elevation } from "@shared/tokens";
-import Icon from "@shared/ui/atoms/icon";
+import { Icon } from "@shared/ui/atoms";
 import TicketText from "./ticket-text";
 
 interface Props {
