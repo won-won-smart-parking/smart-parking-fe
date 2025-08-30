@@ -10,7 +10,7 @@ export interface Props {
   emphasis?: boolean;
 }
 
-// 계정 관리 등에서 사용되는 네비게이션 리스트 아이템 컴포넌트입니다.
+// 라우트 이동 동작을 지원하는 네비게이션 리스트 아이템 컴포넌트입니다.
 export default function NavigationListItem({ leadingIcon, title, trailingIcon, emphasis = false }: Props) {
   return (
     <View className={clsx("flex-row justify-between")}>
