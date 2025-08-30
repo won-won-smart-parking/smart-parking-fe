@@ -30,7 +30,7 @@ export default function DefaultListItem({ title, description, iconName, directio
       </View>
 
       {/* 아이콘 조건부 렌더링 */}
-      {iconName && <Icon name={iconName} />}
+      {iconName && <Icon name={iconName} className="text-neutral-850" />}
     </View>
   );
 }
