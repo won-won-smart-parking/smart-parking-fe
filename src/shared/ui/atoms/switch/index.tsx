@@ -3,7 +3,7 @@ import { Animated, Easing, Pressable, useAnimatedValue, View, type ViewProps } f
 import { elevation } from "@shared/tokens";
 import { Thumb, Track } from "./foundation";
 
-interface Props extends Omit<ViewProps, "children"> {
+export interface Props extends Omit<ViewProps, "children"> {
   value: boolean; // 외부에서 전달되는 On/Off 상태
   onToggle: () => void; // 토글 시 외부에 알리는 콜백
 }
