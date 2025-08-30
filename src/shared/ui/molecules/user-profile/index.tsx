@@ -1,6 +1,6 @@
 import { View } from "react-native";
-import Avatar from "@shared/ui/atoms/avatar";
-import Text from "@shared/ui/atoms/text";
+import { Avatar } from "@shared/ui/atoms";
+import { Text } from "@shared/ui/atoms";
 
 interface Props {
   userImage?: string;
