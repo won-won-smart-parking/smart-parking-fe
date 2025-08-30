@@ -1,6 +1,5 @@
 import { Pressable, View } from "react-native";
-import Avatar from "@shared/ui/atoms/avatar";
-import Icon from "@shared/ui/atoms/icon";
+import { Avatar, Icon } from "@shared/ui/atoms";
 
 interface Props {
   profileUrl?: string;
