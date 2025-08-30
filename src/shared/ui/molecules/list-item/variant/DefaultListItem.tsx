@@ -15,7 +15,7 @@ export default function DefaultListItem({ title, description, iconName, directio
   return (
     <View
       className={clsx(
-        "flex-row justify-between border-b border-neutral-400 px-3",
+        "flex-row justify-between border-b border-neutral-400 py-3",
         direction === "center" ? "items-center" : "items-start",
       )}
     >
