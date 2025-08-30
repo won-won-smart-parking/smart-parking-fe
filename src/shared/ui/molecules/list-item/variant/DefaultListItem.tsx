@@ -16,7 +16,7 @@ export default function DefaultListItem({ title, description, iconName, directio
     <View
       className={clsx(
         "flex-row justify-between border-b border-neutral-400 py-3",
-        direction === "center" ? "items-center" : "items-start",
+        direction === "center" ? "items-center" : "items-start", // 아이콘 정렬을 위한 수직 축에 대한 props를 전달받아 조건부 스타일을 적용합니다.
       )}
     >
       <View>
