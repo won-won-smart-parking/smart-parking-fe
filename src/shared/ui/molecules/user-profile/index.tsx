@@ -2,7 +2,7 @@ import { View } from "react-native";
 import { Avatar, Text } from "@shared/ui/atoms";
 
 interface Props {
-  userImage?: string;
+  userImage: string;
   userName: string;
   userEmail: string;
 }
