@@ -2,11 +2,11 @@ import clsx from "clsx";
 import { Pressable, TextInput, type TextInputProps, View } from "react-native";
 import Icon from "@shared/ui/atoms/icon";
 import type { IconName } from "@shared/ui/atoms/icon/variant";
-import { type InputRequiredProps, InputStyle } from "../foundation";
+import { type InputRequiredProps, type InputState, InputStyle } from "../foundation";
 import ClearButton from "../part/ClearButton";
 
 export interface Props extends InputRequiredProps, Omit<TextInputProps, keyof InputRequiredProps> {
-  state: "default" | "focus" | "error" | "disabled";
+  state: InputState;
   icon?: {
     revealed: boolean;
     hidden: IconName;
@@ -74,7 +74,7 @@ export default function UnderlineInput({
         state === "default" && "border-neutral-700",
         state === "focus" && "border-blue-300",
         state === "error" && "border-red-300",
-        state === "disabled" && "border-blue-300 bg-neutral-200",
+        state === "disabled" && "border-neutral-700 bg-neutral-200",
       )}
     >
       <View className={InputStyle.field}>
@@ -82,12 +82,13 @@ export default function UnderlineInput({
           className={InputStyle.text}
           value={value}
           placeholder={placeholder}
+          readOnly={state === "disabled"}
           placeholderClassName="text-coolgray-400"
           onChangeText={onChangeText}
           onFocus={onFocus}
           onEndEditing={onEndEditing}
         />
-        {value.length && <ClearButton onPress={onPress} />}
+        {value.length ? <ClearButton onPress={onPress} /> : null}
       </View>
 
       {/* 비밀번호 표시와 같은 Icon 버튼 조건부 렌더링 */}
