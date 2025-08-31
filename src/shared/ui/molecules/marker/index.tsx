@@ -21,7 +21,7 @@ export default function Marker({ ticketPrice, selected, state }: Props) {
         )}
       >
         {/* 주차 상태 Dot */}
-        <View className="absolute bottom-6.5 right-3">
+        <View className="absolute -top-0.5 right-3">
           <Dot status={state} />
         </View>
         {/* 아이콘 */}
@@ -34,7 +34,7 @@ export default function Marker({ ticketPrice, selected, state }: Props) {
       </View>
       {/* 마커 그림자 부분 */}
       <View
-        className="h-[32px] w-[32px] rounded-full bg-overlay-black-08"
+        className="h-8 w-8 rounded-full bg-overlay-black-08"
         style={[
           {
             transform: [{ rotateX: "70deg" }],
