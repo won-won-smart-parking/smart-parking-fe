@@ -1,4 +1,5 @@
 import { PressableProps } from "react-native";
+import { elevation } from "@shared/tokens";
 import Button from "@shared/ui/atoms/button";
 import type { IconName } from "@shared/ui/atoms/icon/variant";
 import { palettePreset, propsPreset } from "../foundation";
@@ -24,6 +25,7 @@ export default function BothChip({ label, border = true, selected = false, iconN
       iconName={iconName}
       palette={paleteOverride}
       onPress={onPress}
+      defaultEffect={selected ? elevation.active : undefined}
       {...propsPreset}
     />
   );

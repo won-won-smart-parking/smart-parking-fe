@@ -17,6 +17,7 @@ export interface Props extends BaseButtonProps {
 export default function IconButton({ iconName, palette, iconSize = "w-6", ...rest }: Props) {
   return (
     <BaseButton
+      palette={palette}
       renderContent={(pressed) => (
         <Icon
           name={iconName}
