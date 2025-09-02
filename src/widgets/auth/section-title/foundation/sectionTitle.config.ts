@@ -1,4 +1,4 @@
-import type { SectionTitleProps } from "./";
+import type { SectionTitleProps } from ".";
 
 export const sectionTitleConfig: { [pathname: string]: SectionTitleProps | ((step: number) => SectionTitleProps) } = {
   "/auth/sign-in": {
