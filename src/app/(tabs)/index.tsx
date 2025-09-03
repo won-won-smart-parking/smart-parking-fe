@@ -1,5 +1,6 @@
 import axios from "axios";
 import { View } from "react-native";
+import { create } from "zustand";
 import { Text } from "@shared/ui/atoms";
 import { useQuery } from "@tanstack/react-query";
 
@@ -8,8 +9,30 @@ const fetchUser = async () => {
   return response;
 };
 
+interface ZustandStateProps {
+  count: number;
+  increase: () => void;
+  decrease: () => void;
+}
+
+const useZustandStore = create<ZustandStateProps>((set, get) => {
+  return {
+    count: 1,
+    increase() {
+      const { count } = get();
+      set({ count: count + 1 });
+    },
+    decrease() {
+      const { count } = get();
+      set({ count: count - 1 });
+    },
+  };
+});
+
 // smartparking://
 export default function MainScreen() {
+  const count = useZustandStore((state) => state.count);
+
   const { isLoading, isError } = useQuery({
     queryKey: ["users"],
     queryFn: fetchUser,
@@ -20,7 +43,7 @@ export default function MainScreen() {
 
   return (
     <View className="flex-1 items-center justify-center">
-      <Text typography="display-default">메인 페이지</Text>
+      <Text typography="display-default">메인 페이지{count}</Text>
     </View>
   );
 }
