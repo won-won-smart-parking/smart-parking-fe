@@ -13,9 +13,8 @@ SMART-PARKING-FE
     │   └── _layout.tsx
     ├── global/          # 전역 초기화 레이어 (FSD: app)
     │   ├── theme/
-    │   ├── styles/
-    │   │   └── global.css
-    │   └── providers/
+    │   └── styles/
+    │       └── global.css
     ├── process/         # 사용자 흐름 조합 (FSD: process)
     │   └── register/
     ├── widgets/         # 조합 UI 블록 (FSD: widgets)
@@ -50,107 +49,94 @@ Smart Parking 프로젝트는 FSD 아키텍처 구조와 Atomic Design System를
 
 ### 1. `app/`
 
-Expo Router 파일 기반 라우팅을 담당합니다.
-- React Native에서 페이지 단위를 구성하는 루트 디렉토리
-- 기존 FSD 아키텍처의 app + pages 기능을 담당
+```
+app/             # Expo Router 기반 파일 라우팅 (FSD의 pages 역할)
+  ├── (tabs)/main.tsx
+  └── _layout.tsx
+```
+
+`app/` 디렉토리는 Expo Router의 파일 기반 라우팅을 담당하는 레이어로, 각 페이지와 레이아웃 컴포넌트가 이곳에 정의됩니다.
+최상위 `_layout.tsx`에서는 전역 Provider를 래핑하여 앱의 공통 환경을 구성합니다.
 
 <br />
 
-### 2. `global/`
+### 2. `entities/`
 
 ```
-global/
-├── theme/        // 색상, 타이포그래피, 디자인 토큰 등
-├── styles/       // 글로벌 스타일, NativeWind 초기화
-├── providers/    // 전역 Provider (예: Zustand, React Query 등)
-```
-
-전역 설정 및 초기화 로직을 포함하는 레이어입니다.
-- 전역 스타일 및 타입, 프로바이더 등의 앱 초기 구성 요소를 포함
-- 기존 FSD 아키텍처의 app 기능을 담당
-
-<br />
-
-### 3. `process/`
-
-```
-process/
-└── register/     // 예: Step1 → Step2로 이어지는 회원가입 흐름
-```
-
-여러 페이지와 기능이 결합된 사용자 흐름을 구성하는 레이어입니다.
-- 회원가입, 예약 등 순차적 단계 또는 조건 기반 UI 흐름을 정의
-- 단순 기능이 아닌, 복합적인 사용자 여정을 포함
-
-<br />
-
-### 4. `widgets/`
-
-```
-widgets/
-└── ParkingLotCard/   // 주차장 정보를 보여주는 독립 블록
-```
-
-페이지를 구성하는 재사용 가능한 UI 블록입니다.
-- 여러 개의 feature, entity를 조합하여 만드는 중간 UI 단위
-- 예: 카드, 리스트, 요약 박스, 배너 등
-
-<br />
-
-### 5. `features/`
-
-```
-features/
-└── reservation/
-    ├── model/             // 예약 관련 상태, API 로직
-    └── ui/
-        ├── atoms/         // 기능 전용 작은 단위 UI
-        ├── molecules/     // 중간 구성 UI
-        └── organisms/     // 예약 폼, 완료 박스 등 복합 UI
-```
-
-비즈니스 로직 단위의 독립 기능 모듈입니다.
-- 특정 기능(예약, 결제 등)에 필요한 상태, 로직, UI를 포함
-- 내부적으로 UI는 Atomic Design System에 따라 계층화
-
-<br />
-
-### 6. `entities/`
-
-```
-entities/
+entities/                   # 도메인 상태/모델 레이어
 └── user/
-    ├── model/           // 사용자 상태, API, 인증 관련 로직
-    │    ├── user.store.ts        // Zustand 등 상태 로직
-    │    ├── user.api.ts          // API 요청 관련 코드
-    │    ├── user.types.ts        // 도메인 타입 정의
-    │    └── useUser.ts           // 상태 및 API 통합 커스텀 훅 (선택적)
-    └── ui/
-        ├── atoms/       // Avatar, NameTag 등
-        └── molecules/   // UserProfile, UserCard 등
+    └── model/
+        ├── user.types.ts   # 사용자 도메인 타입 정의
+        ├── user.api.ts     # 사용자 관련 API 모듈
+        └── user.store.ts   # 사용자 전역 상태 관리
 ```
 
-도메인 중심의 상태 및 모델 레이어입니다.
-- 사용자, 주차장 등 핵심 도메인 객체의 상태 / 로직 / UI를 정의
-- UI는 내부적으로 Atomic 구조로 나뉘지만, entity 내부에만 사용
+`entities/` 디렉토리는 특정 도메인에 종속된 상태(State), 타입(Types), API 등을 관리하는 레이어입니다.
+각 도메인의 데이터 원천을 정의하며, UI 코드와 사용자 정의 훅(Custom Hooks)은 포함하지 않습니다.
 
 <br />
 
-### 7. `shard/`
+### 3. `features/`
 
 ```
-shared/
-├── ui/
-│   ├── atoms/           // Button, Text, Input 등 가장 작은 단위 UI
-│   ├── molecules/       // LabelInput, IconButton 등 중간 UI
-│   ├── organisms/       // Modal, BottomSheet 등 복합 UI
-│   └── templates/       // 페이지 구조나 큰 틀의 템플릿 구성
-├── hooks/               // 전역 커스텀 훅
-├── lib/                 // 전역 유틸 함수 (예: formatDate, debounce 등)
-├── config/              // 전역 설정, enum, 상수
-└── images/              // 전역 이미지 리소스 (일러스트, 아이콘, 배경 등)
+features/             # 기능 단위 모듈
+└── auth/
+    ├── input-field/
+    │   ├── EmailInputField.tsx
+    │   ├── PasswordInputField.tsx
+    │   ├── useEmailInput.ts
+    │   └── usePasswordInput.ts
+    ├── form/
+    │   ├── SignInForm.tsx
+    │   ├── SignUpForm.tsx
+    │   └── ResetPasswordForm.tsx
+    └── hooks/
+        └── useAuth.ts
 ```
 
-도메인과 기능에 종속되지 않는 전역 재사용 요소 모음입니다.
-- 디자인 시스템, 전역 커스텀 훅, 유틸 함수, 설정, 이미지(기본 이미지 + 아이콘) 등을 포함
-- 어디서든 재사용 가능한 요소만 이곳에 위치시킨다.
+`features/` 디렉토리는 shared/ui의 컴포넌트를 조합하여 비즈니스 로직이 결합된 기능 단위 컴포넌트를 구성하는 레이어입니다.
+또한, 해당 기능에 종속된 사용자 정의 훅(Custom Hooks)이 이곳에 위치합니다.
+
+### 4. `global/`
+
+```
+global/             # 전역 환경 및 초기화 레이어
+├── theme/          # 색상, 타이포그래피 등 디자인 토큰
+├── styles/         # 글로벌 스타일, NativeWind 초기화
+├── providers/      # 전역 Provider 정의 (예: Zustand, React Query 등)
+└── config/         # 앱 전역 설정, 상수
+```
+
+`global/` 디렉토리는 앱 전체에서 공통으로 적용되는 환경과 초기화 로직을 관리하는 레이어입니다.
+기존 FSD 아키텍처의 app 레이어 중 라우팅을 제외한 역할을 담당합니다.
+
+### 5. `shared/`
+
+```
+shared/             # 전역 재사용 요소
+├── assets/
+├── tokens/
+├── types/
+└── ui/
+    ├── atom/
+    │   ├── ...
+    │   └── index.tsx
+    └── molecules/
+        ├── ...
+        └── index.tsx
+```
+
+`shared/` 디렉토리는 앱 전역에서 재사용 가능한 정적 자원, 디자인 토큰, 타입, UI 컴포넌트를 관리하는 레이어입니다.
+특정 도메인이나 기능에 종속되지 않으며, 어디서든 공통으로 활용될 수 있는 요소만 포함합니다.
+
+### 6. `widgets/`
+
+```
+widgets/             # 페이지 전용 블록 레이어
+└── auth/            
+     └── SectionTitle/
+         └── index.tsx
+```
+
+`widgets/` 디렉토리는 특정 페이지에서만 사용되는 독립적인 UI 블록을 관리하는 레이어입니다.
+shared/ui를 조합하거나 도메인 데이터를 주입하여 페이지 단위에서 재사용되는 컨테이너 성격의 컴포넌트를 포함합니다.
