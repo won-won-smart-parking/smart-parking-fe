@@ -1,7 +1,4 @@
 import { usePathname } from "expo-router";
-// import SectionTitleBase from "./foundation/SectionTitleBase";
-// import { sectionTitleConfig } from "./model/sectionTitle.config";
-
 import { SectionTitleBase, sectionTitleConfig } from "./foundation";
 
 /**

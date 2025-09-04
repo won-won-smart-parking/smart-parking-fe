@@ -1,8 +1,8 @@
 import clsx from "clsx";
 import { View } from "react-native";
-import Dot from "@entities/ui/atoms/dot";
 import { ParkingStatus } from "@shared/types/parking-status";
 import { Icon, Text } from "@shared/ui/atoms";
+import Dot from "@shared/ui/atoms/dot";
 
 interface Props {
   ticketPrice: string;

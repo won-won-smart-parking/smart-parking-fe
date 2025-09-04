@@ -4,6 +4,7 @@
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
     "typeRoots": ["./node_modules/@types"],
+    "allowImportingTsExtensions": true,
     "baseUrl": "./src",
     "target": "es2020",
     "module": "nodenext",
