@@ -2,12 +2,14 @@
 const { defineConfig } = require("eslint/config");
 
 const expoConfig = require("eslint-config-expo/flat");
+const pluginQueryConfig = require("@tanstack/eslint-plugin-query");
 const prettierConfig = require("eslint-config-prettier");
 
 // ESLint 전체 설정 구성
 module.exports = defineConfig([
   // 미리 정의된 ESLint 구성 옵션 내용 불러오기
   ...expoConfig,
+  ...pluginQueryConfig.configs["flat/recommended"], // TanStack Query ESLint 권장 설정 구성 옵션
 
   // Custom ESLint 설정 구성
   {

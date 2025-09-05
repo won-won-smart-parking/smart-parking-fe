@@ -1,5 +1,6 @@
 import { PressableProps } from "react-native";
-import { Button } from "@shared/ui/atoms";
+import { elevation } from "@shared/tokens";
+import Button from "@shared/ui/atoms/button";
 import { palettePreset, propsPreset } from "../foundation";
 
 export interface Props extends PressableProps {
@@ -20,6 +21,7 @@ export default function LabelChip({ label, border = true, selected = false, onPr
       border={border}
       palette={paleteOverride}
       onPress={onPress}
+      defaultEffect={selected ? elevation.active : undefined}
       {...propsPreset}
     />
   );
