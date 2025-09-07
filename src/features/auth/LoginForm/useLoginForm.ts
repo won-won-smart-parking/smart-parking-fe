@@ -29,8 +29,8 @@ function reducer(state: LoginFormType, action: Action) {
 
 // useReducer 두 번째 인수로 들어가는 초기 상태 값
 const initState: LoginFormType = {
-  id: { value: "", inputState: "default", name: "id" },
-  password: { value: "", inputState: "default", name: "password" },
+  id: { value: "", inputState: "default" },
+  password: { value: "", inputState: "default" },
 };
 
 // 로그인 폼에서 사용될 사용자 정의 훅(Custom Hook)

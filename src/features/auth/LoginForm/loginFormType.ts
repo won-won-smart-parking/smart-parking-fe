@@ -4,7 +4,6 @@ type LoginFieldName = "id" | "password"; // 로그인 폼에서 사용되는 필
 
 // 단일 인풋 필드의 상태 구조
 export interface FormField {
-  name: LoginFieldName;
   value: string;
   inputState: InputState;
 }
