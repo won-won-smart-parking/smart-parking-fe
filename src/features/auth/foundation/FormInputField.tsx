@@ -12,7 +12,16 @@ interface Props {
   handleBlur: (name: keyof LoginFormType) => void;
 }
 
-export default function FormInputField({ name, label, state, placeholder, ...handler }: Props) {
+export default function FormInputField({
+  name,
+  label,
+  state,
+  placeholder,
+  handleChangeValue,
+  handleClearPress,
+  handleFocus,
+  handleBlur,
+}: Props) {
   return (
     <InputField
       label={label}
@@ -20,10 +29,10 @@ export default function FormInputField({ name, label, state, placeholder, ...han
         placeholder,
         value: state[name].value,
         state: state[name].inputState,
-        onChangeText: (text) => handler.handleChangeValue(text, name),
-        onPress: () => handler.handleClearPress(name),
-        onFocus: () => handler.handleFocus(name),
-        onBlur: () => handler.handleBlur(name),
+        onChangeText: (text) => handleChangeValue(text, name),
+        onPress: () => handleClearPress(name),
+        onFocus: () => handleFocus(name),
+        onBlur: () => handleBlur(name),
       }}
     />
   );
