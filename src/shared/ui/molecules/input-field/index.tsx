@@ -22,7 +22,7 @@ interface Props {
  */
 export default function InputField({ label, input, message = "", button }: Props) {
   return (
-    <View className="gap-2">
+    <View className="gap-0.5">
       {/* Input Fiedl 제목(Title) */}
       <Text typography="label-tight" className="text-neutral-900">
         {label}
