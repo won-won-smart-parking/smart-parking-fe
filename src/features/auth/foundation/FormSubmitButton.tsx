@@ -3,9 +3,10 @@ import { Button } from "@shared/ui/atoms";
 interface Props {
   label: string;
   disabled: boolean;
+  onPress: () => void;
 }
 
-export default function FormSubmitButton({ label, disabled, ...rest }: Props) {
+export default function FormSubmitButton({ label, disabled, onPress, ...rest }: Props) {
   return (
     <Button
       variant="label"
@@ -28,6 +29,7 @@ export default function FormSubmitButton({ label, disabled, ...rest }: Props) {
       }
       disablePressedEffect
       fullWidth
+      onPress={onPress}
       {...rest}
     />
   );

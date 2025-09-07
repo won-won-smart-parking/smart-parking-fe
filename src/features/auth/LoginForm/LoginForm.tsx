@@ -12,7 +12,7 @@ const LoginFormInputFieldDatas: { name: keyof LoginFormType; label: string; plac
 ];
 
 export default function LoginForm() {
-  const { state, ...handler } = useLoginForm(); // 로그인 폼에서 사용될 커스텀 훅(Custom Hook)
+  const { state, handleSubmit, ...handler } = useLoginForm(); // 로그인 폼에서 사용될 커스텀 훅(Custom Hook)
 
   return (
     <View className="gap-5">
@@ -38,7 +38,7 @@ export default function LoginForm() {
         </Link>
       </View>
 
-      <FormSubmitButton label="로그인" disabled={!(state["id"].value !== "" && state["password"].value !== "")} />
+      <FormSubmitButton label="로그인" disabled={state["id"].value !== "" && state["password"].value !== ""} onPress={handleSubmit} />
     </View>
   );
 }
