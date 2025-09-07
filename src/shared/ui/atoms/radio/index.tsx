@@ -1,9 +1,10 @@
 import clsx from "clsx";
-import { Pressable, type PressableProps, View } from "react-native";
+import { View } from "react-native";
 import { elevation } from "@shared/tokens";
 
-interface Props extends PressableProps {
+interface Props {
   selected?: boolean;
+  pressed: boolean;
 }
 
 /**
@@ -13,6 +14,7 @@ interface Props extends PressableProps {
  * 선택 여부에 따라 스타일만 변경되며, 비즈니스 로직이나 접근성 역할은 포함하지 않습니다.
  *
  * @param props.selected  선택 상태를 나타내는 값 (기본값: false)
+ * @param props.pressed   누름 상태를 나타내는 값
  *
  * @example
  * // 선택된 상태
@@ -23,28 +25,16 @@ interface Props extends PressableProps {
  *
  * @returns ReactElement Radio Component
  */
-export default function Radio({ selected = false }: Props) {
+export default function Radio({ selected = false, pressed }: Props) {
   return (
-    <Pressable className="aspect-square w-7 overflow-hidden rounded-full">
-      {({ pressed }) => {
-        return (
-          <View
-            className={clsx(
-              "flex h-full w-full items-center justify-center",
-              selected
-                ? pressed
-                  ? "bg-neutral-900"
-                  : "bg-neutral-1000"
-                : pressed
-                  ? "bg-neutral-850"
-                  : "bg-neutral-700",
-            )}
-            style={pressed && elevation.active}
-          >
-            <View className={clsx("h-3 w-3 rounded-full", pressed ? "bg-neutral-200" : "bg-neutral-100")} />
-          </View>
-        );
-      }}
-    </Pressable>
+    <View
+      className={clsx(
+        "aspect-square w-7 items-center justify-center overflow-hidden rounded-full",
+        selected ? (pressed ? "bg-neutral-900" : "bg-neutral-1000") : pressed ? "bg-neutral-850" : "bg-neutral-700",
+      )}
+      style={pressed && elevation.active}
+    >
+      <View className={clsx("h-3 w-3 rounded-full", pressed ? "bg-neutral-200" : "bg-neutral-100")} />
+    </View>
   );
 }

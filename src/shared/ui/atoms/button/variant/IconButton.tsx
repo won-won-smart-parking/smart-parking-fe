@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { Icon } from "@shared/ui/atoms";
+import Icon from "@shared/ui/atoms/icon";
 import type { IconName } from "@shared/ui/atoms/icon/variant";
 import { BaseButton, type BaseButtonProps, type ButtonContainerPalette } from "../foundation";
 
@@ -17,6 +17,7 @@ export interface Props extends BaseButtonProps {
 export default function IconButton({ iconName, palette, iconSize = "w-6", ...rest }: Props) {
   return (
     <BaseButton
+      palette={palette}
       renderContent={(pressed) => (
         <Icon
           name={iconName}
