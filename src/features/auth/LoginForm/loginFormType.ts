@@ -15,10 +15,11 @@ export type LoginFormType = {
 
 // 리듀서 함수에 전달되는 Action 객체의 타입 구성
 type ActionMap = {
-  CHANG_VALUE: { name: LoginFieldName; text: string };
+  CHANGE_VALUE: { name: LoginFieldName; text: string };
   CLEAR: { name: LoginFieldName };
-  FOCUS: { name: LoginFieldName };
+  FOCUS: { name: LoginFieldName; inputState: InputState };
   BLUR: { name: LoginFieldName };
+  ERROR: { name: LoginFieldName };
 };
 
 export type Action = { [K in keyof ActionMap]: { type: K; payload: ActionMap[K] } }[keyof ActionMap];
