@@ -14,17 +14,3 @@ export function validateLoginFormField(name: keyof LoginFormType, value: string)
 
   return "";
 }
-
-// 디버깅을 위한 임시 데이터
-debugger;
-const debugArray: { name: keyof LoginFormType; value: string }[] = [
-  { name: "id", value: "" },
-  { name: "id", value: "sadsad!dasdda.com" },
-  { name: "id", value: "test123@naver.com" },
-  { name: "password", value: "asd124512fx!" },
-  { name: "password", value: "Asad24123@sd12$" },
-];
-
-for (const { name, value } of debugArray) {
-  console.log(validateLoginFormField(name, value));
-}
