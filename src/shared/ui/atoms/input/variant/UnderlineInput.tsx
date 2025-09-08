@@ -65,6 +65,7 @@ export default function UnderlineInput({
   onEndEditing,
   onFocus,
   onPress,
+  ...rest
 }: Props) {
   return (
     <View
@@ -87,6 +88,7 @@ export default function UnderlineInput({
           onChangeText={onChangeText}
           onFocus={onFocus}
           onEndEditing={onEndEditing}
+          {...rest}
         />
         {value.length ? <ClearButton onPress={onPress} /> : null}
       </View>
