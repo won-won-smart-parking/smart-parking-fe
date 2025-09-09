@@ -6,18 +6,43 @@ import useLoginForm from "./useLoginForm";
 import FormInputField from "../foundation/FormInputField";
 import FormSubmitButton from "../foundation/FormSubmitButton";
 
-const LoginFormInputFieldDatas: { name: keyof LoginFormType; label: string; placeholder: string }[] = [
-  { name: "id", label: "이메일", placeholder: "이메일을 입력해주세요..." },
-  { name: "password", label: "비밀번호", placeholder: "비밀번호를 입력해주세요..." },
+const LoginFormInputFieldDatas: { name: keyof LoginFormType; title: string; placeholder: string }[] = [
+  { name: "id", title: "이메일", placeholder: "이메일을 입력해주세요..." },
+  { name: "password", title: "비밀번호", placeholder: "비밀번호를 입력해주세요..." },
 ];
 
 export default function LoginForm() {
-  const { state, refs, handleSubmit, ...handler } = useLoginForm(); // 로그인 폼에서 사용될 커스텀 훅(Custom Hook)
+  // const { state, refs, handleSubmit, ...handler } = useLoginForm();
+  const { loginInputState, refs, ...handler } = useLoginForm(); // 로그인 폼에서 사용될 커스텀 훅(Custom Hook)
 
   return (
     <View className="gap-5">
       <View className="gap-4">
-        {LoginFormInputFieldDatas.map(({ name, label, placeholder }, idx) => (
+        {LoginFormInputFieldDatas.map(({ name, title, placeholder }, idx) => (
+          <FormInputField
+            key={idx}
+            title={title}
+            input={{
+              placeholder,
+              value: loginInputState[name].value,
+              state: loginInputState[name].inputState,
+              ref: refs.current[name],
+              onChangeText: (text) => handler.handleChangeValue(text, name),
+              onClearPress: () => handler.handleClearPress(name),
+              onFocus: () => handler.handleFocus(name, loginInputState[name].inputState),
+              onBlur: () => handler.handleBlur(name),
+              icon: loginInputState[name].icon && {
+                ...loginInputState[name].icon,
+                onPress: () => handler.handleRevealToggle(name),
+              },
+              secureTextEntry: name === "password" && !loginInputState[name].icon?.revealed,
+            }}
+            message={loginInputState[name].message}
+            button={loginInputState[name].button}
+          />
+        ))}
+
+        {/* {LoginFormInputFieldDatas.map(({ name, label, placeholder }, idx) => (
           // 키의 값으로 index를 사용하는 것을 추천하지 않지만, 그럼에도 사용한 이유
           // - 리렌더링이 발생하면 가상 DOM 재조정 과정에서 이전 가상 DOM과 새로운 가상 DOM을 비교(Diffing)를 하여 차이를 찾아내고 실제 DOM에 반영한다. (모바일 기준이라 조금 다를 수도 있음)
           // - 이 재조정 과정에서 비교 알고리즘은 루트 노드부터 순서대로 재귀적으로 순회하며 비교하게 된다.
@@ -33,7 +58,7 @@ export default function LoginForm() {
             state={state}
             {...{ ...handler, ref: refs.current[name] }}
           />
-        ))}
+        ))} */}
       </View>
 
       {/* smartparking://auth/reset-password 라우트로 이동 네비게이션 구조 */}
@@ -45,7 +70,11 @@ export default function LoginForm() {
         </Link>
       </View>
 
-      <FormSubmitButton label="로그인" disabled={!(state["id"].value !== "" && state["password"].value !== "")} onPress={handleSubmit} />
+      <FormSubmitButton
+        label="로그인"
+        disabled={!(loginInputState["id"].value !== "" && loginInputState["password"].value !== "")}
+        onPress={handler.handleSubmit}
+      />
     </View>
   );
 }
