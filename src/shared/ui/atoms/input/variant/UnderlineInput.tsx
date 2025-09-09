@@ -9,6 +9,7 @@ export interface Props extends InputRequiredProps, Omit<TextInputProps, keyof In
   ref: React.RefObject<TextInput | null>;
   state: InputState;
   onClearPress: () => void;
+  secureTextEntry?: boolean;
   icon?: {
     revealed: boolean;
     hidden: IconName;
