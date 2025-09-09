@@ -6,7 +6,9 @@ import { type InputRequiredProps, type InputState, InputStyle } from "../foundat
 import ClearButton from "../part/ClearButton";
 
 export interface Props extends InputRequiredProps, Omit<TextInputProps, keyof InputRequiredProps> {
+  ref: React.RefObject<TextInput | null>;
   state: InputState;
+  onClearPress: () => void;
   icon?: {
     revealed: boolean;
     hidden: IconName;
@@ -21,13 +23,11 @@ export interface Props extends InputRequiredProps, Omit<TextInputProps, keyof In
  * 밑줄 스타일을 가진 Input 컴포넌트입니다. state 값에 따라 스타일이 달라지며,
  * 아이콘과 Clear 버튼을 조건부로 렌더링 할 수 있습니다. 비즈니스 로직은 포함하지 않고, 외부 상태와 이벤트 핸들러를 전달받아 동작합니다.
  *
- * @param props.icon          오른쪽에 표시될 아이콘 설정 (옵션, 비밀번호 토글 등)
- * @param props.value         입력 값
- * @param props.placeholder   안내 문구
- * @param props.onChangeText  텍스트 변경 이벤트 핸들러
- * @param props.onPress       Clear 버튼 클릭 이벤트 핸들러
- * @param props.onFocus       포커스 이벤트 핸들러
- * @param props.onEndEditing  입력 종료 이벤트 핸들러
+ * @param props.input            RN / TextInput 컴포넌트에 전달할 props 구성
+ * @param props.ref              상위에서 전달된 참조 객체를 내부 요소에 연결하기 위한 속성
+ * @param props.state            Underline Input의 밑줄 색상 변화 및 배경색을 구별할 수 있는 Input 상태
+ * @param props.onClearPress    RN / Text Input 컴포넌트에 입력된 문자열 전체 삭제 onPress 이벤트 핸들러
+ * @param props.icon             TextInput의 보조 이벤트를 전달할 수 있는 아이콘 버튼 구성
  *
  * @example
  * // 기본 사용
@@ -56,17 +56,7 @@ export interface Props extends InputRequiredProps, Omit<TextInputProps, keyof In
  *
  * @returns ReactElement UnderlineInput Component
  */
-export default function UnderlineInput({
-  state,
-  icon,
-  value = "",
-  placeholder = "placeholder",
-  onChangeText,
-  onEndEditing,
-  onFocus,
-  onPress,
-  ...rest
-}: Props) {
+export default function UnderlineInput({ state, icon, ref, onClearPress, ...input }: Props) {
   return (
     <View
       className={clsx(
@@ -80,17 +70,18 @@ export default function UnderlineInput({
     >
       <View className={InputStyle.field}>
         <TextInput
+          {...input}
+          ref={ref}
           className={InputStyle.text}
-          value={value}
-          placeholder={placeholder}
+          value={input.value}
+          placeholder={input.placeholder}
           readOnly={state === "disabled"}
           placeholderClassName="text-coolgray-400"
-          onChangeText={onChangeText}
-          onFocus={onFocus}
-          onEndEditing={onEndEditing}
-          {...rest}
+          onChangeText={input.onChangeText}
+          onFocus={input.onFocus}
+          onBlur={input.onBlur}
         />
-        {value.length ? <ClearButton onPress={onPress} /> : null}
+        {input.value.length ? <ClearButton onPress={onClearPress} /> : null}
       </View>
 
       {/* 비밀번호 표시와 같은 Icon 버튼 조건부 렌더링 */}

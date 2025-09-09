@@ -1,4 +1,4 @@
-import type { PressableProps, TextInputProps } from "react-native";
+import type { TextInputProps } from "react-native";
 
 /**
  * Atom / Input - Base
@@ -12,13 +12,7 @@ import type { PressableProps, TextInputProps } from "react-native";
 // -> value: TextInput의 기본값
 // -> placeholder: TextInput의 안내 문구
 // -> onChangeText: TextInput의 변경(Change) 감지 이벤트 핸들러
-//
-// [ PressableProps ]
-// -> onPress: Clear Button의 눌림(Press) 감지 이벤트 핸들러
-type InputRequiredProps = Required<
-  Pick<TextInputProps, "value" | "placeholder" | "onChangeText"> & Pick<PressableProps, "onPress">
->;
-
+type InputRequiredProps = Required<Pick<TextInputProps, "value" | "placeholder" | "onChangeText">>;
 type InputState = "default" | "focus" | "error" | "disabled";
 
 // 각 Input 종류마다 기본적으로 적용되는 Base 스타일

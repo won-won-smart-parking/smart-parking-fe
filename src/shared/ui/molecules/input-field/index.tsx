@@ -3,7 +3,7 @@ import { Button, Text } from "@shared/ui/atoms";
 import { UnderlineInputProps } from "@shared/ui/atoms/input/variant";
 import { HelperText, TextInput } from "./part";
 
-interface Props {
+export interface Props {
   title: string;
   input: UnderlineInputProps;
   message?: string;
@@ -33,6 +33,7 @@ interface Props {
     - onPress ( 인풋 값 전체 삭제를 위한 press 이벤트 핸들러 )
   
   - state: InputState("default" | "focus" | "error" | "disabled")
+  - onClearPress: () => void: 인풋 내용 전체 삭제 속성
   - icon?:
     - revealed: 아이콘 hidden, visiable 상태 여부
     - hidden: 숨겨진 상태에서의 아이콘 이름
