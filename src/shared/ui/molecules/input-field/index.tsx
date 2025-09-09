@@ -4,7 +4,7 @@ import { UnderlineInputProps } from "@shared/ui/atoms/input/variant";
 import { HelperText, TextInput } from "./part";
 
 interface Props {
-  label: string;
+  title: string;
   input: UnderlineInputProps;
   message?: string;
   button?: {
@@ -14,18 +14,44 @@ interface Props {
   };
 }
 
+/*
+  InputField - Props 구성
+  - label: 인풋의 제목
+  - input: **Underline - Props 구성**
+  - message?: HelperText
+  - button?: {
+    - label -> 버튼의 텍스트 내용
+    - onPress -> 버튼 클릭 시 발생하는 press 이벤트 핸들러
+    - disabled -> 버튼 비활성화 여부	
+  }
+
+  Underline - Props 구성
+  - InputRequiredProps
+    - value
+    - placeholder
+    - onChangeText
+    - onPress ( 인풋 값 전체 삭제를 위한 press 이벤트 핸들러 )
+  
+  - state: InputState("default" | "focus" | "error" | "disabled")
+  - icon?:
+    - revealed: 아이콘 hidden, visiable 상태 여부
+    - hidden: 숨겨진 상태에서의 아이콘 이름
+    - visiable:: 보여짐 상태에서의 아이콘 이름
+    - onPress: 아이콘 클릭 시 변경 상태
+*/
+
 /**
  * Molecular / Input Field
  *
  * Atom 단위의 Text, Input, Button 컴포넌트를 조합하여 입력 영역의 UI를 구성하는 컴포넌트입니다.
  * 로그인, 회원가입, 차량 등록/수정 등 다양한 화면에서 재사용되며, 비즈니스 로직은 포함되지 않았습니다.
  */
-export default function InputField({ label, input, message = "", button }: Props) {
+export default function InputField({ title, input, message = "", button }: Props) {
   return (
     <View className="gap-0.5">
       {/* Input Fiedl 제목(Title) */}
       <Text typography="label-tight" className="text-neutral-900">
-        {label}
+        {title}
       </Text>
 
       {/* Input Field 인풋 + 헬퍼 텍스트 구성 레이아웃 */}
