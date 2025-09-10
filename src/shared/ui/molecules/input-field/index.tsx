@@ -77,7 +77,7 @@ export default function InputField({ title, input, message = "", button }: Props
           ) : null}
         </View>
 
-        {message ? <HelperText state={input.state} message={message} /> : null}
+        <HelperText state={input.state} message={message} />
       </View>
     </View>
   );

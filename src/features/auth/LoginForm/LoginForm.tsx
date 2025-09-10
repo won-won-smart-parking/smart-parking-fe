@@ -15,8 +15,8 @@ export default function LoginForm() {
   const { loginInputState, refs, ...handler } = useLoginForm(); // 로그인 폼에서 사용될 커스텀 훅(Custom Hook)
 
   return (
-    <View className="gap-5">
-      <View className="gap-4">
+    <View className="gap-4">
+      <View className="gap-3">
         {LoginFormInputFieldDatas.map(({ name, title, placeholder }, idx) => (
           // 키의 값으로 index를 사용하는 것을 추천하지 않지만, 그럼에도 사용한 이유
           // - 리렌더링이 발생하면 가상 DOM 재조정 과정에서 이전 가상 DOM과 새로운 가상 DOM을 비교(Diffing)를 하여 차이를 찾아내고 실제 DOM에 반영한다. (모바일 기준이라 조금 다를 수도 있음)
