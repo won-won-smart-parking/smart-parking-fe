@@ -19,7 +19,7 @@ type InputState = "default" | "focus" | "error" | "disabled";
 const InputStyle = {
   container: "flex flex-1 flex-row justify-center items-center gap-2",
   field: "flex-1 flex flex-row justify-center items-center",
-  text: "flex-1 text-neutral-1000 text-base-tall font-normal",
+  text: "flex-1 text-neutral-1000 text-base-tall font-normal p-1",
 };
 
 export { type InputState, type InputRequiredProps, InputStyle };
