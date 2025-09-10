@@ -95,7 +95,10 @@ export default function useLoginForm() {
       return; // 에러가 발생하면 제출 로직이 수행되면 안됨
     }
 
-    console.log("이상 없음!!");
+    /**
+     * [ NOTE ]
+     * - submit 이벤트 발생 후 모든 검증이 안정적으로 넘어가면 로그인 API 로직을 구성한다.
+     */
   };
 
   return { loginInputState, refs, handleSubmit, handleChangeValue, handleClearPress, handleFocus, handleBlur, handleRevealToggle };
