@@ -3,6 +3,7 @@ import { View } from "react-native";
 import SearchField from "@shared/ui/molecules/search-field";
 
 export default function FocusedSearchContainer() {
+  // 입력 상태값
   const [value, setValue] = useState("");
 
   return (
@@ -11,6 +12,7 @@ export default function FocusedSearchContainer() {
         leftIcon={{
           iconName: "arrowLeft",
           onPress: () => {
+            // 뒤로가기 시 입력값 초기화
             setValue("");
           },
         }}

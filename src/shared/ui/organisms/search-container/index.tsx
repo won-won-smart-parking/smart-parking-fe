@@ -8,6 +8,20 @@ interface Props {
   type: SearchContainerVariant;
 }
 
+/**
+ * Organism / SearchContainer
+ *
+ * @example
+ * // 1) 메인 화면에서 기본 검색창
+ * <SearchContainer type="main" />
+ *
+ * // 2) 검색창 포커스 시
+ * <SearchContainer type="focused" />
+ *
+ * // 3) 검색 결과 페이지에서
+ * <SearchContainer type="result" />
+ */
+
 export default function SearchContainer({ type }: Props) {
   switch (type) {
     case "focused":
