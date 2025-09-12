@@ -1,16 +1,21 @@
-import { View } from "react-native";
-import { elevation } from "@shared/tokens";
-import SearchField from "@shared/ui/molecules/search-field";
+import FocusedSearchContainer from "./type/focused";
+import MainSearchContainer from "./type/main";
+import ResultSearchContainer from "./type/result";
 
-export default function SearchContainer() {
-  return (
-    <View className="rounded-xl bg-neutral-100 px-3 py-2" style={elevation.raised}>
-      {/* 상단 검색 필드 */}
-      <SearchField
-        leftIcon={{ iconName: "menu", onPress: () => {} }}
-        input={{ placeholder: "주차장을 입력해주세요", value: "", onChangeText: () => {}, onPress: () => {} }}
-        rightIcon={{ iconName: "mic", onPress: () => {} }}
-      />
-    </View>
-  );
+export type SearchContainerVariant = "main" | "focused" | "result";
+
+interface Props {
+  type: SearchContainerVariant;
+}
+
+export default function SearchContainer({ type }: Props) {
+  switch (type) {
+    case "focused":
+      return <FocusedSearchContainer />;
+    case "result":
+      return <ResultSearchContainer />;
+    case "main":
+    default:
+      return <MainSearchContainer />;
+  }
 }
