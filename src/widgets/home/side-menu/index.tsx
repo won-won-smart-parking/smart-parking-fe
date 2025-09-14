@@ -6,19 +6,23 @@ import { sections } from "./model/menu";
 import ProfileGuest from "./part/ProfileGuest";
 import ProfileLoggedIn from "./part/ProfileLoggedIn";
 import SideMenuItem from "./part/SideMenuItem";
-
-interface Props {
-  isLogin: boolean;
-}
+import { useSideMenu } from "./useSideMenu";
 
 // DrawerContent(Side Menu) 커스텀 컴포넌트
-export default function SideMenu({ isLogin }: Props) {
+export default function SideMenu() {
+  const {
+    store: { isLogin, userName, userProfileUrl },
+    handleNavigate,
+  } = useSideMenu();
+
   return (
     <DrawerContentScrollView contentContainerStyle={{ flex: 1, justifyContent: "space-between" }}>
       <View>
         {/* 로그인(마이페이지 이동) / 비로그인(로그인 페이지 이동) */}
         <View className="border-b border-coolgray-200 py-4">
-          <Pressable>{!isLogin ? <ProfileGuest /> : <ProfileLoggedIn />}</Pressable>
+          <Pressable>
+            {!isLogin ? <ProfileGuest /> : <ProfileLoggedIn userName={userName} userProfileUrl={userProfileUrl} />}
+          </Pressable>
         </View>
 
         {/* 네비게이션 */}
@@ -30,7 +34,7 @@ export default function SideMenu({ isLogin }: Props) {
                 key={item.key}
                 text={item.text}
                 icon={item.icon}
-                onPress={() => console.log(item.text.label)}
+                onPress={() => handleNavigate(item.key, item.to)}
               />
             ))}
           </View>
@@ -47,7 +51,7 @@ export default function SideMenu({ isLogin }: Props) {
                   key={item.key}
                   text={item.text}
                   icon={item.icon}
-                  onPress={() => console.log(item.text.label)}
+                  onPress={() => handleNavigate(item.key, item.to)}
                 />
               ))}
             </View>
