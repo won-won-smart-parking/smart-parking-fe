@@ -1,7 +1,9 @@
 // import axios from "axios";
 // import { useEffect } from "react";
-import { View } from "react-native";
+import { useNavigation } from "expo-router";
+import { Button, View } from "react-native";
 import { create } from "zustand";
+import { DrawerActions } from "@react-navigation/native";
 import { Text } from "@shared/ui/atoms";
 
 // import { useQuery } from "@tanstack/react-query";
@@ -64,9 +66,12 @@ export default function MainScreen() {
   // if (isLoading) return <Text>Lodaing...</Text>;
   // if (isError) return <Text>Error...</Text>;
 
+  const navigation = useNavigation();
+
   return (
     <View className="flex-1 items-center justify-center">
       <Text typography="display-default">메인 페이지{count}</Text>
+      <Button title="Open drawer menu!!" onPress={() => navigation.dispatch(DrawerActions.openDrawer())} />
     </View>
   );
 }
