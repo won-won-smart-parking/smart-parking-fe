@@ -1,7 +1,7 @@
 import { View } from "react-native";
 import { Avatar } from "@shared/ui/atoms";
-import SideMenuIcon from "@widgets/home/foundation/SideMenuIcon";
-import SideMenuText from "@widgets/home/foundation/SideMenuText";
+import SideMenuIcon from "@widgets/home/side-menu/foundation/SideMenuIcon";
+import SideMenuText from "@widgets/home/side-menu/foundation/SideMenuText";
 
 // 로그인 사용자 유저 프로필
 export default function ProfileLoggedIn() {

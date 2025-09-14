@@ -1,6 +1,6 @@
 import { View } from "react-native";
-import SideMenuIcon from "@widgets/home/foundation/SideMenuIcon";
-import SideMenuText from "@widgets/home/foundation/SideMenuText";
+import SideMenuIcon from "@widgets/home/side-menu/foundation/SideMenuIcon";
+import SideMenuText from "@widgets/home/side-menu/foundation/SideMenuText";
 
 // 비로그인 사용자 프로필
 export default function ProfileGuest() {
