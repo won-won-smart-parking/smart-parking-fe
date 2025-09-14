@@ -9,7 +9,7 @@ interface Props {
 
 export default function UserProfile({ userImage, userName, userEmail }: Props) {
   return (
-    <View className="flex-row items-center justify-center gap-6">
+    <View className="flex-row items-center gap-6">
       <Avatar size="md" profileUrl={userImage} />
       <View className="gap-1">
         <Text typography="title-md" className="text-neutral-1000">
