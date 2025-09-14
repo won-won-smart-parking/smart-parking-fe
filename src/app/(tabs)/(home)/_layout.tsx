@@ -38,9 +38,14 @@ function SideMenu() {
         </View>
 
         {/* 네비게이션 */}
-        {/* 차량 관리 + 내 주차권 + 즐겨찾기 */}
-        {/* 서비스 정보(공지사항 + 환경 설정) */}
-        <View></View>
+
+        <View className="mt-6 gap-5">
+          {/* 차량 관리 + 내 주차권 + 즐겨찾기 */}
+          <View className="bg-coolgray-300"></View>
+
+          {/* 서비스 정보(공지사항 + 환경 설정) */}
+          <View className="bg-coolgray-300"></View>
+        </View>
       </View>
     </DrawerContentScrollView>
   );
