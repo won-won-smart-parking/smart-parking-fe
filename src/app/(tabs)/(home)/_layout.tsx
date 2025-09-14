@@ -38,10 +38,30 @@ function SideMenu() {
         </View>
 
         {/* 네비게이션 */}
-
         <View className="mt-6 gap-5">
           {/* 차량 관리 + 내 주차권 + 즐겨찾기 */}
-          <View className="bg-coolgray-300"></View>
+          <View>
+            <Pressable className="flex-row items-center py-3" onPress={() => console.log("차량 관리")}>
+              <View className="flex-row items-center gap-3">
+                <Icon name="carDoor" />
+                <Text typography="body-lg">차량 관리</Text>
+              </View>
+            </Pressable>
+
+            <Pressable className="flex-row items-center py-3" onPress={() => console.log("내 주차권")}>
+              <View className="flex-row items-center gap-3">
+                <Icon name="ticketOutline" />
+                <Text typography="body-lg">내 주차권</Text>
+              </View>
+            </Pressable>
+
+            <Pressable className="flex-row items-center py-3" onPress={() => console.log("즐겨찾기")}>
+              <View className="flex-row items-center gap-3">
+                <Icon name="bookmarkOutline" />
+                <Text typography="body-lg">즐겨찾기</Text>
+              </View>
+            </Pressable>
+          </View>
 
           {/* 서비스 정보(공지사항 + 환경 설정) */}
           <View className="bg-coolgray-300"></View>
