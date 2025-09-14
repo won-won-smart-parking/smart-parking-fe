@@ -64,7 +64,27 @@ function SideMenu() {
           </View>
 
           {/* 서비스 정보(공지사항 + 환경 설정) */}
-          <View className="bg-coolgray-300"></View>
+          <View className="gap-1">
+            <Text typography="caption-sm" className="text-neutral-850">
+              서비스 정보
+            </Text>
+
+            <View>
+              <Pressable className="flex-row items-center py-3" onPress={() => console.log("공지 사항")}>
+                <View className="flex-row items-center gap-3">
+                  <Icon name="board" />
+                  <Text typography="body-lg">공지 사항</Text>
+                </View>
+              </Pressable>
+
+              <Pressable className="flex-row items-center py-3" onPress={() => console.log("환경 설정")}>
+                <View className="flex-row items-center gap-3">
+                  <Icon name="setting" />
+                  <Text typography="body-lg">환경 설정</Text>
+                </View>
+              </Pressable>
+            </View>
+          </View>
         </View>
       </View>
     </DrawerContentScrollView>
