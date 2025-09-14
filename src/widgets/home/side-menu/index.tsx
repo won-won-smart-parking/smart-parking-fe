@@ -1,13 +1,17 @@
+import React from "react";
 import { Pressable, View } from "react-native";
 import { DrawerContentScrollView } from "@react-navigation/drawer";
-import { Icon, Text } from "@shared/ui/atoms";
-import ProfileGuest from "./part/user-profile/ProfileGuest";
-import ProfileLoggedIn from "./part/user-profile/ProfileLoggedIn";
+import { Text } from "@shared/ui/atoms";
+import { sections } from "./model/menu";
+import ProfileGuest from "./part/ProfileGuest";
+import ProfileLoggedIn from "./part/ProfileLoggedIn";
+import SideMenuItem from "./part/SideMenuItem";
 
 interface Props {
   isLogin: boolean;
 }
 
+// DrawerContent(Side Menu) 커스텀 컴포넌트
 export default function SideMenu({ isLogin }: Props) {
   return (
     <DrawerContentScrollView contentContainerStyle={{ flex: 1, justifyContent: "space-between" }}>
@@ -20,67 +24,47 @@ export default function SideMenu({ isLogin }: Props) {
         {/* 네비게이션 */}
         <View className="mt-6 gap-5">
           {/* 차량 관리 + 내 주차권 + 즐겨찾기 */}
-          <View>
-            <Pressable className="flex-row items-center py-3" onPress={() => console.log("차량 관리")}>
-              <View className="flex-row items-center gap-3">
-                <Icon name="carDoor" />
-                <Text typography="body-lg">차량 관리</Text>
-              </View>
-            </Pressable>
-
-            <Pressable className="flex-row items-center py-3" onPress={() => console.log("내 주차권")}>
-              <View className="flex-row items-center gap-3">
-                <Icon name="ticketOutline" />
-                <Text typography="body-lg">내 주차권</Text>
-              </View>
-            </Pressable>
-
-            <Pressable className="flex-row items-center py-3" onPress={() => console.log("즐겨찾기")}>
-              <View className="flex-row items-center gap-3">
-                <Icon name="bookmarkOutline" />
-                <Text typography="body-lg">즐겨찾기</Text>
-              </View>
-            </Pressable>
+          <View key={sections[0].key}>
+            {sections[0].items.map((item) => (
+              <SideMenuItem
+                key={item.key}
+                text={item.text}
+                icon={item.icon}
+                onPress={() => console.log(item.text.label)}
+              />
+            ))}
           </View>
 
           {/* 서비스 정보(공지사항 + 환경 설정) */}
-          <View className="gap-1">
+          <View className="gap-1" key={sections[1].key}>
             <Text typography="caption-sm" className="text-neutral-850">
               서비스 정보
             </Text>
 
             <View>
-              <Pressable className="flex-row items-center py-3" onPress={() => console.log("공지 사항")}>
-                <View className="flex-row items-center gap-3">
-                  <Icon name="board" />
-                  <Text typography="body-lg">공지 사항</Text>
-                </View>
-              </Pressable>
-
-              <Pressable className="flex-row items-center py-3" onPress={() => console.log("환경 설정")}>
-                <View className="flex-row items-center gap-3">
-                  <Icon name="setting" />
-                  <Text typography="body-lg">환경 설정</Text>
-                </View>
-              </Pressable>
+              {sections[1].items.map((item) => (
+                <SideMenuItem
+                  key={item.key}
+                  text={item.text}
+                  icon={item.icon}
+                  onPress={() => console.log(item.text.label)}
+                />
+              ))}
             </View>
           </View>
         </View>
       </View>
 
       {/* 로그아웃 레이아웃 */}
-      <View className="flex-row">
-        {isLogin && (
-          <Pressable className="flex-row items-center py-3" onPress={() => console.log("로그아웃")}>
-            <View className="flex-row items-center gap-3">
-              <Icon name="logout" className="text-red-300" />
-              <Text typography="body-lg" className="text-red-300">
-                로그아웃
-              </Text>
-            </View>
-          </Pressable>
-        )}
-      </View>
+      {isLogin && (
+        <View className="flex-row">
+          <SideMenuItem
+            icon={{ name: "logout", className: "text-red-300" }}
+            text={{ label: "로그아웃", className: "text-red-300" }}
+            onPress={() => console.log("로그아웃")}
+          />
+        </View>
+      )}
     </DrawerContentScrollView>
   );
 }
