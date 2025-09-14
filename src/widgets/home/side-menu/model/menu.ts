@@ -1,3 +1,4 @@
+import { Href } from "expo-router";
 import { IconName } from "@shared/ui/atoms/icon/variant";
 
 // SideMenuItem 컴포넌트 정적 데이터 타입 구성
@@ -11,7 +12,7 @@ export interface SideMenuItem {
     name: IconName;
     className?: string;
   };
-  to: string;
+  to: Href;
 }
 
 interface SideMenuSection {
@@ -24,16 +25,16 @@ export const sections: SideMenuSection[] = [
   {
     key: "primary",
     items: [
-      { key: "vehicle", text: { label: "차량 관리" }, icon: { name: "carDoor" }, to: "" },
-      { key: "ticket", text: { label: "내 주차권" }, icon: { name: "ticketOutline" }, to: "" },
-      { key: "bookmark", text: { label: "즐겨찾기" }, icon: { name: "bookmarkOutline" }, to: "" },
+      { key: "vehicle", text: { label: "차량 관리" }, icon: { name: "carDoor" }, to: "/profile/car/" },
+      { key: "ticket", text: { label: "내 주차권" }, icon: { name: "ticketOutline" }, to: "/(tabs)/ticket/daily" },
+      { key: "bookmark", text: { label: "즐겨찾기" }, icon: { name: "bookmarkOutline" }, to: "/(tabs)/bookmark" },
     ],
   },
   {
     key: "service",
     items: [
-      { key: "notice", text: { label: "공지 사항" }, icon: { name: "board" }, to: "" },
-      { key: "setting", text: { label: "환경 설정" }, icon: { name: "setting" }, to: "" },
+      { key: "notice", text: { label: "공지 사항" }, icon: { name: "board" }, to: "/service/notice" },
+      { key: "setting", text: { label: "환경 설정" }, icon: { name: "setting" }, to: "/service/setting" },
     ],
   },
 ];
