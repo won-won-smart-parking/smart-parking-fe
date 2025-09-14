@@ -1,6 +1,8 @@
 import { Pressable, View } from "react-native";
 import { DrawerContentScrollView } from "@react-navigation/drawer";
-import { Avatar, Icon, Text } from "@shared/ui/atoms";
+import { Icon, Text } from "@shared/ui/atoms";
+import ProfileGuest from "./part/user-profile/ProfileGuest";
+import ProfileLoggedIn from "./part/user-profile/ProfileLoggedIn";
 
 interface Props {
   isLogin: boolean;
@@ -12,27 +14,7 @@ export default function SideMenu({ isLogin }: Props) {
       <View>
         {/* 로그인(마이페이지 이동) / 비로그인(로그인 페이지 이동) */}
         <View className="border-b border-coolgray-200 py-4">
-          <Pressable>
-            {/* 로그인 + 비로그인 처리 */}
-            {!isLogin ? (
-              <View className="flex-row items-center gap-0.5">
-                <Text typography="body-xl" className="text-neutral-1000">
-                  로그인
-                </Text>
-                <Icon name="arrowRight" className="w-3 text-neutral-1000" />
-              </View>
-            ) : (
-              <View className="flex-row gap-3">
-                <Avatar size="sm" />
-                <View className="flex-row items-center gap-0.5">
-                  <Text typography="body-xl" className="text-neutral-1000">
-                    로그인
-                  </Text>
-                  <Icon name="arrowRight" className="w-3 text-neutral-1000" />
-                </View>
-              </View>
-            )}
-          </Pressable>
+          <Pressable>{!isLogin ? <ProfileGuest /> : <ProfileLoggedIn />}</Pressable>
         </View>
 
         {/* 네비게이션 */}
