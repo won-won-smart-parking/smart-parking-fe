@@ -87,6 +87,20 @@ function SideMenu() {
           </View>
         </View>
       </View>
+
+      {/* 로그아웃 레이아웃 */}
+      <View className="flex-row">
+        {isLogin && (
+          <Pressable className="flex-row items-center py-3" onPress={() => console.log("로그아웃")}>
+            <View className="flex-row items-center gap-3">
+              <Icon name="logout" className="text-red-300" />
+              <Text typography="body-lg" className="text-red-300">
+                로그아웃
+              </Text>
+            </View>
+          </Pressable>
+        )}
+      </View>
     </DrawerContentScrollView>
   );
 }
