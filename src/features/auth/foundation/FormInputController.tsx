@@ -16,6 +16,12 @@ export interface Props<TFieldValues extends FieldValues, TName extends FieldPath
   resetField: UseFormResetField<TFieldValues>;
 }
 
+/**
+ * FormInputController
+ * - 각 입력 필드의 기반을 담당하는 컴포넌트 역할을 수행한다.
+ * - 상위 FormProvider와 연결되어 React Hook Form의 제어 하에 값(value)과 유효성 검증을 수행한다.
+ * - 동시에 각 입력 필드의 UI 상태는 useInputState 커스텀 훅을 통해 독립적으로 제어한다.
+ */
 export default function FormInputController<TFieldValues extends FieldValues, TName extends FieldPath<TFieldValues>>({
   inputField,
   control,
