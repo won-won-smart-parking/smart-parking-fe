@@ -1,4 +1,5 @@
 import clsx from "clsx";
+import { RefCallBack } from "react-hook-form";
 import { Pressable, TextInput, type TextInputProps, View } from "react-native";
 import Icon from "@shared/ui/atoms/icon";
 import type { IconName } from "@shared/ui/atoms/icon/variant";
@@ -6,16 +7,14 @@ import { type InputRequiredProps, type InputState, InputStyle } from "../foundat
 import ClearButton from "../part/ClearButton";
 
 export interface Props extends InputRequiredProps, Omit<TextInputProps, keyof InputRequiredProps> {
-  ref: React.RefObject<TextInput | null>;
   state: InputState;
-  onClearPress: () => void;
-  secureTextEntry?: boolean;
   icon?: {
-    revealed: boolean;
     hidden: IconName;
     visible: IconName;
     onPress: () => void;
   };
+  ref: RefCallBack;
+  onClearPress: () => void;
 }
 
 /**
@@ -81,6 +80,7 @@ export default function UnderlineInput({ state, icon, ref, onClearPress, ...inpu
           onChangeText={input.onChangeText}
           onFocus={input.onFocus}
           onBlur={input.onBlur}
+          secureTextEntry={input.secureTextEntry}
         />
         {input.value.length ? <ClearButton onPress={onClearPress} /> : null}
       </View>
@@ -88,7 +88,7 @@ export default function UnderlineInput({ state, icon, ref, onClearPress, ...inpu
       {/* 비밀번호 표시와 같은 Icon 버튼 조건부 렌더링 */}
       {icon && (
         <Pressable onPress={icon.onPress} className="p-0.5">
-          <Icon name={!icon.revealed ? icon.hidden : icon.visible} className="w-5 text-neutral-850" />
+          <Icon name={input.secureTextEntry ? icon.hidden : icon.visible} className="w-5 text-neutral-850" />
         </Pressable>
       )}
     </View>
