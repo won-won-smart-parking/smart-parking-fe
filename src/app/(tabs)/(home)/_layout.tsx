@@ -16,7 +16,14 @@ function SideMenu() {
 
 export default function HomeDrawerLayout() {
   return (
-    <Drawer screenOptions={{ swipeEnabled: false, drawerType: "front" }} drawerContent={() => <SideMenu />}>
+    <Drawer
+      screenOptions={{
+        swipeEnabled: false,
+        drawerType: "front",
+        drawerStyle: { width: "70%", borderTopRightRadius: 0, borderBottomRightRadius: 0 },
+      }}
+      drawerContent={() => <SideMenu />}
+    >
       <Drawer.Screen name="index" />
     </Drawer>
   );
