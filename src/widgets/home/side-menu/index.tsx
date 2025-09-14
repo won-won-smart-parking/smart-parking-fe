@@ -65,7 +65,9 @@ export default function SideMenu() {
           <SideMenuItem
             icon={{ name: "logout", className: "text-red-300" }}
             text={{ label: "로그아웃", className: "text-red-300" }}
-            onPress={() => console.log("로그아웃")}
+            onPress={() => {
+              // console.log("로그아웃")
+            }}
           />
         </View>
       )}
