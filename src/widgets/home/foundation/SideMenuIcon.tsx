@@ -3,7 +3,7 @@ import { IconName } from "@shared/ui/atoms/icon/variant";
 
 interface Props {
   name: IconName;
-  className: string;
+  className?: string;
 }
 
 export default function SideMenuIcon(props: Props) {
