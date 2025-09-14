@@ -9,7 +9,7 @@ export default function TabLayout() {
   return (
     <Tabs screenOptions={{ headerTitleAlign: "center" }}>
       <Tabs.Screen
-        name="index"
+        name="(home)"
         options={{
           headerShown: false,
           tabBarLabel: ({ focused }: { focused: boolean }) => (
