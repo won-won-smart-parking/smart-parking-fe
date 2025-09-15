@@ -24,7 +24,7 @@ function reducer(state: InputState, action: Action) {
       return payload.currentState === "error" ? "error" : "focus";
     }
     case "BLUR": {
-      return payload.currentState === "error" ? "error" : "focus";
+      return payload.currentState === "error" ? "error" : "default";
     }
     case "ERROR": {
       return "error";
