@@ -30,12 +30,12 @@ export default function Checkbox({ selected = false, pressed }: Props) {
   return (
     <View
       className={clsx(
-        "aspect-square w-7 items-center justify-center rounded-[4px]",
+        "aspect-square w-5 items-center justify-center rounded-[4px]",
         selected ? (pressed ? "bg-blue-400" : "bg-blue-300") : pressed ? "bg-neutral-850" : "bg-neutral-700",
       )}
       style={pressed && elevation.active}
     >
-      <Icon name="check" className={clsx("w-6 rounded-full", pressed ? "text-neutral-200" : "text-neutral-100")} />
+      <Icon name="check" className={clsx("w-4 rounded-full", pressed ? "text-neutral-200" : "text-neutral-100")} />
     </View>
   );
 }
