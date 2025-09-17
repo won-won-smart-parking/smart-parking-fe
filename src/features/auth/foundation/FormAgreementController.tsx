@@ -7,7 +7,7 @@ export interface Props<TFieldValues extends FieldValues, TName extends FieldPath
     name: TName;
     control: Control<TFieldValues>;
   };
-  rules: RegisterOptions<TFieldValues, TName>;
+  rules?: RegisterOptions<TFieldValues, TName>;
 }
 
 /**
