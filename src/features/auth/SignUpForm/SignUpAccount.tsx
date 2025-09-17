@@ -6,8 +6,10 @@ import LocationAgreement from "../foundation/AuthInputField/LocationAgreement";
 import PushNoticeAgreement from "../foundation/AuthInputField/PushNoticeAgreement";
 
 export default function SignUpAccount() {
-  const { control, resetField } = useFormContext<SignUpFormValues>();
+  const { control, resetField } = useFormContext<SignUpFormValues>(); // 상위 RHF 제공자(Provider) 구독
 
+  // 각 스텝 별 회원가입 레이아웃 구조는 모두 동일하기 때문에 상위 컴포넌트에서 레이아웃으로 관리를 하고,
+  // 각 스텝 별 레이아웃 구조에서는 JSX 규칙에 따라 하나의 부모가 있어야 하는 조건에 따라 React.Fragment로 관리한다.
   return (
     <>
       <View className="gap-4">
