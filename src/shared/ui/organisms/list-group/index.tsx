@@ -30,18 +30,20 @@ export default function ListGroup({ type, items, title, titleType = "none" }: Li
     ),
   };
   return (
-    <View className="flex-col gap-2">
+    <View className="flex-col gap-4">
       {title && titleType !== "none" && renderTitle[titleType]}
-      {items.map(({ id, ...props }) => {
-        switch (type) {
-          case "card":
-            return <ParkingCard key={id} {...(props as CardProps)} />;
-          case "ticket":
-            return <Ticket key={id} {...(props as TicketProps)} />;
-          case "default":
-            return <ListItem key={id} {...(props as DefaultProps)} />;
-        }
-      })}
+      <View className="flex-col gap-2">
+        {items.map(({ id, ...props }) => {
+          switch (type) {
+            case "card":
+              return <ParkingCard key={id} {...(props as CardProps)} />;
+            case "ticket":
+              return <Ticket key={id} {...(props as TicketProps)} />;
+            case "default":
+              return <ListItem key={id} {...(props as DefaultProps)} />;
+          }
+        })}
+      </View>
     </View>
   );
 }
