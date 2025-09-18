@@ -11,7 +11,7 @@ import {
   type ValueListItemProps,
 } from "./variant";
 
-type Props =
+export type Props =
   | ({ variant: "default" } & DefaultListItemProps)
   | ({ variant: "navigation" } & NavigationListItemProps)
   | ({ variant: "selectable" } & SelectableListItemProps)

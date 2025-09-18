@@ -4,7 +4,7 @@ import { elevation } from "@shared/tokens";
 import { Icon } from "@shared/ui/atoms";
 import TicketText from "./ticket-text";
 
-interface Props {
+export interface Props {
   ticketLabel: string;
   ticketInfo: string;
   ticketPrice: string;

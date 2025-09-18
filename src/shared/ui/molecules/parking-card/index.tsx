@@ -5,7 +5,7 @@ import ButtonGroup from "@shared/ui/molecules/button-group";
 import ParkingCardActionButton from "./part/ParkingCardActionButton";
 import ParkingCardDescription from "./part/ParkingCardDescription";
 
-interface Props {
+export interface Props {
   parkingTitle: string; // 주차장 이름
   parkingStatus: ParkingStatus; // 주차장 혼잡도 상태
   parkingType?: "public" | "private"; // 주차장 구분
