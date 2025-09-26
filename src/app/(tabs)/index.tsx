@@ -34,33 +34,33 @@ const useZustandStore = create<ZustandStateProps>((set, get) => {
 
 // const instance = axios.create({
 //   adapter: "fetch",
-//   baseURL: "",
+//   baseURL: "https://api.example.com",
 // });
 
 // smartparking://
 export default function MainScreen() {
   const count = useZustandStore((state) => state.count);
 
+  // useEffect(() => {
+  //   async function fetchAPI() {
+  //     try {
+  //       const response = await instance.get("/api/movies");
+
+  //       console.log(response);
+  //     } catch (error) {
+  //       if (error instanceof Error) {
+  //         console.log(error.name);
+  //       }
+  //     }
+  //   }
+
+  //   fetchAPI();
+  // }, []);
+
   // const { isLoading, isError } = useQuery({
   //   queryKey: ["users"],
   //   queryFn: fetchUser,
   // });
-
-  // useEffect(() => {
-  //   async function fetchMockUser() {
-  //     try {
-  //       const response = await instance.get("/user");
-  //       console.log(response);
-  //       if (response.status === 200) {
-  //         throw new Error("무언가 잘못되었습니다.", { cause: "asd" });
-  //       }
-  //     } catch (err) {
-  //       console.error(err);
-  //     }
-  //   }
-
-  //   fetchMockUser();
-  // }, []);
 
   // if (isLoading) return <Text>Lodaing...</Text>;
   // if (isError) return <Text>Error...</Text>;
