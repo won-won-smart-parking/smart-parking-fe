@@ -1,13 +1,10 @@
 import Drawer from "expo-router/drawer";
-import { useMockServiceWorker } from "@global/hooks/useMockServiceWorker";
 import TanStackProvider from "@global/providers/TanStackProvider";
 import "@global/styles/global.css";
 import "@global/styles/nativewind-interop";
 import SideMenu from "@widgets/home/side-menu";
 
 export default function RootLayout() {
-  useMockServiceWorker(); // MSW 활성화 커스텀 훅 실행
-
   return (
     <TanStackProvider>
       <Drawer
