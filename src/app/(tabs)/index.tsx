@@ -1,5 +1,5 @@
-// import axios from "axios";
-// import { useEffect } from "react";
+import axios from "axios";
+import { useEffect } from "react";
 import { View } from "react-native";
 import { create } from "zustand";
 import { Text } from "@shared/ui/atoms";
@@ -31,14 +31,30 @@ const useZustandStore = create<ZustandStateProps>((set, get) => {
   };
 });
 
-// const instance = axios.create({
-//   adapter: "fetch",
-//   baseURL: "",
-// });
+const instance = axios.create({
+  adapter: "fetch",
+  baseURL: "https://api.example.com",
+});
 
 // smartparking://
 export default function MainScreen() {
   const count = useZustandStore((state) => state.count);
+
+  useEffect(() => {
+    async function fetchAPI() {
+      try {
+        const response = await instance.get("/api/movies");
+
+        console.log(response);
+      } catch (error) {
+        if (error instanceof Error) {
+          console.log(error.name);
+        }
+      }
+    }
+
+    fetchAPI();
+  }, []);
 
   // const { isLoading, isError } = useQuery({
   //   queryKey: ["users"],
