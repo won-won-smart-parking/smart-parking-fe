@@ -45,22 +45,6 @@ export default function MainScreen() {
   //   queryFn: fetchUser,
   // });
 
-  // useEffect(() => {
-  //   async function fetchMockUser() {
-  //     try {
-  //       const response = await instance.get("/user");
-  //       console.log(response);
-  //       if (response.status === 200) {
-  //         throw new Error("무언가 잘못되었습니다.", { cause: "asd" });
-  //       }
-  //     } catch (err) {
-  //       console.error(err);
-  //     }
-  //   }
-
-  //   fetchMockUser();
-  // }, []);
-
   // if (isLoading) return <Text>Lodaing...</Text>;
   // if (isError) return <Text>Error...</Text>;
 
