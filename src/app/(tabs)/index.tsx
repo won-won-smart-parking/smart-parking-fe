@@ -44,6 +44,22 @@ import SignUpForm from "@/process/signup";
 export default function MainScreen() {
   // const count = useZustandStore((state) => state.count);
 
+  // useEffect(() => {
+  //   async function fetchAPI() {
+  //     try {
+  //       const response = await instance.get("/api/movies");
+
+  //       console.log(response);
+  //     } catch (error) {
+  //       if (error instanceof Error) {
+  //         console.log(error.name);
+  //       }
+  //     }
+  //   }
+
+  //   fetchAPI();
+  // }, []);
+
   // const { isLoading, isError } = useQuery({
   //   queryKey: ["users"],
   //   queryFn: fetchUser,
