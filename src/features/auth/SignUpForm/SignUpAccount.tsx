@@ -14,27 +14,9 @@ export default function SignUpAccount() {
     <>
       <View className="gap-4">
         <NameInputField control={{ name: "account.name", control }} resetField={resetField} />
-        <EmailInputField
-          control={{
-            name: "account.email",
-            control,
-          }}
-          resetField={resetField}
-        />
-        <PasswordInputField
-          control={{
-            name: "account.password",
-            control,
-          }}
-          resetField={resetField}
-        />
-        <PasswordConfirmInputField
-          control={{
-            name: "account.passwordConfirm",
-            control,
-          }}
-          resetField={resetField}
-        />
+        <EmailInputField control={{ name: "account.email", control }} resetField={resetField} />
+        <PasswordInputField control={{ name: "account.password", control }} resetField={resetField} />
+        <PasswordConfirmInputField control={{ name: "account.passwordConfirm", control }} resetField={resetField} />
       </View>
 
       <View className="gap-5">
