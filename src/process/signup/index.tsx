@@ -42,7 +42,8 @@ export default function SignUpForm() {
   return (
     <FormProvider {...method}>
       <View className="flex-1 gap-10">
-        <StepProgress />
+        <StepProgress steps={[{ label: "회원가입" }, { label: "개인 정보 입력" }, { label: "정보 확인" }]} currentStep={step} />
+
         {/* 회원가입 각 단계의 폼 구조를 보여주는 레이아웃 */}
         <View className="flex-1 justify-between">
           <StepPagerView step={step}>
