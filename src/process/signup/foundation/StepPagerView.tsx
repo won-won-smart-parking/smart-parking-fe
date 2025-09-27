@@ -16,8 +16,13 @@ export default function StepPagerView({ step, children }: Props) {
     }
   }, [step]);
 
+  // 1. ref 객체 연결 (페이지 전환 제어용)
+  // 2. style 속성 작성 (PagerView는 Nativewind 적용 안됨)
+  // 3. 초기 슬라이드 페이지 전달 (Zero-based Numbering)
+  // 4. 스크롤 가능 여부 X
+  // 5. overScrollMode X
   return (
-    <PagerView ref={pageRef} style={{ flex: 1 }} initialPage={0} scrollEnabled={false}>
+    <PagerView ref={pageRef} style={{ flex: 1 }} initialPage={0} scrollEnabled={false} overScrollMode="never">
       {Array.isArray(children) &&
         children.map((child, idx) => (
           <View key={idx} className="gap-6">
