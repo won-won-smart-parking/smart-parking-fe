@@ -3,7 +3,7 @@ import { View } from "react-native";
 import { Text } from "@shared/ui/atoms";
 import { StepCircle, StepStatus } from "./StepCircle";
 
-interface Props {
+export interface Props {
   status: StepStatus;
   label: string;
   isFirst?: boolean;
