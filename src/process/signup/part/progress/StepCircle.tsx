@@ -9,6 +9,7 @@ interface Props {
   status: StepStatus;
 }
 
+// Step Progress Bar의 각 단계의 원을 담당하는 컴포넌트
 export function StepCircle({ status }: Props) {
   const circleWaveScale = useAnimatedValue(1);
 

@@ -4,7 +4,7 @@ import PagerView, { PagerViewProps } from "react-native-pager-view";
 
 type Props = { step: number } & Required<Pick<PagerViewProps, "children">>;
 
-// 회원가입 단계마다 보여질 슬라이드 레이아웃
+// 회원가입 단계마다 보여질 슬라이드를 담당하는 레이아웃
 export default function StepPagerView({ step, children }: Props) {
   const pageRef = useRef<PagerView>(null);
 

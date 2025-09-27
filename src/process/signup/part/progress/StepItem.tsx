@@ -10,6 +10,7 @@ export interface Props {
   isLast?: boolean;
 }
 
+// 회원가입 각 단계를 구성(Circle, label, line)하는 컴포넌트
 export default function StepItem({ status, label, isFirst, isLast }: Props) {
   return (
     <View className="flex-1">

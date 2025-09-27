@@ -8,6 +8,7 @@ interface Props {
   currentStep: Step;
 }
 
+// 회원가입 모든 단계의 Progress를 담당하는 컴포넌트
 export default function StepProgress({ steps, currentStep }: Props) {
   return (
     <View className="flex-row">
