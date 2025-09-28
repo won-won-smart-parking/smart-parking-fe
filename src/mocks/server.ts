@@ -1,15 +1,24 @@
-import { createServer } from "miragejs";
+import { createServer, Model } from "miragejs";
+import userData from "./data/user.json";
 import { movieMockRoutes } from "./routes/movie.mock";
+import { userMockRoutes } from "./routes/user.mock";
 
 // MirageJS Mock Server 구동 유틸 함수
 export default function enableMockServer() {
   // Mock Server 환경 설정
   window.server = createServer({
+    models: {
+      user: Model,
+    },
+    seeds(server) {
+      userData.forEach((data) => server.create("user", data));
+    },
     routes() {
-      this.urlPrefix = "https://api.example.com"; // url 접두사 지정
+      this.urlPrefix = process.env.EXPO_PUBLIC_API_URL as string; // url 접두사 지정
 
       // API 문서를 통해 구성한 가짜 Mock API 호출
       movieMockRoutes(this);
+      userMockRoutes(this);
     },
   });
 }
