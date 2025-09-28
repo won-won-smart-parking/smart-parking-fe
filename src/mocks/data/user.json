@@ -1,0 +1,5 @@
+[
+  { "id": "1", "name": "vito", "email": "vito@naver.com", "password": "Asd12345!", "profileUrl": "" },
+  { "id": "2", "name": "michael", "email": "michael@naver.com", "password": "Asd12345!", "profileUrl": "" },
+  { "id": "3", "name": "charles", "email": "charles@naver.com", "password": "Asd12345!", "profileUrl": "" }
+]
