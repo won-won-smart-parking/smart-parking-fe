@@ -9,6 +9,7 @@ export default function PushNoticeAgreement({ control }: Props) {
     <FormAgreementController<SignUpFormValues, "account.agreePushNotice">
       control={control}
       description="마케팅 정보 앱 푸시 알림 수신 동의 (선택) >"
+      rules={{ required: false }}
     />
   );
 }
