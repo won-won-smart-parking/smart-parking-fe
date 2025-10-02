@@ -5,7 +5,10 @@ import useInputState from "./useInputState";
 export interface Props<TFieldValues extends FieldValues, TName extends FieldPath<TFieldValues>> {
   inputField: {
     title: InputFieldProps["title"];
-    input: Required<Pick<InputFieldProps["input"], "placeholder">> & Partial<Pick<InputFieldProps["input"], "secureTextEntry" | "icon">>;
+    input: Required<Pick<InputFieldProps["input"], "placeholder">> &
+      Partial<Pick<InputFieldProps["input"], "secureTextEntry" | "icon">> &
+      Partial<InputFieldProps["input"]>;
+    messaeg?: InputFieldProps["message"];
     button?: InputFieldProps["button"];
   };
   control: {
@@ -13,7 +16,7 @@ export interface Props<TFieldValues extends FieldValues, TName extends FieldPath
     control: Control<TFieldValues>;
   };
   rules: RegisterOptions<TFieldValues, TName>;
-  resetField: UseFormResetField<TFieldValues>;
+  resetField?: UseFormResetField<TFieldValues>;
 }
 
 /**
@@ -43,10 +46,11 @@ export default function FormInputController<TFieldValues extends FieldValues, TN
     <InputField
       title={inputField.title}
       input={{
+        ...inputField.input,
         value,
         ref,
         onChangeText,
-        onClearPress: () => resetField(name, { keepError: true }),
+        onClearPress: () => resetField?.(name, { keepError: true }),
         onFocus: () => handler.handleFocus(),
         onBlur: () => {
           onRHFBlur(); // React Hook Form에서 제공하는 onBlur를 사용해야 mode=onBlur가 올바르게 동작하여 유효성 검사를 수행한다.
@@ -58,7 +62,7 @@ export default function FormInputController<TFieldValues extends FieldValues, TN
         icon: inputField.input.icon,
       }}
       button={inputField.button}
-      message={error && error.message}
+      message={(error && error.message) || inputField.messaeg}
     />
   );
 }
