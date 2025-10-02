@@ -13,12 +13,15 @@ import useFormStep from "./useFormStep";
 
 export type SignUpFormValues = {
   account: {
-    name: string;
     email: string;
     password: string;
     passwordConfirm: string;
-    agreeLocation: string;
-    agreePushNotice: string;
+    agreeLocation: boolean;
+    agreePushNotice?: boolean;
+  };
+  validation: {
+    name: string;
+    birthday: string;
   };
 };
 
@@ -29,12 +32,15 @@ export default function SignUpForm() {
     mode: "onBlur",
     defaultValues: {
       account: {
-        name: "",
         email: "",
         password: "",
         passwordConfirm: "",
-        agreeLocation: "",
-        agreePushNotice: "",
+        agreeLocation: false,
+        agreePushNotice: false,
+      },
+      validation: {
+        name: "",
+        birthday: "",
       },
     },
   });
@@ -47,14 +53,14 @@ export default function SignUpForm() {
         {/* 회원가입 각 단계의 폼 구조를 보여주는 레이아웃 */}
         <View className="flex-1 justify-between">
           <StepPagerView step={step}>
-            <SignUpAccount />
             <SignUpVerification />
+            <SignUpAccount />
             <SignUpComplete />
           </StepPagerView>
 
           {/* 각 스텝에 해당하는 버튼구성 레이아웃 */}
           <View className="gap-3">
-            {step < 3 ? <ContinueButton onPress={handleNextStep} /> : <SubmitButton />}
+            {step < 3 ? <ContinueButton step={step} onPress={handleNextStep} /> : <SubmitButton />}
             {step > 1 && <PreviousButton onPress={handlePrevStep} />}
           </View>
         </View>
