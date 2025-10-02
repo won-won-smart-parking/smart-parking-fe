@@ -49,7 +49,7 @@ export interface Props {
  */
 export default function InputField({ title, input, message = "", button }: Props) {
   return (
-    <View className="gap-0.5">
+    <View className="gap-1">
       {/* Input Fiedl 제목(Title) */}
       <Text typography="label-tight" className="text-neutral-900">
         {title}
@@ -65,13 +65,13 @@ export default function InputField({ title, input, message = "", button }: Props
               typography="label-tight"
               label={button.label}
               onPress={button.onPress}
-              disabled={input.state === "disabled"}
+              disabled={button.disabled}
               overrideButtonContainerStyles="min-w-24 rounded-[4px]"
               palette={{
-                bgColor: input.state === "disabled" ? "bg-neutral-500" : "bg-blue-300",
-                bgPressedColor: input.state === "disabled" ? "bg-neutral-600" : "bg-blue-400",
-                textColor: input.state === "disabled" ? "text-neutral-870" : "text-neutral-100",
-                textPressedColor: input.state === "disabled" ? "text-neutral-800" : "text-neutral-300",
+                bgColor: button.disabled ? "bg-neutral-500" : "bg-blue-300",
+                bgPressedColor: button.disabled ? "bg-neutral-600" : "bg-blue-400",
+                textColor: button.disabled ? "text-neutral-870" : "text-neutral-100",
+                textPressedColor: button.disabled ? "text-neutral-800" : "text-neutral-300",
               }}
             />
           ) : null}
