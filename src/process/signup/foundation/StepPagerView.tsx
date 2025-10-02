@@ -1,8 +1,12 @@
-import React, { useEffect, useRef } from "react";
+import React, { ReactElement, useEffect, useRef } from "react";
 import { View } from "react-native";
-import PagerView, { PagerViewProps } from "react-native-pager-view";
+import PagerView from "react-native-pager-view";
+import { Step } from "../index.type";
 
-type Props = { step: number } & Required<Pick<PagerViewProps, "children">>;
+interface Props {
+  step: Step;
+  children: ReactElement[];
+}
 
 // 회원가입 단계마다 보여질 슬라이드를 담당하는 레이아웃
 export default function StepPagerView({ step, children }: Props) {
@@ -22,13 +26,19 @@ export default function StepPagerView({ step, children }: Props) {
   // 4. 스크롤 가능 여부 X
   // 5. overScrollMode X
   return (
-    <PagerView ref={pageRef} style={{ flex: 1 }} initialPage={0} scrollEnabled={false} overScrollMode="never">
-      {Array.isArray(children) &&
-        children.map((child, idx) => (
-          <View key={idx} className="gap-6">
-            {child}
-          </View>
-        ))}
+    <PagerView
+      ref={pageRef}
+      style={{ flex: 1 }}
+      initialPage={0}
+      scrollEnabled={false}
+      overScrollMode="never"
+      offscreenPageLimit={children.length}
+    >
+      {children.map((child, idx) => (
+        <View key={idx} className="gap-6">
+          {child}
+        </View>
+      ))}
     </PagerView>
   );
 }
