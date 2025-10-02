@@ -65,7 +65,7 @@ export default function UnderlineInput({ state, icon, ref, onClearPress, ...inpu
         state === "default" && "border-neutral-700",
         state === "focus" && "border-blue-300",
         state === "error" && "border-red-300",
-        state === "disabled" && "border-neutral-700 bg-neutral-200",
+        input.readOnly && "border-neutral-700 bg-neutral-200",
       )}
     >
       <View className={InputStyle.field}>
@@ -75,7 +75,7 @@ export default function UnderlineInput({ state, icon, ref, onClearPress, ...inpu
           className={InputStyle.text}
           value={input.value}
           placeholder={input.placeholder}
-          readOnly={state === "disabled"}
+          readOnly={input.readOnly}
           placeholderClassName="text-coolgray-400"
           onChangeText={input.onChangeText}
           onFocus={input.onFocus}
