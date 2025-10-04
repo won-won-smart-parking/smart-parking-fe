@@ -49,7 +49,7 @@ export interface Props {
  */
 export default function InputField({ title, input, message = "", button }: Props) {
   return (
-    <View className="gap-1">
+    <View className="w-full gap-1">
       {/* Input Fiedl 제목(Title) */}
       <Text typography="label-tight" className="text-neutral-900">
         {title}

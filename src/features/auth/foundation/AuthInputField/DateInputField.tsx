@@ -36,7 +36,7 @@ export default function DateInputField({ control, state, setState, setIsShow }: 
   };
 
   return (
-    <Pressable onPress={handleDateInputPress}>
+    <Pressable onPress={handleDateInputPress} className="w-full">
       <View className="gap-1">
         {/* Input Fiedl 제목(Title) */}
         <Text typography="label-tight" className="text-neutral-900">
