@@ -2,9 +2,14 @@ import { SignUpFormValues } from ".";
 import { FieldErrors, useFormContext } from "react-hook-form";
 import { Step } from "./index.type";
 
+// 폼의 선택적 속성을 제외하고 유효성 검증 후 단계 활성화
 function isStepValid<K extends keyof SignUpFormValues>(values: SignUpFormValues[K], errors: FieldErrors<SignUpFormValues>, key: K) {
   if (key === "account" && "agreePushNotice" in values) {
     delete values["agreePushNotice"];
+  }
+
+  if (key === "validation" && "profile" in values) {
+    delete values["profile"];
   }
 
   return Object.values(values ?? {}).every(Boolean) && !!!errors[key];
