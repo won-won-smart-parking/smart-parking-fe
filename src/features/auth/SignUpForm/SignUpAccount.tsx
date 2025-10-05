@@ -5,6 +5,7 @@ import { EmailInputField, PasswordConfirmInputField, PasswordInputField } from "
 import LocationAgreement from "../foundation/AuthInputField/LocationAgreement";
 import PushNoticeAgreement from "../foundation/AuthInputField/PushNoticeAgreement";
 
+// 이메일, 비밀번호, 비밀번호 확인 입력 필드를 구성하는 레이아웃
 export default function SignUpAccount() {
   const { control, resetField } = useFormContext<SignUpFormValues>(); // 상위 RHF 제공자(Provider) 구독
 

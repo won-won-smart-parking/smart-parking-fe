@@ -2,6 +2,7 @@ import React from "react";
 import { Image, View } from "react-native";
 import { Text } from "@shared/ui/atoms";
 
+// 회원가입 완료 단계를 나타내는 컴포넌트
 export default function SignUpComplete() {
   return (
     <View className="items-center gap-6">

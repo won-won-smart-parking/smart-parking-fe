@@ -8,6 +8,7 @@ import DateInputField from "../foundation/AuthInputField/DateInputField";
 import ProfileInputField from "../foundation/AuthInputField/ProfileInputField";
 import useDatePicker from "../hooks/useDatePicker";
 
+// 개인 정보 입력(이미지, 이름, 생년월일)을 나타내는 컴포넌트
 export default function SignUpVerification() {
   const { control, getValues } = useFormContext<SignUpFormValues>(); // 상위 RHF 제공자(Provider) 구독
 
