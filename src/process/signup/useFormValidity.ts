@@ -4,15 +4,17 @@ import { Step } from "./index.type";
 
 // 폼의 선택적 속성을 제외하고 유효성 검증 후 단계 활성화
 function isStepValid<K extends keyof SignUpFormValues>(values: SignUpFormValues[K], errors: FieldErrors<SignUpFormValues>, key: K) {
-  if (key === "account" && "agreePushNotice" in values) {
-    delete values["agreePushNotice"];
+  const validValues = { ...values };
+
+  if (key === "account" && "agreePushNotice" in validValues) {
+    delete validValues["agreePushNotice"];
   }
 
-  if (key === "validation" && "profile" in values) {
-    delete values["profile"];
+  if (key === "validation" && "profile" in validValues) {
+    delete validValues["profile"];
   }
 
-  return Object.values(values ?? {}).every(Boolean) && !!!errors[key];
+  return Object.values(validValues ?? {}).every(Boolean) && !!!errors[key];
 }
 
 // 회원가입 각 단계 유효성 검증 성공 여부 처리 사용자 정의 훅
