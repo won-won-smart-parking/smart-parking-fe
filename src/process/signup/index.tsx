@@ -20,8 +20,9 @@ export type SignUpFormValues = {
     agreePushNotice?: boolean;
   };
   validation: {
+    profile?: { imageUrl: string; imageName: string; imageType: string };
     name: string;
-    birthday: string;
+    birthday: Date | "";
   };
 };
 
@@ -39,6 +40,7 @@ export default function SignUpForm() {
         agreePushNotice: false,
       },
       validation: {
+        profile: undefined,
         name: "",
         birthday: "",
       },
@@ -53,8 +55,8 @@ export default function SignUpForm() {
         {/* 회원가입 각 단계의 폼 구조를 보여주는 레이아웃 */}
         <View className="flex-1 justify-between">
           <StepPagerView step={step}>
-            <SignUpVerification />
             <SignUpAccount />
+            <SignUpVerification />
             <SignUpComplete />
           </StepPagerView>
 
