@@ -1,5 +1,47 @@
 [
-  { "id": "1", "name": "vito", "email": "vito@naver.com", "password": "Asd12345!", "profileUrl": "" },
-  { "id": "2", "name": "michael", "email": "michael@naver.com", "password": "Asd12345!", "profileUrl": "" },
-  { "id": "3", "name": "charles", "email": "charles@naver.com", "password": "Asd12345!", "profileUrl": "" }
+  {
+    "email": "alice@example.com",
+    "password": "Alice123!",
+    "agreeLocation": "true",
+    "agreePushNotice": "false",
+    "profile": "",
+    "name": "Alice",
+    "birthday": "1995.04.12"
+  },
+  {
+    "email": "bob@example.com",
+    "password": "Bob12345!",
+    "agreeLocation": "true",
+    "agreePushNotice": "true",
+    "profile": "",
+    "name": "Bob",
+    "birthday": "1990.11.30"
+  },
+  {
+    "email": "charlie@example.com",
+    "password": "CharliE123!",
+    "agreeLocation": "false",
+    "agreePushNotice": "false",
+    "profile": "",
+    "name": "Charlie",
+    "birthday": "2000.07.18"
+  },
+  {
+    "email": "diana@example.com",
+    "password": "Diana!234",
+    "agreeLocation": "true",
+    "agreePushNotice": "true",
+    "profile": "",
+    "name": "Diana",
+    "birthday": "1998.01.05"
+  },
+  {
+    "email": "eric@example.com",
+    "password": "Eric123@",
+    "agreeLocation": "false",
+    "agreePushNotice": "true",
+    "profile": "",
+    "name": "Eric",
+    "birthday": "1988.09.25"
+  }
 ]
