@@ -5,7 +5,6 @@ import { instance } from "@global/utils/axios";
  *
  * 회원가입 API 구성
  * - 이메일 중복 체크
- * - 휴대폰 인증 번호 전송
  * - 회원가입
  */
 
@@ -36,6 +35,21 @@ export async function validateDuplicateEmail(email: string): Promise<{ status: b
       }
     }
 
+    return { status: false, message: "알 수 없는 오류가 발생했습니다." };
+  }
+}
+
+// 회원가입 API - 구성 - 회원가입
+export async function fetchSignUp(formData: FormData): Promise<{ status: boolean; message?: string }> {
+  try {
+    await instance.post(`/api/auth/sign-up`, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+
+    return { status: true };
+  } catch (error) {
     return { status: false, message: "알 수 없는 오류가 발생했습니다." };
   }
 }

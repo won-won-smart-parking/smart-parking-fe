@@ -23,4 +23,26 @@ export function userMockRoutes(server: Server) {
 
     return new Response(200);
   });
+
+  // 회원가입 API
+  server.post("/api/auth/sign-up", (schema, request) => {
+    const formData = request.requestBody as unknown as FormData;
+
+    // Schema에 저장할 User 정보를 구성한다.
+    const userInfo: Record<string, unknown> = {};
+    for (const [key, value] of formData.entries()) {
+      if (key === "passwordConfirm") continue;
+      else if (key === "profile" && typeof value === "object") {
+        // 이미지를 저장한다.
+        userInfo[key] = "/src/shared/assets/images/mock-profile-image.webp";
+        continue;
+      }
+
+      userInfo[key] = value;
+    }
+
+    // Schema에 User를 저장한다.
+    schema.db.users.insert(userInfo);
+    return { status: true };
+  });
 }
