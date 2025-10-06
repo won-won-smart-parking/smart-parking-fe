@@ -11,7 +11,7 @@ import StepProgress from "./part/progress";
 import SubmitButton from "./part/SubmitButton";
 import useFormStep from "./useFormStep";
 
-export type SignUpFormValues = {
+export interface SignUpFormValues {
   account: {
     email: string;
     password: string;
@@ -24,7 +24,7 @@ export type SignUpFormValues = {
     name: string;
     birthday: Date | "";
   };
-};
+}
 
 export default function SignUpForm() {
   const { step, handleNextStep, handlePrevStep } = useFormStep();
