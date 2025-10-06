@@ -1,13 +1,19 @@
-import { SignUpFormValues } from "@/process/signup";
+import { FieldPath, FieldValues } from "react-hook-form";
 import { validateDuplicateEmail } from "@entities/auth/auth.api";
 import FormInputController, { Props as FormInputControllerProps } from "../FormInputController";
 
-type Props = Omit<FormInputControllerProps<SignUpFormValues, "account.email">, "inputField" | "rules">;
+// type Props = Omit<FormInputControllerProps<SignUpFormValues | SignInFormValues, "account.email" | "email">, "inputField" | "rules">;
+type Props<TFieldValues extends FieldValues, TName extends FieldPath<TFieldValues>> = Omit<
+  FormInputControllerProps<TFieldValues, TName>,
+  "inputField" | "rules"
+>;
 
 // 이메일 입력 필드 및 유효성 검사 규칙 관리 컴포넌트
-export default function EmailInputField(props: Props) {
+export default function EmailInputField<TFieldValues extends FieldValues, TName extends FieldPath<TFieldValues>>(
+  props: Props<TFieldValues, TName>,
+) {
   return (
-    <FormInputController<SignUpFormValues, "account.email">
+    <FormInputController<TFieldValues, TName>
       {...props}
       rules={{
         required: { value: true, message: "필수 입력 항목입니다." },
