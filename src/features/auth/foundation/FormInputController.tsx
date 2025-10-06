@@ -8,7 +8,7 @@ export interface Props<TFieldValues extends FieldValues, TName extends FieldPath
     input: Required<Pick<InputFieldProps["input"], "placeholder">> &
       Partial<Pick<InputFieldProps["input"], "secureTextEntry" | "icon">> &
       Partial<InputFieldProps["input"]>;
-    messaeg?: InputFieldProps["message"];
+    message?: InputFieldProps["message"];
     button?: InputFieldProps["button"];
   };
   control: {
@@ -62,7 +62,7 @@ export default function FormInputController<TFieldValues extends FieldValues, TN
         icon: inputField.input.icon,
       }}
       button={inputField.button}
-      message={(error && error.message) || inputField.messaeg}
+      message={(error && error.message) || inputField.message}
     />
   );
 }
