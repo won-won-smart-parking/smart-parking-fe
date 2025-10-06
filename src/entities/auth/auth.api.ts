@@ -2,7 +2,6 @@ import { AxiosError } from "axios";
 import { instance } from "@global/utils/axios";
 
 /**
- *
  * 회원가입 API 구성
  * - 이메일 중복 체크
  * - 회원가입
@@ -39,7 +38,7 @@ export async function validateDuplicateEmail(email: string): Promise<{ status: b
   }
 }
 
-// 회원가입 API - 구성 - 회원가입
+// 회원가입 API 구성 - 회원가입
 export async function fetchSignUp(formData: FormData): Promise<{ status: boolean; message?: string }> {
   try {
     await instance.post(`/api/auth/sign-up`, formData, {
@@ -50,6 +49,43 @@ export async function fetchSignUp(formData: FormData): Promise<{ status: boolean
 
     return { status: true };
   } catch (error) {
+    return { status: false, message: "알 수 없는 오류가 발생했습니다." };
+  }
+}
+
+/**
+ * 로그인 API 구성
+ * - 로그인
+ */
+
+// 로그인 API 구성 - 로그인
+export async function fetchSignIn(
+  formData: FormData,
+): Promise<{ status: boolean; data?: { [key in string]: unknown }; code?: string; message?: string }> {
+  try {
+    const resposne = await instance.post(`/api/auth/sign-in`, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+
+    return { status: true, data: resposne.data };
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      const { status, response } = error;
+
+      // 각 상태에 맞는 예외 분기 처리를 진행한다.
+      switch (status) {
+        case 401: {
+          if (response?.data?.error === "EMAIL_NOT_FOUND")
+            return { status: false, code: "EMAIL_NOT_FOUND", message: response.data.message };
+          else if (response?.data?.error === "INVALID_PASSWORD") {
+            return { status: false, code: "INVALID_PASSWORD", message: response.data.message };
+          }
+        }
+      }
+    }
+
     return { status: false, message: "알 수 없는 오류가 발생했습니다." };
   }
 }
