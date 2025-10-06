@@ -45,4 +45,37 @@ export function userMockRoutes(server: Server) {
     schema.db.users.insert(userInfo);
     return { status: true };
   });
+
+  // 로그인 API
+  server.post("/api/auth/sign-in", (schema, request) => {
+    const formData = request.requestBody as unknown as FormData;
+
+    // 이메일 정보 확인 후 비밀번호 체크
+    const email = formData.get("email");
+    if (schema.db.users.findBy({ email })) {
+      const userInfo = schema.db.users.findBy({ email, password: formData.get("password") });
+
+      // 비밀번호 정보까지 확인 후 토큰 + 유저 정보 반환
+      if (userInfo) {
+        return new Response(
+          200,
+          {},
+          {
+            accessToken: "access-token",
+            refreshToken: "refresh-token",
+            user: {
+              id: userInfo.id,
+              name: userInfo.name,
+              profile: userInfo.profile,
+            },
+          },
+        );
+      }
+
+      return new Response(401, {}, { error: "INVALID_PASSWORD", message: "비밀번호가 일치하지 않습니다." }); // 비밀번호 불일치 시 로그인 실패
+    }
+
+    // 이메일 정보가 없을 시 로그인 실패
+    return new Response(401, {}, { error: "EMAIL_NOT_FOUND", message: "입력하신 이메일 정보가 존재하지 않습니다." });
+  });
 }
