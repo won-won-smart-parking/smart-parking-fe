@@ -5,7 +5,7 @@ import { Response, Server } from "miragejs";
  * 로그인, 로그아웃, 회원가입 등의 API를 흉내내는 Mock Object를 구성
  */
 export function userMockRoutes(server: Server) {
-  // Email 중복 검사 API
+  // 회원가입 Email 중복 검사 API
   server.get("/api/auth/emails", (schema, request) => {
     const { email } = request.queryParams as { email: string };
 
@@ -77,5 +77,34 @@ export function userMockRoutes(server: Server) {
 
     // 이메일 정보가 없을 시 로그인 실패
     return new Response(401, {}, { error: "EMAIL_NOT_FOUND", message: "입력하신 이메일 정보가 존재하지 않습니다." });
+  });
+
+  // 비밀번호 찾기 Email 존재 여부 검사 API
+  server.get("/api/auth/confirm/emails", (schema, request) => {
+    const { email } = request.queryParams as { email: string };
+
+    // Email 존재 여부 검사
+    if (schema.db.users.findBy({ email })) {
+      return new Response(200);
+    }
+
+    return new Response(404, {}, { error: "EMAIL_NOT_FOUND", message: "등록되지 않은 이메일입니다." });
+  });
+
+  // 비밀번호 수정 API
+  server.patch("/api/auth/password/reset", (schema, request) => {
+    const formData = request.requestBody as unknown as FormData;
+
+    // FormData를 통해서 RequestBody 값 구축
+    const email = formData.get("email");
+    const newPassword = formData.get("newPassword");
+
+    // 이메일을 통해 유저 정보 조회 후 password 필드 업데이트
+    const userInfo = schema.db.users.findBy({ email }); // 이메일로 유저 조회
+    schema.db.users.update(userInfo.id, {
+      password: newPassword,
+    });
+
+    return new Response(200);
   });
 }
