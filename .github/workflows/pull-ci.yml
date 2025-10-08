@@ -57,6 +57,7 @@ jobs:
         env:
           NODE_ENV: ${{ secrets.NODE_ENV }}
           ENV_REPORT_JSON: env-report.json
+          EXPO_PUBLIC_API_KEY: ${{ secrets.EXPO_PUBLIC_API_KEY }}
         run: yarn env:check
 
       # 6. TypeScript Compiler 타입 체크 단계
