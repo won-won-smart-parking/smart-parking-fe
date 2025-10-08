@@ -1,16 +1,12 @@
 import { Link } from "expo-router";
 import { useForm } from "react-hook-form";
 import { Platform, View } from "react-native";
-import SubmitButton from "@/process/signup/part/SubmitButton";
+import { SubmitButton } from "@features/auth/buttons";
 import { SocialButton, Text } from "@shared/ui/atoms";
 import ButtonGroup from "@shared/ui/molecules/button-group";
+import { SignInFormValues } from "./index.type";
 import useSignInSubmit from "./useSignInSubmit";
-import { EmailInputField, PasswordInputField } from "../foundation";
-
-export interface SignInFormValues {
-  email: string;
-  password: string;
-}
+import { EmailInputField, PasswordInputField } from "../../fields";
 
 export default function SignInForm() {
   const { control, resetField, setError, handleSubmit } = useForm<SignInFormValues>({

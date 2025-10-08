@@ -1,5 +1,6 @@
 import { AxiosError } from "axios";
 import { instance } from "@global/utils/axios";
+import type { APIAsyncStateResult, SignInAPIAsyncStateResult } from "./auth.type";
 
 /**
  * 회원가입 API 구성
@@ -8,7 +9,7 @@ import { instance } from "@global/utils/axios";
  */
 
 // 회원가입 API 구성 - 이메일 중복 체크
-export async function validateDuplicateEmail(email: string): Promise<{ status: boolean; message?: string }> {
+export async function requestEmailValidation(email: string): Promise<APIAsyncStateResult> {
   try {
     await instance.get(`/api/auth/emails?email=${email}`);
     return { status: true };
@@ -39,7 +40,7 @@ export async function validateDuplicateEmail(email: string): Promise<{ status: b
 }
 
 // 회원가입 API 구성 - 회원가입
-export async function fetchSignUp(formData: FormData): Promise<{ status: boolean; message?: string }> {
+export async function requestSignUp(formData: FormData): Promise<APIAsyncStateResult> {
   try {
     await instance.post(`/api/auth/sign-up`, formData, {
       headers: {
@@ -53,25 +54,8 @@ export async function fetchSignUp(formData: FormData): Promise<{ status: boolean
   }
 }
 
-/**
- * 로그인 API 구성
- * - 로그인
- */
-
-export interface ResponseLoginData {
-  accessToken: string;
-  refreshToken: string;
-  user: {
-    id: string;
-    name: string;
-    profile: string;
-  };
-}
-
 // 로그인 API 구성 - 로그인
-export async function fetchSignIn(
-  formData: FormData,
-): Promise<{ status: boolean; data?: ResponseLoginData; code?: string; message?: string }> {
+export async function requestSignIn(formData: FormData): Promise<SignInAPIAsyncStateResult> {
   try {
     const resposne = await instance.post(`/api/auth/sign-in`, formData, {
       headers: {

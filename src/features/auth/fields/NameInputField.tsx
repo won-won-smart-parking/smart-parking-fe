@@ -1,5 +1,5 @@
-import { SignUpFormValues } from "@/process/signup";
-import FormInputController, { Props as FormInputControllerProps } from "../FormInputController";
+import type { SignUpFormValues } from "@/process/signup/index.type";
+import { FormInputController, type FormInputControllerProps } from "../controllers";
 
 type Props = Omit<FormInputControllerProps<SignUpFormValues, "validation.name">, "inputField" | "rules">;
 

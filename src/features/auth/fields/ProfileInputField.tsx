@@ -1,8 +1,8 @@
 import * as ImagePicker from "expo-image-picker";
 import { useController } from "react-hook-form";
-import { SignUpFormValues } from "@/process/signup";
+import type { SignUpFormValues } from "@/process/signup/index.type";
 import ProfileUploader from "@shared/ui/molecules/profile-uploader";
-import { Props as FormInputControllerProps } from "../FormInputController";
+import { type FormInputControllerProps } from "../controllers";
 
 type Props = Omit<FormInputControllerProps<SignUpFormValues, "validation.profile">, "inputField" | "rules" | "resetField">;
 

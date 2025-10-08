@@ -1,34 +1,14 @@
 import React from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { View } from "react-native";
-import SignUpAccount from "@features/auth/SignUpForm/SignUpAccount";
-import SignUpComplete from "@features/auth/SignUpForm/SignUpComplete";
-import SignUpVerification from "@features/auth/SignUpForm/SignUpVerification";
-import StepPagerView from "./foundation/StepPagerView";
-import ContinueButton from "./part/ContinueButton";
-import PreviousButton from "./part/PreviousButton";
-import StepProgress from "./part/progress";
-import SubmitButton from "./part/SubmitButton";
-import useFormStep from "./useFormStep";
-
-export interface SignUpFormValues {
-  account: {
-    email: string;
-    password: string;
-    passwordConfirm: string;
-    agreeLocation: boolean;
-    agreePushNotice?: boolean;
-  };
-  validation: {
-    profile?: { imageUrl: string; imageName: string; imageType: string };
-    name: string;
-    birthday: Date | "";
-  };
-}
+import { ContinueButton, PreviousButton, SubmitButton } from "@features/auth/buttons";
+import { SignUpAccount, SignUpComplete, SignUpVerification } from "@features/auth/form/SignUpForm";
+import useSignInFormContinue from "@features/auth/hooks/useSignInFormContinue";
+import { StepPagerView, StepProgress } from "./foundation";
+import { SignUpFormValues } from "./index.type";
+import useSignUpFormSubmit from "./useSignUpFormSubmit";
 
 export default function SignUpForm() {
-  const { step, handleNextStep, handlePrevStep } = useFormStep();
-
   const method = useForm<SignUpFormValues>({
     mode: "onBlur",
     defaultValues: {
@@ -47,6 +27,9 @@ export default function SignUpForm() {
     },
   });
 
+  const { step, handleNextStep, handlePrevStep } = useSignInFormContinue();
+  const { handleSubmit } = useSignUpFormSubmit(method.getValues);
+
   return (
     <FormProvider {...method}>
       <View className="flex-1 gap-10">
@@ -62,7 +45,11 @@ export default function SignUpForm() {
 
           {/* 각 스텝에 해당하는 버튼구성 레이아웃 */}
           <View className="gap-3">
-            {step < 3 ? <ContinueButton step={step} onPress={handleNextStep} /> : <SubmitButton />}
+            {step < 3 ? (
+              <ContinueButton step={step} onPress={handleNextStep} />
+            ) : (
+              <SubmitButton label="로그인 화면으로 이동" onPress={handleSubmit} />
+            )}
             {step > 1 && <PreviousButton onPress={handlePrevStep} />}
           </View>
         </View>

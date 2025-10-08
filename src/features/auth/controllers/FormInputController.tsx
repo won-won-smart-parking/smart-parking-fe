@@ -1,6 +1,6 @@
 import { Control, type FieldPath, type FieldValues, type RegisterOptions, useController, type UseFormResetField } from "react-hook-form";
 import InputField, { type Props as InputFieldProps } from "@shared/ui/molecules/input-field";
-import useInputState from "./useInputState";
+import useInputState from "../hooks/useInputState";
 
 export interface Props<TFieldValues extends FieldValues, TName extends FieldPath<TFieldValues>> {
   inputField: {

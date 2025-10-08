@@ -1,9 +1,9 @@
 import clsx from "clsx";
 import { useController } from "react-hook-form";
 import { Pressable, View } from "react-native";
-import { SignUpFormValues } from "@/process/signup";
+import { SignUpFormValues } from "@/process/signup/index.type";
 import { Text } from "@shared/ui/atoms";
-import { Props as FormInputControllerProps } from "../FormInputController";
+import { type FormInputControllerProps } from "../controllers";
 
 type Props = Omit<FormInputControllerProps<SignUpFormValues, "validation.birthday">, "inputField" | "rules"> & {
   state: "focus" | "default";

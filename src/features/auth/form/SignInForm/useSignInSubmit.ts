@@ -1,8 +1,8 @@
-import { SignInFormValues } from ".";
 import { useRouter } from "expo-router";
 import { SubmitHandler, UseFormSetError } from "react-hook-form";
-import { fetchSignIn } from "@entities/auth/auth.api";
+import { requestSignIn } from "@entities/auth/auth.api";
 import { useUserStore } from "@entities/user/user.store";
+import { SignInFormValues } from "./index.type";
 
 export default function useSignInSubmit(setError: UseFormSetError<SignInFormValues>) {
   const router = useRouter();
@@ -17,7 +17,7 @@ export default function useSignInSubmit(setError: UseFormSetError<SignInFormValu
     }
 
     // 로그인 요청을 보낸 후 성공 응답을 받을 경우 운영체제 비밀 저장소 + 전역 상태 + 파일 시스템에 사용자 정보를 저장한다.
-    const response = await fetchSignIn(formData);
+    const response = await requestSignIn(formData);
     if (response.status && response.data) {
       login(response.data);
       router.navigate("/(tabs)");

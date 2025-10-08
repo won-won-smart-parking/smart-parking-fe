@@ -1,7 +1,7 @@
-import { SignUpFormValues } from "@/process/signup";
-import FormAgreementController, { Props as FormAgreementControlerProps } from "../FormAgreementController";
+import type { SignUpFormValues } from "@/process/signup/index.type";
+import { FormAgreementController, type FormAgreementControllerProps } from "../controllers";
 
-type Props = Pick<FormAgreementControlerProps<SignUpFormValues, "account.agreeLocation">, "control">;
+type Props = Pick<FormAgreementControllerProps<SignUpFormValues, "account.agreeLocation">, "control">;
 
 // 위치 기반 서비스 약관 동의 입력 필드 관리 컴포넌트
 export default function LocationAgreement({ control }: Props) {

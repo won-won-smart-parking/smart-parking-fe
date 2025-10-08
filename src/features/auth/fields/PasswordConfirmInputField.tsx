@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useFormContext } from "react-hook-form";
-import { SignUpFormValues } from "@/process/signup";
-import FormInputController, { Props as FormInputControllerProps } from "../FormInputController";
+import type { SignUpFormValues } from "@/process/signup/index.type";
+import { FormInputController, type FormInputControllerProps } from "../controllers";
 
 type Props = Omit<FormInputControllerProps<SignUpFormValues, "account.passwordConfirm">, "inputField" | "rules">;
 

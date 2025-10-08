@@ -1,9 +1,9 @@
-import { SignUpFormValues } from ".";
 import { useRouter } from "expo-router";
 import { UseFormGetValues } from "react-hook-form";
-import { fetchSignUp } from "@entities/auth/auth.api";
+import { requestSignUp } from "@entities/auth/auth.api";
+import { SignUpFormValues } from "./index.type";
 
-export default function useFormSubmit(getValues: UseFormGetValues<SignUpFormValues>) {
+export default function useSignUpFormSubmit(getValues: UseFormGetValues<SignUpFormValues>) {
   const router = useRouter();
 
   // Form Data 제출 이벤트
@@ -39,7 +39,7 @@ export default function useFormSubmit(getValues: UseFormGetValues<SignUpFormValu
       });
     }
 
-    const response = await fetchSignUp(formDate);
+    const response = await requestSignUp(formDate);
     if (response.status) {
       router.navigate("/auth/sign-in");
     }

@@ -7,16 +7,9 @@
  */
 import * as SecureStore from "expo-secure-store";
 import { create } from "zustand";
-import { type ResponseLoginData } from "@entities/auth/auth.api";
+import type { ResponseUserData } from "@entities/auth/auth.type";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-
-interface UserStore {
-  isLoggedIn: boolean;
-  user: ResponseLoginData["user"];
-  init: () => void;
-  login: (data: ResponseLoginData) => void;
-  logout: () => void;
-}
+import type { UserStore } from "./user.type";
 
 export const useUserStore = create<UserStore>((set, _) => {
   return {
@@ -33,7 +26,7 @@ export const useUserStore = create<UserStore>((set, _) => {
 
       // 앱 종료 후 유저 정보가 디스크에 저장된 경우 로그인을 유지시킨다.
       if (storedUser) {
-        const parseUserInfo = JSON.parse(storedUser) as ResponseLoginData["user"];
+        const parseUserInfo = JSON.parse(storedUser) as ResponseUserData["user"];
 
         set({
           isLoggedIn: true,
@@ -43,7 +36,7 @@ export const useUserStore = create<UserStore>((set, _) => {
     },
 
     // Login Action
-    login(data: ResponseLoginData) {
+    login(data: ResponseUserData) {
       // 로그인 이후 전역 상태 값 변경
       set({
         isLoggedIn: true,

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Control, useController } from "react-hook-form";
-import { SignUpFormValues } from "@/process/signup";
+import { SignUpFormValues } from "@/process/signup/index.type";
 import { DateTimePickerEvent } from "@react-native-community/datetimepicker";
 
 export default function useDatePicker(control: Control<SignUpFormValues>) {

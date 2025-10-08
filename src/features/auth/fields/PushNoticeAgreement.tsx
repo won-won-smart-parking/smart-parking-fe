@@ -1,7 +1,7 @@
-import { SignUpFormValues } from "@/process/signup";
-import FormAgreementController, { Props as FormAgreementControlerProps } from "../FormAgreementController";
+import type { SignUpFormValues } from "@/process/signup/index.type";
+import { FormAgreementController, type FormAgreementControllerProps } from "../controllers";
 
-type Props = Pick<FormAgreementControlerProps<SignUpFormValues, "account.agreePushNotice">, "control">;
+type Props = Pick<FormAgreementControllerProps<SignUpFormValues, "account.agreePushNotice">, "control">;
 
 // 앱 푸시 알림 수신 동의 유무 관리 컴포넌트
 export default function PushNoticeAgreement({ control }: Props) {

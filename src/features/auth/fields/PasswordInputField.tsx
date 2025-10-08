@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { FieldPath, FieldValues } from "react-hook-form";
-import FormInputController, { Props as FormInputControllerProps } from "../FormInputController";
+import { FormInputController, type FormInputControllerProps } from "../controllers";
 
 // type Props = Omit<FormInputControllerProps<SignUpFormValues | SignInFormValues, "account.password" | "password">, "inputField" | "rules">;
 type Props<TFieldValues extends FieldValues, TName extends FieldPath<TFieldValues>> = Omit<

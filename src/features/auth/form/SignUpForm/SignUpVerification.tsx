@@ -1,12 +1,10 @@
 import React from "react";
 import { useFormContext } from "react-hook-form";
 import { Platform, View } from "react-native";
-import { SignUpFormValues } from "@/process/signup";
+import { SignUpFormValues } from "@/process/signup/index.type";
+import { DateInputField, NameInputField, ProfileInputField } from "@features/auth/fields";
+import useDatePicker from "@features/auth/hooks/useDatePicker";
 import { AndroidDateTimePicker, IOSDateTimePicker } from "@widgets/dateTimePicker";
-import { NameInputField } from "../foundation";
-import DateInputField from "../foundation/AuthInputField/DateInputField";
-import ProfileInputField from "../foundation/AuthInputField/ProfileInputField";
-import useDatePicker from "../hooks/useDatePicker";
 
 // 개인 정보 입력(이미지, 이름, 생년월일)을 나타내는 컴포넌트
 export default function SignUpVerification() {

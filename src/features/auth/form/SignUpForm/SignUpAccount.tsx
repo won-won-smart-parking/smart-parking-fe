@@ -1,9 +1,7 @@
 import { useFormContext } from "react-hook-form";
 import { View } from "react-native";
-import { SignUpFormValues } from "@/process/signup";
-import { EmailInputField, PasswordConfirmInputField, PasswordInputField } from "../foundation";
-import LocationAgreement from "../foundation/AuthInputField/LocationAgreement";
-import PushNoticeAgreement from "../foundation/AuthInputField/PushNoticeAgreement";
+import { SignUpFormValues } from "@/process/signup/index.type";
+import { EmailInputField, LocationAgreement, PasswordConfirmInputField, PasswordInputField, PushNoticeAgreement } from "../../fields";
 
 // 이메일, 비밀번호, 비밀번호 확인 입력 필드를 구성하는 레이아웃
 export default function SignUpAccount() {

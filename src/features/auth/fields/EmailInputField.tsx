@@ -1,6 +1,6 @@
 import { FieldPath, FieldValues } from "react-hook-form";
-import { validateDuplicateEmail } from "@entities/auth/auth.api";
-import FormInputController, { Props as FormInputControllerProps } from "../FormInputController";
+import { requestEmailValidation } from "@entities/auth/auth.api";
+import { FormInputController, type FormInputControllerProps } from "../controllers";
 
 // type Props = Omit<FormInputControllerProps<SignUpFormValues | SignInFormValues, "account.email" | "email">, "inputField" | "rules">;
 type Props<TFieldValues extends FieldValues, TName extends FieldPath<TFieldValues>> = Omit<
@@ -25,7 +25,7 @@ export default function EmailInputField<TFieldValues extends FieldValues, TName 
           ? async (value) => {
               if (!value) return; // 입력값이 없을 경우에는 유효성 검사를 시도하지 않고 넘어간다.
 
-              const { status, message } = await validateDuplicateEmail(value);
+              const { status, message } = await requestEmailValidation(value);
 
               if (status) return;
               else {
