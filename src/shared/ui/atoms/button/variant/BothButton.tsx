@@ -20,14 +20,7 @@ export interface Props extends BaseButtonProps {
   typography?: TypographyKey;
 }
 
-export default function BothButton({
-  label,
-  iconName,
-  iconSize = "w-6",
-  typography = "label-md",
-  palette,
-  ...rest
-}: Props) {
+export default function BothButton({ label, iconName, iconSize = "w-6", typography = "label-md", palette, ...rest }: Props) {
   return (
     <BaseButton
       palette={palette}
@@ -42,9 +35,7 @@ export default function BothButton({
           />
           <Text
             typography={typography}
-            className={clsx(
-              !pressed ? palette?.textColor || "text-neutral-900" : palette?.textPressedColor || "text-neutral-870",
-            )}
+            className={clsx(!pressed ? palette?.textColor || "text-neutral-900" : palette?.textPressedColor || "text-neutral-870")}
           >
             {label}
           </Text>

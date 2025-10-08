@@ -4,10 +4,7 @@
 // import { chipPalettePreset } from "./palette-preset";
 import { BothChip, type BothChipProps, IconChip, type IconChipProps, LabelChip, type LabelChipProps } from "./variant";
 
-type Props =
-  | ({ variant: "label" } & LabelChipProps)
-  | ({ variant: "icon" } & IconChipProps)
-  | ({ variant: "both" } & BothChipProps);
+type Props = ({ variant: "label" } & LabelChipProps) | ({ variant: "icon" } & IconChipProps) | ({ variant: "both" } & BothChipProps);
 
 /**
  * Atom / Chip

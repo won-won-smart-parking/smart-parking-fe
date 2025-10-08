@@ -1,16 +1,6 @@
-import {
-  BothButton,
-  type BothButtonProps,
-  IconButton,
-  type IconButtonProps,
-  LabelButton,
-  type LabelButtonProps,
-} from "./variant";
+import { BothButton, type BothButtonProps, IconButton, type IconButtonProps, LabelButton, type LabelButtonProps } from "./variant";
 
-type Props =
-  | ({ variant: "both" } & BothButtonProps)
-  | ({ variant: "icon" } & IconButtonProps)
-  | ({ variant: "label" } & LabelButtonProps);
+type Props = ({ variant: "both" } & BothButtonProps) | ({ variant: "icon" } & IconButtonProps) | ({ variant: "label" } & LabelButtonProps);
 
 /**
  * Atom / Button

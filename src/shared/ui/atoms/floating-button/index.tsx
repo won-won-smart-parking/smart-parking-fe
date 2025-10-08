@@ -1,9 +1,4 @@
-import {
-  ExtendedFloatingButton,
-  type ExtendedFloatingButtonProps,
-  IconFloatingButton,
-  type IconFloatingButtonProps,
-} from "./variant";
+import { ExtendedFloatingButton, type ExtendedFloatingButtonProps, IconFloatingButton, type IconFloatingButtonProps } from "./variant";
 
 type Props = ({ variant: "icon" } & IconFloatingButtonProps) | ({ variant: "extended" } & ExtendedFloatingButtonProps);
 
