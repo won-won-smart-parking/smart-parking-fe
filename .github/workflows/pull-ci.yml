@@ -56,8 +56,8 @@ jobs:
         if: ${{ github.event_name == 'pull_request' }}
         env:
           NODE_ENV: ${{ secrets.NODE_ENV }}
+          EXPO_PUBLIC_API_URL: ${{ vars.EXPO_PUBLIC_API_URL }}
           ENV_REPORT_JSON: env-report.json
-          EXPO_PUBLIC_API_KEY: ${{ vars.EXPO_PUBLIC_API_KEY }}
         run: yarn env:check
 
       # 6. TypeScript Compiler 타입 체크 단계
