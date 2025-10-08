@@ -3,13 +3,13 @@ import { useUserStore } from "@entities/user/user.store";
 
 // SideMenu 훅 로직
 export function useSideMenu() {
-  const store = useUserStore((state) => state.user); // 스토어에 저장된 User 전역 상태(Store State) 정보를 가져온다.
+  const store = useUserStore(); // 스토어에 저장된 User 전역 상태(Store State) 정보를 가져온다.
   const router = useRouter();
 
   const handleNavigate = (key: string, to: Href) => {
     if (key === "notice") router.navigate(to);
     else {
-      if (store.isLogin) router.navigate(to);
+      if (store.isLoggedIn) router.navigate(to);
       else {
         // .. 로그인 유도 모달 오픈
         /**
