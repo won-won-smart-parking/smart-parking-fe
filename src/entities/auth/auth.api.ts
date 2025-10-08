@@ -58,10 +58,20 @@ export async function fetchSignUp(formData: FormData): Promise<{ status: boolean
  * - 로그인
  */
 
+export interface ResponseLoginData {
+  accessToken: string;
+  refreshToken: string;
+  user: {
+    id: string;
+    name: string;
+    profile: string;
+  };
+}
+
 // 로그인 API 구성 - 로그인
 export async function fetchSignIn(
   formData: FormData,
-): Promise<{ status: boolean; data?: { [key in string]: unknown }; code?: string; message?: string }> {
+): Promise<{ status: boolean; data?: ResponseLoginData; code?: string; message?: string }> {
   try {
     const resposne = await instance.post(`/api/auth/sign-in`, formData, {
       headers: {
