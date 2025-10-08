@@ -1,8 +1,10 @@
 import { Link } from "expo-router";
 import { useForm } from "react-hook-form";
 import { Platform, View } from "react-native";
+import SubmitButton from "@/process/signup/part/SubmitButton";
 import { SocialButton, Text } from "@shared/ui/atoms";
 import ButtonGroup from "@shared/ui/molecules/button-group";
+import useSignInSubmit from "./useSignInSubmit";
 import { EmailInputField, PasswordInputField } from "../foundation";
 
 export interface SignInFormValues {
@@ -11,7 +13,7 @@ export interface SignInFormValues {
 }
 
 export default function SignInForm() {
-  const { control, resetField } = useForm<SignInFormValues>({
+  const { control, resetField, setError, handleSubmit } = useForm<SignInFormValues>({
     mode: "onBlur",
     defaultValues: {
       email: "",
@@ -19,9 +21,11 @@ export default function SignInForm() {
     },
   });
 
+  const { handleSignInSuccessSubmit } = useSignInSubmit(setError);
+
   return (
     <View className="flex-1 gap-15">
-      {/* 일반 로그인 레이아웃 */}
+      {/* 일반 로그인 폼 */}
       <View className="gap-4">
         <View className="gap-3">
           <EmailInputField control={{ name: "email", control }} resetField={resetField} />
@@ -38,6 +42,7 @@ export default function SignInForm() {
         </View>
 
         {/* 로그인 폼 제출(Submit) 이벤트 발생 버튼 */}
+        <SubmitButton label="로그인" onPress={handleSubmit(handleSignInSuccessSubmit)} />
       </View>
 
       {/* 일반 로그인 <-> 소셜 로그인 구분선 */}
