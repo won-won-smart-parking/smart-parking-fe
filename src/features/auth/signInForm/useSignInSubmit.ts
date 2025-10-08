@@ -1,9 +1,11 @@
 import { SignInFormValues } from ".";
+import { useRouter } from "expo-router";
 import { SubmitHandler, UseFormSetError } from "react-hook-form";
 import { fetchSignIn } from "@entities/auth/auth.api";
 import { useUserStore } from "@entities/user/user.store";
 
 export default function useSignInSubmit(setError: UseFormSetError<SignInFormValues>) {
+  const router = useRouter();
   const login = useUserStore((state) => state.login);
 
   // 로그인 입력 필드 유효성 검사 통과 A시 작동하는 Submit 핸들러
@@ -18,6 +20,7 @@ export default function useSignInSubmit(setError: UseFormSetError<SignInFormValu
     const response = await fetchSignIn(formData);
     if (response.status && response.data) {
       login(response.data);
+      router.navigate("/(tabs)");
       return;
     }
 
