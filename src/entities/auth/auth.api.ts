@@ -83,3 +83,37 @@ export async function requestSignIn(formData: FormData): Promise<SignInAPIAsyncS
     return { status: false, message: "알 수 없는 오류가 발생했습니다." };
   }
 }
+
+// 비밀번호 찾기 API 구성 - Email 존재 여부
+export async function requestConfirmEmail(email: string): Promise<APIAsyncStateResult> {
+  try {
+    await instance.get(`/api/auth/confirm/emails?email=${email}`);
+    return { status: true };
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      const { status, response } = error;
+
+      switch (status) {
+        case 404: {
+          if (response?.data?.error === "EMAIL_NOT_FOUND") return { status: false, message: response.data.message };
+        }
+      }
+    }
+
+    return { status: false, message: "알 수 없는 오류가 발생했습니다." };
+  }
+}
+
+// 비밀번호 찾기 API 구성 - 비밀번호 초기화
+export async function requestResetPassword(formData: FormData): Promise<APIAsyncStateResult> {
+  try {
+    await instance.patch("/api/auth/password/reset", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+    return { status: true };
+  } catch (error) {
+    return { status: false, message: "알 수 없는 오류가 발생했습니다." };
+  }
+}
