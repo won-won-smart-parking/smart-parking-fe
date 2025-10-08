@@ -1,16 +1,18 @@
 import { FieldPath, FieldValues } from "react-hook-form";
 import { requestEmailValidation } from "@entities/auth/auth.api";
+import { type Props as InputFieldProps } from "@shared/ui/molecules/input-field";
 import { FormInputController, type FormInputControllerProps } from "../controllers";
 
 // type Props = Omit<FormInputControllerProps<SignUpFormValues | SignInFormValues, "account.email" | "email">, "inputField" | "rules">;
 type Props<TFieldValues extends FieldValues, TName extends FieldPath<TFieldValues>> = Omit<
   FormInputControllerProps<TFieldValues, TName>,
   "inputField" | "rules"
-> & { duplicateValid?: boolean };
+> & { duplicateValid?: boolean; confirmButton?: InputFieldProps["button"] };
 
 // 이메일 입력 필드 및 유효성 검사 규칙 관리 컴포넌트
 export default function EmailInputField<TFieldValues extends FieldValues, TName extends FieldPath<TFieldValues>>({
   duplicateValid,
+  confirmButton,
   ...form
 }: Props<TFieldValues, TName>) {
   return (
@@ -39,6 +41,7 @@ export default function EmailInputField<TFieldValues extends FieldValues, TName 
         input: {
           placeholder: "email@google.com",
         },
+        button: confirmButton,
       }}
     />
   );
