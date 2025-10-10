@@ -2,7 +2,7 @@ import clsx from "clsx";
 import { Text as RNText, type TextProps } from "react-native";
 import { type TypographyKey, typographyTokens } from "@shared/tokens/typography";
 
-interface Props extends TextProps {
+export interface Props extends TextProps {
   typography?: TypographyKey;
 }
 
