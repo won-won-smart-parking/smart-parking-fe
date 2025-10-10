@@ -1,6 +1,7 @@
 // import axios from "axios";
 // import { useEffect } from "react";
-import { View } from "react-native";
+import { useNavigation } from "expo-router";
+import { Button, View } from "react-native";
 import { create } from "zustand";
 import { Text } from "@shared/ui/atoms";
 
@@ -33,40 +34,48 @@ const useZustandStore = create<ZustandStateProps>((set, get) => {
 
 // const instance = axios.create({
 //   adapter: "fetch",
-//   baseURL: "",
+//   baseURL: "https://api.example.com",
 // });
 
 // smartparking://
 export default function MainScreen() {
   const count = useZustandStore((state) => state.count);
 
+  // useEffect(() => {
+  //   async function fetchAPI() {
+  //     try {
+  //       const response = await instance.get("/api/movies");
+
+  //       console.log(response);
+  //     } catch (error) {
+  //       if (error instanceof Error) {
+  //         console.log(error.name);
+  //       }
+  //     }
+  //   }
+
+  //   fetchAPI();
+  // }, []);
+
   // const { isLoading, isError } = useQuery({
   //   queryKey: ["users"],
   //   queryFn: fetchUser,
   // });
 
-  // useEffect(() => {
-  //   async function fetchMockUser() {
-  //     try {
-  //       const response = await instance.get("/user");
-  //       console.log(response);
-  //       if (response.status === 200) {
-  //         throw new Error("무언가 잘못되었습니다.", { cause: "asd" });
-  //       }
-  //     } catch (err) {
-  //       console.error(err);
-  //     }
-  //   }
-
-  //   fetchMockUser();
-  // }, []);
-
   // if (isLoading) return <Text>Lodaing...</Text>;
   // if (isError) return <Text>Error...</Text>;
+
+  const navigation = useNavigation();
 
   return (
     <View className="flex-1 items-center justify-center">
       <Text typography="display-default">메인 페이지{count}</Text>
+
+      {/* 
+        navigation.openDrawer를 통해 사이드메뉴를 열 수 있다.
+        [공식 문서 참고](https://reactnavigation.org/docs/drawer-based-navigation/)
+      */}
+      <Button title="Open drawer menu!!" onPress={() => navigation.openDrawer()} />
     </View>
   );
 }
