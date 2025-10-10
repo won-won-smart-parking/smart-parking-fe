@@ -2,8 +2,12 @@ import { TextInput, type TextInputProps, View } from "react-native";
 import { type InputRequiredProps, InputStyle } from "../foundation";
 import ClearButton from "../part/ClearButton";
 
-export type Props = InputRequiredProps & Omit<TextInputProps, keyof InputRequiredProps>;
-
+export type Props = InputRequiredProps &
+  Omit<TextInputProps, keyof InputRequiredProps> & {
+    onFocus?: () => void;
+    autoFocus?: boolean;
+    clearButton?: boolean;
+  };
 /**
  * Atom / Input (Search Input)
  *
@@ -25,7 +29,15 @@ export type Props = InputRequiredProps & Omit<TextInputProps, keyof InputRequire
  *
  * @returns ReactElement SearchInput Component
  */
-export default function SearchInput({ value = "", placeholder = "placeholder", onChangeText, onPress }: Props) {
+export default function SearchInput({
+  value = "",
+  placeholder = "placeholder",
+  onChangeText,
+  onPress,
+  onFocus,
+  autoFocus = false,
+  clearButton = true,
+}: Props) {
   return (
     <View className={InputStyle.container}>
       <View className={InputStyle.field}>
@@ -35,8 +47,10 @@ export default function SearchInput({ value = "", placeholder = "placeholder", o
           placeholder={placeholder}
           placeholderClassName="text-coolgray-400"
           onChangeText={onChangeText}
+          onFocus={onFocus}
+          autoFocus={autoFocus}
         />
-        {value.length ? <ClearButton onPress={onPress} /> : null}
+        {clearButton && value.length ? <ClearButton onPress={onPress} /> : null}
       </View>
     </View>
   );
