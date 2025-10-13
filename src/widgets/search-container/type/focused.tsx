@@ -19,7 +19,7 @@ export default function FocusedSearchContainer({ value, onChangeText, onClear, o
   const [mockData, setMockData] = useState<SearchResult[]>([]);
   const [filteredData, setFilteredData] = useState<SearchResult[]>([]);
 
-  // MirageJS에서 데이터만 가져오기
+  // search API로부터 mock 데이터 불러오기
   useEffect(() => {
     fetch("https://api.example.com/api/search")
       .then((res) => res.json())
@@ -27,7 +27,7 @@ export default function FocusedSearchContainer({ value, onChangeText, onClear, o
       .catch(() => setMockData([]));
   }, []);
 
-  // 검색어 변경 시 필터링
+  // 검색어 필터링
   useEffect(() => {
     if (!value) {
       setFilteredData([]);
