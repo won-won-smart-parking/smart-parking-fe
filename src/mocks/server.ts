@@ -1,5 +1,6 @@
 import { createServer } from "miragejs";
 import { movieMockRoutes } from "./routes/movie.mock";
+import { searchMockRoutes } from "./routes/search.mock";
 
 // MirageJS Mock Server 구동 유틸 함수
 export default function enableMockServer() {
@@ -10,6 +11,7 @@ export default function enableMockServer() {
 
       // API 문서를 통해 구성한 가짜 Mock API 호출
       movieMockRoutes(this);
+      searchMockRoutes(this);
     },
   });
 }

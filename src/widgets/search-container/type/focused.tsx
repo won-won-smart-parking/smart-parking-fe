@@ -1,7 +1,8 @@
+import { useEffect, useState } from "react";
 import { FlatList, Text, View } from "react-native";
 import { DefaultListItem } from "@shared/ui/molecules/list-item/variant";
+import { Props as ListItemProps } from "@shared/ui/molecules/list-item/variant/DefaultListItem";
 import SearchField from "@shared/ui/molecules/search-field";
-import { dummyData } from "./dummyData";
 
 interface Props {
   value: string;
@@ -12,12 +13,35 @@ interface Props {
   onClear: () => void;
 }
 
+type SearchResult = Pick<ListItemProps, "title" | "description"> & { id: string };
+
 export default function FocusedSearchContainer({ value, onChangeText, onClear, onBack, onSelect }: Props) {
-  const filteredData = dummyData.filter(
-    (item) =>
-      item.title.toLowerCase().includes(value.toLowerCase()) ||
-      item.description?.toLowerCase().includes(value.toLowerCase()),
-  );
+  const [mockData, setMockData] = useState<SearchResult[]>([]);
+  const [filteredData, setFilteredData] = useState<SearchResult[]>([]);
+
+  // MirageJS에서 데이터만 가져오기
+  useEffect(() => {
+    fetch("https://api.example.com/api/search")
+      .then((res) => res.json())
+      .then((data) => setMockData(data.results))
+      .catch(() => setMockData([]));
+  }, []);
+
+  // 검색어 변경 시 필터링
+  useEffect(() => {
+    if (!value) {
+      setFilteredData([]);
+      return;
+    }
+
+    const filtered = mockData.filter(
+      (item) =>
+        item.title.toLowerCase().includes(value.toLowerCase()) ||
+        item.description?.toLowerCase().includes(value.toLowerCase()),
+    );
+
+    setFilteredData(filtered);
+  }, [value, mockData]);
 
   const showList = value.length > 0;
 

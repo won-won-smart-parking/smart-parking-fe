@@ -4,6 +4,7 @@ import { useNavigation } from "expo-router";
 import { Button, View } from "react-native";
 import { create } from "zustand";
 import { Text } from "@shared/ui/atoms";
+import SearchContainer from "@widgets/search-container";
 
 // import { useQuery } from "@tanstack/react-query";
 
@@ -68,7 +69,7 @@ export default function MainScreen() {
   const navigation = useNavigation();
 
   return (
-    <View className="flex-1 items-center justify-center">
+    <View className="flex-1 justify-center">
       <Text typography="display-default">메인 페이지{count}</Text>
 
       {/* 
@@ -76,6 +77,7 @@ export default function MainScreen() {
         [공식 문서 참고](https://reactnavigation.org/docs/drawer-based-navigation/)
       */}
       <Button title="Open drawer menu!!" onPress={() => navigation.openDrawer()} />
+      <SearchContainer />
     </View>
   );
 }
