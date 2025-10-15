@@ -2,7 +2,10 @@ import { TextInput, type TextInputProps, View } from "react-native";
 import { type InputRequiredProps, InputStyle } from "../foundation";
 import ClearButton from "../part/ClearButton";
 
-export type Props = InputRequiredProps & Omit<TextInputProps, keyof InputRequiredProps>;
+export type Props = InputRequiredProps &
+  Omit<TextInputProps, keyof InputRequiredProps> & {
+    onPress: () => void;
+  };
 
 /**
  * Atom / Input (Search Input)

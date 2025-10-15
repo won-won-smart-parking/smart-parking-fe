@@ -24,6 +24,7 @@ import Direction from "@shared/assets/icons/base/direction.svg";
 import Edit from "@shared/assets/icons/base/edit.svg";
 import Example from "@shared/assets/icons/base/example.svg";
 import EyeOffOutline from "@shared/assets/icons/base/eye-off-outline.svg";
+import EyeOnOutline from "@shared/assets/icons/base/eye-on-outline.svg";
 import Filter from "@shared/assets/icons/base/filter.svg";
 import FixFill from "@shared/assets/icons/base/fix-fill.svg";
 import FixOutline from "@shared/assets/icons/base/fix-outline.svg";
@@ -84,6 +85,7 @@ export const baseIcons = {
   edit: Edit,
   example: Example,
   eyeOffOutline: EyeOffOutline,
+  eyeOnOutline: EyeOnOutline,
   filter: Filter,
   fixFill: FixFill,
   fixOutline: FixOutline,

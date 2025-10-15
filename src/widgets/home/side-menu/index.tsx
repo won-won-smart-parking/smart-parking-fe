@@ -11,7 +11,7 @@ import { useSideMenu } from "./useSideMenu";
 // DrawerContent(Side Menu) 커스텀 컴포넌트
 export default function SideMenu() {
   const {
-    store: { isLogin, userName, userProfileUrl },
+    store: { isLoggedIn, user },
     handleNavigate,
   } = useSideMenu();
 
@@ -20,9 +20,7 @@ export default function SideMenu() {
       <View>
         {/* 로그인(마이페이지 이동) / 비로그인(로그인 페이지 이동) */}
         <View className="border-b border-coolgray-200 py-4">
-          <Pressable>
-            {!isLogin ? <ProfileGuest /> : <ProfileLoggedIn userName={userName} userProfileUrl={userProfileUrl} />}
-          </Pressable>
+          <Pressable>{!isLoggedIn ? <ProfileGuest /> : <ProfileLoggedIn userName={user.name} userProfileUrl={user.profile} />}</Pressable>
         </View>
 
         {/* 네비게이션 */}
@@ -30,12 +28,7 @@ export default function SideMenu() {
           {/* 차량 관리 + 내 주차권 + 즐겨찾기 */}
           <View key={sections[0].key}>
             {sections[0].items.map((item) => (
-              <SideMenuItem
-                key={item.key}
-                text={item.text}
-                icon={item.icon}
-                onPress={() => handleNavigate(item.key, item.to)}
-              />
+              <SideMenuItem key={item.key} text={item.text} icon={item.icon} onPress={() => handleNavigate(item.key, item.to)} />
             ))}
           </View>
 
@@ -47,12 +40,7 @@ export default function SideMenu() {
 
             <View>
               {sections[1].items.map((item) => (
-                <SideMenuItem
-                  key={item.key}
-                  text={item.text}
-                  icon={item.icon}
-                  onPress={() => handleNavigate(item.key, item.to)}
-                />
+                <SideMenuItem key={item.key} text={item.text} icon={item.icon} onPress={() => handleNavigate(item.key, item.to)} />
               ))}
             </View>
           </View>
@@ -60,7 +48,7 @@ export default function SideMenu() {
       </View>
 
       {/* 로그아웃 레이아웃 */}
-      {isLogin && (
+      {isLoggedIn && (
         <View className="flex-row">
           <SideMenuItem
             icon={{ name: "logout", className: "text-red-300" }}

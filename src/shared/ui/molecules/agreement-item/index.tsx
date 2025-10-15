@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Pressable, PressableProps } from "react-native";
 import { Checkbox, Text } from "@shared/ui/atoms";
 
-interface Props extends Required<Pick<PressableProps, "onPress">> {
+export interface Props extends Required<Pick<PressableProps, "onPress">> {
   description: string;
   selected: boolean;
 }
@@ -32,10 +32,8 @@ export default function AgreementItem({ description, selected, onPress }: Props)
     <Pressable
       className="flex-row items-center gap-3"
       onLongPress={() => setPressed(true)}
-      onPressOut={(event) => {
-        onPress?.(event); // Press Out 이벤트가 발생한 시점에 onPress 실행 + Pressed 효과 제거
-        setPressed(false);
-      }}
+      onPress={onPress}
+      onPressOut={() => setPressed(false)}
     >
       <>
         <Checkbox selected={selected} pressed={pressed} />

@@ -21,10 +21,7 @@ export default function IconButton({ iconName, palette, iconSize = "w-6", ...res
       renderContent={(pressed) => (
         <Icon
           name={iconName}
-          className={clsx(
-            !pressed ? palette?.iconColor || "text-neutral-900" : palette?.iconPressedColor || "text-neutral-870",
-            iconSize,
-          )}
+          className={clsx(!pressed ? palette?.iconColor || "text-neutral-900" : palette?.iconPressedColor || "text-neutral-870", iconSize)}
         />
       )}
       {...rest}

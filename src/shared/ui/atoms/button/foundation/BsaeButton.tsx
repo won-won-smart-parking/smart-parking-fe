@@ -34,11 +34,7 @@ export default function BaseButton({
   renderContent,
 }: Props) {
   return (
-    <Pressable
-      disabled={disabled}
-      className={clsx(fullWidth ? "w-full" : "w-auto")}
-      onPress={disabled ? null : onPress}
-    >
+    <Pressable disabled={disabled} className={clsx(fullWidth ? "w-full" : "w-auto")} onPress={disabled ? null : onPress}>
       {({ pressed }) => {
         const mergedPalette = { ...defaultPalette(border), ...palette };
 
