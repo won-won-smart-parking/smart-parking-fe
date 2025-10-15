@@ -60,14 +60,7 @@ export default function SearchContainer() {
       );
 
     case "result":
-      return (
-        <ResultSearchContainer
-          value={query}
-          selectedValue={selectedValue}
-          onChangeText={setQuery}
-          onResultPress={handleNavigate}
-        />
-      );
+      return <ResultSearchContainer value={query} selectedValue={selectedValue} onChangeText={setQuery} onResultPress={handleNavigate} />;
 
     default:
       return null;

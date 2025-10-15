@@ -35,9 +35,7 @@ export default function FocusedSearchContainer({ value, onChangeText, onClear, o
     }
 
     const filtered = mockData.filter(
-      (item) =>
-        item.title.toLowerCase().includes(value.toLowerCase()) ||
-        item.description?.toLowerCase().includes(value.toLowerCase()),
+      (item) => item.title.toLowerCase().includes(value.toLowerCase()) || item.description?.toLowerCase().includes(value.toLowerCase()),
     );
 
     setFilteredData(filtered);

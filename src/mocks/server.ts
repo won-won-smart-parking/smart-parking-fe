@@ -1,7 +1,7 @@
 import { createServer, Model } from "miragejs";
 import userData from "./data/user.json";
-import { userMockRoutes } from "./routes/user.mock";
 import { searchMockRoutes } from "./routes/search.mock";
+import { userMockRoutes } from "./routes/user.mock";
 
 // MirageJS Mock Server 구동 유틸 함수
 export default function enableMockServer() {
