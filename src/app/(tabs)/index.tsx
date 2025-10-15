@@ -1,10 +1,12 @@
 // import axios from "axios";
+// import { useNavigation } from "expo-router";
 // import { useEffect } from "react";
-import { useNavigation } from "expo-router";
-import { Button, View } from "react-native";
-import { create } from "zustand";
-import { Text } from "@shared/ui/atoms";
-import SearchContainer from "@widgets/search-container";
+// import { Button, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+// import { create } from "zustand";
+import SignUpForm from "@/process/signup";
+
+// import { Text } from "@shared/ui/atoms";
 
 // import { useQuery } from "@tanstack/react-query";
 
@@ -13,25 +15,25 @@ import SearchContainer from "@widgets/search-container";
 //   return response;
 // };
 
-interface ZustandStateProps {
-  count: number;
-  increase: () => void;
-  decrease: () => void;
-}
+// interface ZustandStateProps {
+//   count: number;
+//   increase: () => void;
+//   decrease: () => void;
+// }
 
-const useZustandStore = create<ZustandStateProps>((set, get) => {
-  return {
-    count: 1,
-    increase() {
-      const { count } = get();
-      set({ count: count + 1 });
-    },
-    decrease() {
-      const { count } = get();
-      set({ count: count - 1 });
-    },
-  };
-});
+// const useZustandStore = create<ZustandStateProps>((set, get) => {
+//   return {
+//     count: 1,
+//     increase() {
+//       const { count } = get();
+//       set({ count: count + 1 });
+//     },
+//     decrease() {
+//       const { count } = get();
+//       set({ count: count - 1 });
+//     },
+//   };
+// });
 
 // const instance = axios.create({
 //   adapter: "fetch",
@@ -40,7 +42,7 @@ const useZustandStore = create<ZustandStateProps>((set, get) => {
 
 // smartparking://
 export default function MainScreen() {
-  const count = useZustandStore((state) => state.count);
+  // const count = useZustandStore((state) => state.count);
 
   // useEffect(() => {
   //   async function fetchAPI() {
@@ -66,18 +68,18 @@ export default function MainScreen() {
   // if (isLoading) return <Text>Lodaing...</Text>;
   // if (isError) return <Text>Error...</Text>;
 
-  const navigation = useNavigation();
+  // const navigation = useNavigation();
 
   return (
-    <View className="flex-1 justify-center">
-      <Text typography="display-default">메인 페이지{count}</Text>
+    <SafeAreaView className="flex-1">
+      {/* <Text typography="display-default">메인 페이지{count}</Text> */}
 
       {/* 
         navigation.openDrawer를 통해 사이드메뉴를 열 수 있다.
         [공식 문서 참고](https://reactnavigation.org/docs/drawer-based-navigation/)
       */}
-      <Button title="Open drawer menu!!" onPress={() => navigation.openDrawer()} />
-      <SearchContainer />
-    </View>
+      {/* <Button title="Open drawer menu!!" onPress={() => navigation.openDrawer()} /> */}
+      <SignUpForm />
+    </SafeAreaView>
   );
 }

@@ -7,7 +7,9 @@ export type Props = InputRequiredProps &
     onFocus?: () => void;
     autoFocus?: boolean;
     clearButton?: boolean;
+    onPress: () => void;
   };
+
 /**
  * Atom / Input (Search Input)
  *
