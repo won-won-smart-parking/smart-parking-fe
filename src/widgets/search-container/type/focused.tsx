@@ -18,6 +18,7 @@ type SearchResult = Pick<ListItemProps, "title" | "description"> & { id: string 
 export default function FocusedSearchContainer({ value, onChangeText, onClear, onBack, onSelect }: Props) {
   const [mockData, setMockData] = useState<SearchResult[]>([]);
   const [filteredData, setFilteredData] = useState<SearchResult[]>([]);
+  const [loading, setLoading] = useState(false);
 
   // search API로부터 mock 데이터 불러오기
   useEffect(() => {
@@ -27,18 +28,23 @@ export default function FocusedSearchContainer({ value, onChangeText, onClear, o
       .catch(() => setMockData([]));
   }, []);
 
-  // 검색어 필터링
+  // 디바운싱 처리
   useEffect(() => {
     if (!value) {
       setFilteredData([]);
       return;
     }
 
-    const filtered = mockData.filter(
-      (item) => item.title.toLowerCase().includes(value.toLowerCase()) || item.description?.toLowerCase().includes(value.toLowerCase()),
-    );
+    setLoading(true);
+    const handler = setTimeout(() => {
+      const filtered = mockData.filter(
+        (item) => item.title.toLowerCase().includes(value.toLowerCase()) || item.description?.toLowerCase().includes(value.toLowerCase()),
+      );
+      setFilteredData(filtered);
+      setLoading(false);
+    }, 300);
 
-    setFilteredData(filtered);
+    return () => clearTimeout(handler);
   }, [value, mockData]);
 
   const showList = value.length > 0;
@@ -59,7 +65,11 @@ export default function FocusedSearchContainer({ value, onChangeText, onClear, o
         />
       </View>
 
-      {showList ? (
+      {loading ? (
+        <View className="flex items-center justify-center py-6">
+          <Text className="text-neutral-500">검색 중...</Text>
+        </View>
+      ) : showList ? (
         filteredData.length > 0 ? (
           <FlatList
             className="bg-neutral-200"
