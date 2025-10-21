@@ -104,12 +104,10 @@ export default function MainScreen() {
       <View className="absolute bottom-0 top-0 w-full">
         <WebView
           ref={webViewRef}
-          // source={{ uri: "http://192.168.200.142:5173" }}
           source={{ uri: process.env.EXPO_PUBLIC_KAKAO_MAP_WEB_VIEW_URL as string }}
           originWhitelist={["*"]}
           javaScriptEnabled
           domStorageEnabled
-          // onLoadEnd={() => console.log("✅ WebView Loaded")}
           webviewDebuggingEnabled={true}
         />
       </View>
