@@ -9,10 +9,11 @@ export interface Props {
   description?: string;
   iconName?: IconName;
   onPress?: () => void;
+  onIconPress?: () => void;
 }
 
 // 기본 리스트 아이템 컴포넌트입니다.
-export default function DefaultListItem({ title, description, iconName, direction = "center", onPress }: Props) {
+export default function DefaultListItem({ title, description, iconName, direction = "center", onPress, onIconPress }: Props) {
   return (
     <TouchableOpacity onPress={onPress} activeOpacity={0.7}>
       <View
@@ -32,7 +33,11 @@ export default function DefaultListItem({ title, description, iconName, directio
         </View>
 
         {/* 아이콘 조건부 렌더링 */}
-        {iconName && <Icon name={iconName} className="text-neutral-850" />}
+        {iconName && (
+          <TouchableOpacity onPress={onIconPress} activeOpacity={0.7}>
+            <Icon name={iconName} className="text-neutral-850" />
+          </TouchableOpacity>
+        )}
       </View>
     </TouchableOpacity>
   );
