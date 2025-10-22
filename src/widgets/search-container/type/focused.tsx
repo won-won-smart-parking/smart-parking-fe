@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { FlatList, Text, View } from "react-native";
+import { instance } from "@global/utils/axios";
 import { DefaultListItem } from "@shared/ui/molecules/list-item/variant";
 import SearchField from "@shared/ui/molecules/search-field";
 
@@ -38,10 +39,10 @@ export default function FocusedSearchContainer({
     // 디바운스 처리
     setLoading(true);
     const handler = setTimeout(() => {
-      fetch(`https://api.example.com/api/search?search=${encodeURIComponent(value)}`)
-        .then((res) => res.json())
-        .then((data) => {
-          setFilteredData(data.results);
+      instance
+        .get("/api/search", { params: { search: value } })
+        .then((res) => {
+          setFilteredData(res.data.results);
           setLoading(false);
         })
         .catch(() => {
@@ -62,11 +63,9 @@ export default function FocusedSearchContainer({
       return;
     }
 
-    fetch(`https://api.example.com/api/search?search=${encodeURIComponent(trimmedValue)}`)
-      .then((res) => res.json())
-      .then((data) => {
-        onSubmit(trimmedValue, data.results);
-      })
+    instance
+      .get("/api/search", { params: { search: trimmedValue } })
+      .then((res) => onSubmit(trimmedValue, res.data.results))
       .catch(() => onSubmit(trimmedValue, []));
   };
 
