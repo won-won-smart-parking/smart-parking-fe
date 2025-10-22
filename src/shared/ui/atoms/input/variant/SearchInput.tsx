@@ -39,6 +39,7 @@ export default function SearchInput({
   onFocus,
   autoFocus = false,
   clearButton = true,
+  onSubmitEditing,
 }: Props) {
   return (
     <View className={InputStyle.container}>
@@ -51,6 +52,7 @@ export default function SearchInput({
           onChangeText={onChangeText}
           onFocus={onFocus}
           autoFocus={autoFocus}
+          onSubmitEditing={onSubmitEditing}
         />
         {clearButton && value.length ? <ClearButton onPress={onPress} /> : null}
       </View>
