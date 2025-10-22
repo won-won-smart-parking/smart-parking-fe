@@ -1,0 +1,22 @@
+[
+  { "title": "강남역 주차장", "description": "서울 강남구 강남대로 100" },
+  { "title": "역삼동 타워주차장", "description": "서울 강남구 역삼로 50" },
+  { "title": "삼성역 공영주차장", "description": "서울 강남구 삼성로 30" },
+  { "title": "논현동 파킹존", "description": "서울 강남구 논현로 123" },
+  { "title": "청담동 주차장", "description": "서울 강남구 청담동 45-7" },
+  { "title": "선릉역 주차장", "description": "서울 강남구 선릉로 432" },
+  { "title": "삼성동 공영주차장", "description": "서울 강남구 삼성동 87" },
+  { "title": "청담 파크존", "description": "서울 강남구 청담로 99" },
+  { "title": "압구정 주차장", "description": "서울 강남구 압구정로 11" },
+  { "title": "도곡동 주차존", "description": "서울 강남구 도곡로 22" },
+  { "title": "청담 스퀘어 주차장", "description": "서울 강남구 청담동 101-3" },
+  { "title": "삼성 파크타워 주차장", "description": "서울 강남구 삼성로 77" },
+  { "title": "논현 파킹존", "description": "서울 강남구 논현로 210" },
+  { "title": "역삼역 공영주차장", "description": "서울 강남구 역삼동 88-1" },
+  { "title": "강남 스카이 주차장", "description": "서울 강남구 강남대로 55" },
+  { "title": "청담역 주차장", "description": "서울 강남구 청담로 200" },
+  { "title": "삼성역 파킹존", "description": "서울 강남구 삼성로 90" },
+  { "title": "도곡 파크존", "description": "서울 강남구 도곡로 101" },
+  { "title": "논현역 주차장", "description": "서울 강남구 논현로 150" },
+  { "title": "압구정 공영주차장", "description": "서울 강남구 압구정로 33" }
+]

@@ -9,9 +9,9 @@ interface Props {
   onSubmit: (value: string, filteredData: { id: string; title: string; description?: string }[]) => void;
   onBack: () => void;
   onSelect: (value: string) => void;
-  onClear: () => void;
-  recentSearches: string[];
-  onDeleteRecentSearch: (value: string) => void;
+  onClear: () => void; // 검색어 및 선택값 초기화 핸들러
+  recentSearches: string[]; // 최근 검색어 리스트
+  onDeleteRecentSearch: (value: string) => void; // 최근 검색어 삭제 핸들러
 }
 
 export default function FocusedSearchContainer({
@@ -24,19 +24,10 @@ export default function FocusedSearchContainer({
   onDeleteRecentSearch,
   onSubmit,
 }: Props) {
-  const [mockData, setMockData] = useState<{ id: string; title: string; description?: string }[]>([]);
-  const [filteredData, setFilteredData] = useState(mockData);
+  const [filteredData, setFilteredData] = useState<{ id: string; title: string; description?: string }[]>([]);
   const [loading, setLoading] = useState(false);
 
-  // search API로부터 mock 데이터 불러오기
-  useEffect(() => {
-    fetch("https://api.example.com/api/search")
-      .then((res) => res.json())
-      .then((data) => setMockData(data.results))
-      .catch(() => setMockData([]));
-  }, []);
-
-  // 디바운싱 처리
+  // 검색어 변경 시 API 호출하여 필터링된 데이터 가져오기
   useEffect(() => {
     if (!value) {
       setFilteredData([]);
@@ -44,40 +35,44 @@ export default function FocusedSearchContainer({
       return;
     }
 
+    // 디바운스 처리
     setLoading(true);
     const handler = setTimeout(() => {
-      setFilteredData(
-        mockData.filter(
-          (item) => item.title.toLowerCase().includes(value.toLowerCase()) || item.description?.toLowerCase().includes(value.toLowerCase()),
-        ),
-      );
-      setLoading(false);
+      fetch(`https://api.example.com/api/search?search=${encodeURIComponent(value)}`)
+        .then((res) => res.json())
+        .then((data) => {
+          setFilteredData(data.results);
+          setLoading(false);
+        })
+        .catch(() => {
+          setFilteredData([]);
+          setLoading(false);
+        });
     }, 300);
 
     return () => clearTimeout(handler);
-  }, [value, mockData]);
+  }, [value]);
 
+  // 엔터 키 입력 시 검색 실행
   const handleEnter = () => {
     const trimmedValue = value.trim();
 
     if (!trimmedValue) {
-      console.log("검색어가 없음");
-      onSubmit(value, []); // 검색값이 없으면 빈 배열 전달
+      onSubmit(value, []);
       return;
     }
 
-    const currentFiltered = mockData.filter(
-      (item) =>
-        item.title.toLowerCase().includes(trimmedValue.toLowerCase()) ||
-        item.description?.toLowerCase().includes(trimmedValue.toLowerCase()),
-    );
-
-    console.log("엔터 입력 value:", trimmedValue, "filteredData:", currentFiltered);
-    onSubmit(trimmedValue, currentFiltered);
+    fetch(`https://api.example.com/api/search?search=${encodeURIComponent(trimmedValue)}`)
+      .then((res) => res.json())
+      .then((data) => {
+        onSubmit(trimmedValue, data.results);
+      })
+      .catch(() => onSubmit(trimmedValue, []));
   };
 
   return (
     <View className="flex-1 bg-white">
+      {/* 검색창 */}
       <View className="border-b border-neutral-400 px-3 py-2">
         <SearchField
           leftIcon={{ iconName: "arrowLeft", onPress: onBack }}
@@ -93,6 +88,7 @@ export default function FocusedSearchContainer({
         />
       </View>
 
+      {/* 검색 리스트 확인용 */}
       {loading ? (
         <View className="flex items-center justify-center py-6">
           <Text className="text-neutral-500">검색 중...</Text>
