@@ -1,4 +1,4 @@
-import { ScrollView } from "react-native";
+import { ScrollView } from "react-native-gesture-handler";
 import { Chip } from "@shared/ui/atoms";
 
 export interface Props {
@@ -8,7 +8,7 @@ export interface Props {
 // 가로 스크롤이 가능한 Filter Group 컴포넌트입니다.
 export default function ScrollFilterGroup({ children }: Props) {
   return (
-    <ScrollView horizontal contentContainerStyle={{ alignItems: "center", gap: 8 }} showsHorizontalScrollIndicator={false}>
+    <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerClassName="gap-3 px-6 py-4">
       {children}
     </ScrollView>
   );
