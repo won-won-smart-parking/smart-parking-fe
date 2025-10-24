@@ -20,4 +20,13 @@ export const PublicSchema = z.object({
         error: "EXPO_PUBLIC_API_URL은 http(s) 프로토콜의 유효한 URL이어야 합니다.",
       }),
     ),
+  EXPO_PUBLIC_KAKAO_MAP_WEB_VIEW_URL: z
+    .string({
+      error: ".env 파일에 EXPO_PUBLIC_KAKAO_MAP_WEB_VIEW_URL 값이 필요합니다.",
+    })
+    .pipe(
+      z.httpUrl({
+        error: "EXPO_PUBLIC_KAKAO_MAP_WEB_VIEW_URL은 http(s) 프로토콜의 유효한 URL이어야 합니다.",
+      }),
+    ),
 });
