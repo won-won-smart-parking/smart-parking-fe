@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { createRecentSearchStorage, MAX_RECENT_SEARCHES } from "@global/utils/mmkv";
-import FocusedSearchContainer from "./type/focused";
-import MainSearchContainer from "./type/main";
-import ResultSearchContainer from "./type/result";
+import FocusedSearchContainer from "./type/Focused";
+import MainSearchContainer from "./type/Main";
+import ResultSearchContainer from "./type/Result";
 
 export type SearchContainerVariant = "main" | "focused" | "result";
 
