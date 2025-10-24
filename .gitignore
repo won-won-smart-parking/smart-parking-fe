@@ -42,3 +42,7 @@ app-example
 
 # ESlint 캐시
 .eslintcache
+
+# Native folders
+ios/
+android/

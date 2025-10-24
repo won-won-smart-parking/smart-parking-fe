@@ -1,5 +1,7 @@
 import { createServer, Model } from "miragejs";
+import parkingData from "./data/parking.json";
 import userData from "./data/user.json";
+import { searchMockRoutes } from "./routes/search.mock";
 import { userMockRoutes } from "./routes/user.mock";
 
 // MirageJS Mock Server 구동 유틸 함수
@@ -8,15 +10,19 @@ export default function enableMockServer() {
   window.server = createServer({
     models: {
       user: Model,
+      parking: Model,
     },
     seeds(server) {
       userData.forEach((data) => server.create("user", data as Record<string, unknown>));
+
+      parkingData.forEach((data) => server.create("parking", data as Record<string, unknown>));
     },
     routes() {
       this.urlPrefix = process.env.EXPO_PUBLIC_API_URL as string; // url 접두사 지정
 
       // API 문서를 통해 구성한 가짜 Mock API 호출
       userMockRoutes(this);
+      searchMockRoutes(this);
     },
   });
 }
