@@ -7,7 +7,7 @@ import SearchFieldButton from "./part/SearchFieldButton";
 interface Props {
   leftIcon: IconButtonProps;
   rightIcon: IconButtonProps;
-  input: SearchInputProps;
+  input: SearchInputProps & { autoFocus?: boolean };
 }
 
 /**

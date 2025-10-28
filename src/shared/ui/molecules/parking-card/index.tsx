@@ -1,11 +1,12 @@
-import { Image, View } from "react-native";
+import { Image as ExpoImage } from "expo-image";
+import { View } from "react-native";
 import { ParkingStatus } from "@shared/types/parking-status";
 import { Tag, Text } from "@shared/ui/atoms";
 import ButtonGroup from "@shared/ui/molecules/button-group";
 import ParkingCardActionButton from "./part/ParkingCardActionButton";
 import ParkingCardDescription from "./part/ParkingCardDescription";
 
-interface Props {
+export interface Props {
   parkingTitle: string; // 주차장 이름
   parkingStatus: ParkingStatus; // 주차장 혼잡도 상태
   parkingType?: "public" | "private"; // 주차장 구분
@@ -66,8 +67,10 @@ export default function ParkingCard({
         </View>
 
         {/* 주차장 이미지 */}
-        <View className="max-h-[120px] items-center justify-center overflow-hidden rounded-[12px]">
-          {parkingImageUrl && <Image source={{ uri: parkingImageUrl }} alt={parkingTitle} className="h-full w-full" />}
+        <View className="h-30 overflow-hidden rounded-[12px]">
+          {parkingImageUrl && (
+            <ExpoImage source={{ uri: parkingImageUrl }} alt={parkingTitle} contentFit="cover" style={{ width: "100%", flex: 1 }} />
+          )}
         </View>
       </View>
 

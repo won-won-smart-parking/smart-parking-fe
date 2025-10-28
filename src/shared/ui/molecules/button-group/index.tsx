@@ -36,9 +36,5 @@ interface Props extends Required<Pick<ViewProps, "children">> {
  * @returns ReactElement ButtonGroup 컴포넌트
  */
 export default function ButtonGroup({ direction = "row", children }: Props) {
-  return (
-    <View className={clsx("items-center justify-between", direction === "row" ? "flex-row" : "flex-col")}>
-      {children}
-    </View>
-  );
+  return <View className={clsx("justify-between", direction === "row" ? "flex-row" : "flex-col gap-3")}>{children}</View>;
 }

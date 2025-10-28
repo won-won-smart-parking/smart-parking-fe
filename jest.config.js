@@ -18,12 +18,7 @@ module.exports = {
   roots: ["<rootDir>/src", "<rootDir>"],
 
   // ✅ 커버리지 설정
-  collectCoverageFrom: [
-    "src/**/*.{ts,tsx}",
-    "!src/**/__tests__/**",
-    "!src/**/*.test.{ts,tsx}",
-    "!src/**/*.spec.{ts,tsx}",
-  ],
+  collectCoverageFrom: ["src/**/*.{ts,tsx}", "!src/**/__tests__/**", "!src/**/*.test.{ts,tsx}", "!src/**/*.spec.{ts,tsx}"],
   coverageDirectory: "coverage",
   coverageReporters: ["json", "json-summary", "lcov", "text", "clover"],
 

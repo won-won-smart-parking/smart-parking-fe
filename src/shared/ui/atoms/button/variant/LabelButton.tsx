@@ -21,9 +21,7 @@ export default function LabelButton({ label, palette, typography = "label-md", .
       renderContent={(pressed) => (
         <Text
           typography={typography}
-          className={clsx(
-            !pressed ? palette?.textColor || "text-neutral-900" : palette?.textPressedColor || "text-neutral-870",
-          )}
+          className={clsx(!pressed ? palette?.textColor || "text-neutral-900" : palette?.textPressedColor || "text-neutral-870")}
         >
           {label}
         </Text>

@@ -10,4 +10,4 @@ export { default as Select } from "./select";
 export { default as SocialButton } from "./social-button";
 export { default as Switch } from "./switch";
 export { default as Tag } from "./tag";
-export { default as Text } from "./text";
+export { default as Text, Props as AtomTextProps } from "./text";
